@@ -81,7 +81,7 @@ given by
     Let $L : K$ be of finite degree (which is not necessarily Galois), and $H\leq \mathrm{Aut}_{K}(L)$. Then $[L:L^{H}]\leq \left| H \right| $.
     \end{claim}
     \begin{proof}[Proof of Claim]
-        Suppose on the contrary, i.e. $[L:L^{H}]>\left| H \right| $. Let $n=[L:L^{H}]$ and $d=\left| H \right| $. Let $\{\sigma_{1},\dots,\sigma_{d}\}=H\leq \mathrm{Aut}_{K}(L)$,  and $\{\alpha_{1},\dots, \alpha_{n}\}$ be a basis of $L /L^{H}$. Set 
+        Suppose on the contrary, i.e. $[L:L^{H}]>\left| H \right| $. Let $n=[L:L^{H}]$ and $d=\left| H \right| $. Let $\{\sigma_{1},\dots,\sigma_{d}\}=H\leq \mathrm{Aut}_{K}(L)$,  and $\{\alpha_{1},\dots, \alpha_{n}\}$ be a basis of $L$ over $L^{H}$. Set 
         \[
         v_{1}=\begin{pmatrix}
             \sigma_{1}(\alpha_{1})\\
@@ -150,7 +150,7 @@ given by
     \[
     |H|\leq |\mathrm{Aut}_{L^H}(L)|\leq [L:L^H]\leq |H|.
     \]
-    Hence $H=\mathrm{Aut}_{L^H}(L)=\operatorname{Gal}(L/L^H)$. 
+    Hence $H=\mathrm{Aut}_{L^H}(L)$. Since $L^{\mathrm{Aut}_{L^H}(L)}=L^H$, the extension $L:L^H$ is Galois and $H=\operatorname{Gal}(L/L^H)$. 
 \end{proof}
 
 \begin{theorem}[Fundamental Theorem of Galois Theory, Part II]\label{thm-FTGT-2}
