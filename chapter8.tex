@@ -307,9 +307,9 @@ As an immediate consequence of the above corollary, one has $C_{K}=\{[J]\ |\ N(J
     we can check that 
     \begin{itemize}
         \item[\((2)\):] \(\bar m_\alpha(x) = x^2 + x + 1\) irreducible in \(\mathbb{Z}_2[x] \Rightarrow (2)\) is prime;
-        \item[\((3)\):] \(\bar m_\alpha(x) = x^2 + x - 1\) irreducible in \(\mathbb{Z}_3[x] \Rightarrow (3)\) is prime;
-        \item[\((5)\):] \(\bar m_\alpha(x) = x^2 + x + 1\) irreducible in \(\mathbb{Z}_5[x] \Rightarrow (5)\) is prime;
-        \item[\((7)\):] \(\bar m_\alpha(x) = x^2 + x - 1\) irreducible in \(\mathbb{Z}_7[x] \Rightarrow (7)\) is prime.
+        \item[\((3)\):] \(\bar m_\alpha(x) = x^2 + 2x + 2\) irreducible in \(\mathbb{Z}_3[x] \Rightarrow (3)\) is prime;
+        \item[\((5)\):] \(\bar m_\alpha(x) = x^2 - x + 1\) irreducible in \(\mathbb{Z}_5[x] \Rightarrow (5)\) is prime;
+        \item[\((7)\):] \(\bar m_\alpha(x) = x^2 - x - 1\) irreducible in \(\mathbb{Z}_7[x] \Rightarrow (7)\) is prime.
     \end{itemize}
     Therefore there is no \(J\) with \(N(J) =2,3,5,7\). Hence 
     \begin{align*}
@@ -319,19 +319,21 @@ As an immediate consequence of the above corollary, one has $C_{K}=\{[J]\ |\ N(J
 \end{example}
 
 \begin{example}
-    Let \(K = \mathbb{Q}(\sqrt{-29})\) and \(\mathcal{O}_K = \displaystyle \mathbb{Z}[-29]\). One can easily compute \(m_K = \frac{2}{\pi} \sqrt{116} = 6. \cdots\). So we need to study \(J \triangleleft \mathcal{O}_K\) with \(N(J) = 2,3,5\), where
+    Let \(K = \mathbb{Q}(\sqrt{-29})\) and \(\mathcal{O}_K = \mathbb{Z}[\sqrt{-29}]\). One can easily compute \(m_K = \frac{2}{\pi} \sqrt{116} = 6. \cdots\). So we need to study \(J \triangleleft \mathcal{O}_K\) with \(N(J) = 2,3,5\), where
     \begin{align*}
         (2) &=  P^2 = (2,1+\sqrt{-29})^2;\\
         (3) &= Q Q' = (3, 1+\sqrt{-29})(3,1-\sqrt{-29});\\
         (5) &= R R' = (5, 1+\sqrt{-29})(5, 1-\sqrt{-29}).
     \end{align*}
-    we can get \(C_K = \left< [P], [Q], [Q'], [R], [R']  \right>\). We want to study the relation between ideal classes \([P],[Q],[R], [Q'],[R']\). Obviously we have 
-    \begin{align*}
-        [P]^2 = [Q][Q'] = [R][R'] = e\\
-        [Q'] = [Q]^{-1} = [Q]^a\\
-        [R'] = [R]^{-1} = [R]^b
-    \end{align*}
-    for some \(a,b > 1\) (otherwise $Q' = Q$ or $R' = R$, contradicting the unique factorization in Theorem \ref{thm-factorizationOfRationalPrimes}). We can simplify \(C_K = \left< [P], [Q], [R]\right>\), where \([P]\) have order 2 and \([Q]\) and $[R]$ has order greater or equal to \(3\).
+    we can get \(C_K = \left< [P], [Q], [Q'], [R], [R']  \right>\). We want to study the relation between ideal classes \([P],[Q],[R], [Q'],[R']\). Obviously
+    \[
+        [P]^2=[Q][Q']=[R][R']=e.
+    \]
+    Hence $[Q']=[Q]^{-1}$ and $[R']=[R]^{-1}$, so
+    \[
+        C_K=\langle [P],[Q],[R]\rangle.
+    \]
+    Moreover, $P$ is not principal since $a^2+29b^2=2$ has no integer solutions. Thus $[P]$ has order $2$.
     
     To look at the orders of $[Q]$ and $[R]$, one needs to do some trial and error. By observation, $\mathrm{Norm}_{K/\mathbb{Q}}(3+2\sqrt{-29}) = 3^2 + 4\cdot 29 = 125 = 5^3$, so we study the prinicpal ideal
     \(I = (3+2 \sqrt{-29})\). 
@@ -358,7 +360,7 @@ As an immediate consequence of the above corollary, one has $C_{K}=\{[J]\ |\ N(J
     \Rightarrow\quad  \left([R]^{-1}\right)^3 = e\quad
     \Rightarrow \quad [R]^3 = e.
 \end{align*}
-We conclude that degree of \([R]\) is \(3\). 
+Since $R$ is not principal (the equation $a^2+29b^2=5$ has no integer solutions), we conclude that the order of \([R]\) is \(3\). 
 
 \medskip
 Now we study \(I' = (1+\sqrt{-29})\) with \(N(J) = 30\), one can easily check that \(I' | (2)(3)(5)\), which implies that 
@@ -367,7 +369,7 @@ Now we study \(I' = (1+\sqrt{-29})\) with \(N(J) = 30\), one can easily check th
 \end{align*}
 Since \(N(I') = 30 = 2\times3 \times 5\), therefore we have
 \begin{align*}
-    I = \left\{\begin{matrix}
+    I' = \left\{\begin{matrix}
 PQR \\
 PQ'R \\
 PQR' \\
@@ -395,7 +397,7 @@ We will end by presenting two examples on how the knowledge on $C_K$ helps solve
 Show that there are no integer solutions to $Y^2+37 = X^3$.
 \end{example}
 \begin{proof}
-Let $K = \mathbb{Q}(\sqrt{37})$, with $\mathcal{O}_K = \mathbb{Z}[\sqrt{-37}]$. One can check that $C_K \cong \mathbb{Z}_2$. Then the equation can be factorized as:
+Let $K = \mathbb{Q}(\sqrt{-37})$, with $\mathcal{O}_K = \mathbb{Z}[\sqrt{-37}]$. One can check that $C_K \cong \mathbb{Z}_2$. Then the equation can be factorized as:
 $$\{Y + \sqrt{-37}\}\{Y - \sqrt{-37}\} = X^3$$
 \noindent {\bf Claim 1. $2, 37 \nmid X$}. 
 
@@ -423,8 +425,8 @@ contradicting Claim 1.
 
 On the other hand, suppose $P = (\sqrt{-37})$, then
 \begin{align*}
-Y + \sqrt{-37} \in (\sqrt{-37}) \ &\Rightarrow \ Y = \{Y + \sqrt{-37}\} - \sqrt{-37} \in (\sqrt{-37}) \\ &\Rightarrow \ (\sqrt{37}) \mid (Y) \\
-&\Rightarrow \  37 = N((\sqrt{37})) \mid N((Y)) = Y^2 
+Y + \sqrt{-37} \in (\sqrt{-37}) \ &\Rightarrow \ Y = \{Y + \sqrt{-37}\} - \sqrt{-37} \in (\sqrt{-37}) \\ &\Rightarrow \ (\sqrt{-37}) \mid (Y) \\
+&\Rightarrow \  37 = N((\sqrt{-37})) \mid N((Y)) = Y^2 
 \end{align*}
 Hence $37 \mid Y$, and the original equation implies that $37 \mid X$, contradicting Claim 1 again.  \qed
 
@@ -432,7 +434,7 @@ Hence $37 \mid Y$, and the original equation implies that $37 \mid X$, contradic
 Consider the ideal factorization
 $$(Y + \sqrt{-37})(Y - \sqrt{-37}) = (X)^3 = P_1^{3e_1} P_2^{3e_2} \cdots P_r^{3e_r}$$ 
 where $(X) = P_1^{e_1} P_2^{e_2}\dots P_r^{e_r}$ is the prime ideal factorization of $(X)$. By Claim 2 and Dedekind's Theorem, if the prime ideal $P_i \mid (Y+\sqrt{-37})$, then
-$P_i \nmid (Y-\sqrt{-37})$ and hence $P_i^{3e_i} \nmid (Y+\sqrt{-37})$. Therefore,
+$P_i \nmid (Y-\sqrt{-37})$ and hence $P_i^{3e_i} \mid (Y+\sqrt{-37})$. Therefore,
 $$(Y + \sqrt{-37}) = I^3  \quad \quad (*)$$ 
 where $I = P_{i_1}^{e_{i_1}}\dots P_{i_l}^{e_{i_l}}$.
 
@@ -442,7 +444,7 @@ Since $|C_K| = 2$, $[I]^2 = e$ and hence $[I]^3 = [I]$, which gives
 $$e = [(Y + \sqrt{-37})] = [I],$$
 i.e. $I = (a+b\sqrt{-37})$ itself is a principal ideal. Hence $(*)$ gives
 \begin{align*}
-(Y + \sqrt{-37}) &= (a+b\sqrt{-37})^3 = (\{a^3-111ab^2\} + \{3a^2b-37\}\sqrt{-37}) \\ 
+(Y + \sqrt{-37}) &= (a+b\sqrt{-37})^3 = (\{a^3-111ab^2\} + \{3a^2b-37b^3\}\sqrt{-37}) \\ 
 \Rightarrow \quad Y + \sqrt{-37} &= \pm\{\{a^3-111ab^2\} + \{3a^2b-37b^3\}\sqrt{-37}\}
 \end{align*}
 
@@ -459,7 +461,7 @@ Consequently, the original equation $Y^2+37 = X^3$ has no integer solutions.
 
 
 \begin{example}
-We have seen that for $K = \mathbb{Q}(\sqrt{6})$ and $\mathcal{O}_K = \mathbb{Z}[\sqrt{6}]$, $C_K \cong \mathbb{Z}_2$. We will use it to find solutions of the equation:
+We have seen that for $K = \mathbb{Q}(\sqrt{-6})$ and $\mathcal{O}_K = \mathbb{Z}[\sqrt{-6}]$, $C_K \cong \mathbb{Z}_2$. We will use it to find solutions of the equation:
 \[
 Y^2 + 54 = X^3 \quad \text{(*)}
 \]
@@ -479,10 +481,10 @@ But $b^3 \equiv 0,1,8 \mod 9$, while $3c^2 + 2 \equiv 2, 5 \mod 9$.  \qed
 $(Y + 3\sqrt{6}), (Y - 3\sqrt{6})$ has no common prime factors.}
 
 Suppose on contrary $P \mid (Y \pm 3\sqrt{6})$, then as before
-$$2 \cdot 3\sqrt{6} \in P \ \Rightarrow\ P \mid (6\sqrt{6}) = (\sqrt{6})^3 \ \Rightarrow \ P \mid (\sqrt{6})\ \Rightarrow \ (\sqrt{6}) \subseteq P \ \Rightarrow \ \sqrt{6} \in P$$
+$$2 \cdot 3\sqrt{-6} \in P \ \Rightarrow\ P \mid (6\sqrt{-6}) = -(\sqrt{-6})^3 \ \Rightarrow \ P \mid (\sqrt{6})\ \Rightarrow \ (\sqrt{6}) \subseteq P \ \Rightarrow \ \sqrt{6} \in P$$
 Thus
 $$\sqrt{6}, Y + 3\sqrt{6} \in P\ \Rightarrow\ Y \in P \ \Rightarrow \  P \mid (Y)\ \Rightarrow\ N(P) \mid N((Y)) = Y^2$$
-But $P \mid  (\sqrt{6})$ implies that $N(P) \mid N((\sqrt{6})) = 6$ and hence $2,3 \mid Y^2$, contradicting Claim 1. \qed
+But $P \mid (\sqrt{-6})$ implies that $N(P) \mid N((\sqrt{-6}))=6$. Since $P$ is prime, $N(P)$ is $2$ or $3$, so either $2\mid Y$ or $3\mid Y$, contradicting Claim 1. \qed
 
 
 \bigskip
@@ -490,7 +492,7 @@ As in Example 1, one can use Claim 2 and the fact that $|C_K| =2$ to conclude th
 $$(Y + 3\sqrt{6}) = (a + b \sqrt{-6})^3 = (\{a^3-18ab^2\} + \{3a^2b-6b^3\}\sqrt{-6})$$
 for some $a,b \in \mathbb{Z}$, which yields
 $$Y = \pm a(a^2-18b^2) \quad \quad 3 = \pm 3b(a^2-2b^2)$$
-So $b = \pm 1$ and $a = 1$ from the second equation, forcing $Y = \pm 17$ in the first equation. Putting it back to the original equation, one has $X = 7$.
+So $b = \pm 1$ and $a=\pm1$ from the second equation, forcing $Y=\pm17$ in the first equation. Putting it back to the original equation, one has $X = 7$.
 
 \medskip
 In conclusion, the only solutions of the Diophantine equation are
