@@ -41,13 +41,13 @@ As an example, the algebraic closure of $\mathbb{R}$ is $\overline{\mathbb{R}} =
 \medskip
 We end this section with the Primitive Element Theorem, which gives an effective way to reduce a field extension into a simple extension.
 \begin{theorem}[Primitive Element Theorem] \label{thm-primelt}
-    Let $K$ be such that $\mathrm{char}(K) = 0$, and $\alpha, \beta \in K$ are algebraic. Then there exists $c \in K$ such that
-    $$K(c) = K(\alpha,\beta).$$
+    Let $K$ be such that $\mathrm{char}(K) = 0$, and let $\alpha,\beta$ be algebraic over $K$ in a common field extension. Then there exists $d\in K$ such that
+    $$K(\alpha+d\beta)=K(\alpha,\beta).$$
 \end{theorem}
 \begin{proof}Let \( p(x) \in K[x] \) be the minimal polynomial of \( \alpha  \), and \( q(x) \in K[x] \) be the minimal polynomial of \( \beta \).
 Take any field extension \(L: K \) such that \( p(x) \) and \( q(x) \) both split in \( L[x] \). 
 
-Write \( \alpha=\alpha_1, \ldots, \alpha_m \in L \) as roots of \( p(x) \) and \( \beta=\beta_1, \ldots, \beta_n \in L\) as roots of \( q(x) \). Take \( d \in K \) such that for any \( 1 \leq i \leq m,\ 1 \leq j \leq n \), 
+Write \( \alpha=\alpha_1, \ldots, \alpha_m \in L \) as the distinct roots of \( p(x) \) and \( \beta=\beta_1, \ldots, \beta_n \in L\) as the distinct roots of \( q(x) \). Take \( d \in K \) such that for any \( 1 \leq i \leq m,\ 2 \leq j \leq n \), 
 \[ d \neq \frac{\alpha_i 
  -\alpha}{\beta - \beta_j},  \quad \quad \quad (*)\]
  which is possible since \( \text{char}(K) = 0 \) so that \( K \) has infinitely many elements, while the RHS has only $mn < \infty$ elements (note that the elements on RHS may not even be in \( K \)).
@@ -59,7 +59,7 @@ As for the other inclusion \( K(\alpha, \beta) \subseteq K(c) \), consider
 so that $r(\beta) = p(c - d\beta) = p(\alpha) = 0$ and $q(\beta) = 0$ in $K(c)[x]$. Therefore, the minimal polynomial \(m(x)\in K(c)[x]\) of $\beta$ satisfies: 
 \[m(x) \mid r(x), q(x).\]
 We study \(m(x) \in K(c)[x] \subseteq L[x]\) further: Note that 
-\[m(x) \mid q(x) \text{ in } K[c](x) \quad \Rightarrow \quad m(x) \mid q(x) =\prod_{j=1}^n (x- \beta_j) \text{ in } L[x],\]
+\[m(x) \mid q(x) \text{ in } K(c)[x] \quad \Rightarrow \quad m(x) \mid q(x) =\prod_{j=1}^n (x- \beta_j) \text{ in } L[x],\]
 so \(m(x)\) can only have roots $\{\beta_1, \ldots, \beta_n\}$. 
 
 We {\it claim} that $\beta_1 = \beta$ is the only root of $m(x) \in K(c)[x]$: Suppose on contrary that there exists \(j \neq 1\) such that $\beta_j$ is a root of $m(x)$. Then it is also a root of $r(x)$, and hence
@@ -70,7 +70,7 @@ We {\it claim} that $\beta_1 = \beta$ is the only root of $m(x) \in K(c)[x]$: Su
 \end{align*}
 which contradicts out our choice of $d$ in $(*)$. 
 
-Consequently, the only root of $m(x)$ is $\beta_1 = \beta$, that is, \(m(x) = x - \beta \in K(c)[x]\). 
+Consequently, the only root of $m(x)$ is $\beta_1=\beta$. Since $m(x)\mid q(x)$ and $q(x)$ is separable, $m(x)$ is separable, so \(m(x)=x-\beta\in K(c)[x]\). 
 In other words, 
 \(\beta \in K(c)\) and one has
 \[ \alpha = c - d\beta \in K(c).\]
@@ -181,7 +181,7 @@ Let $K$ be a field, and $p(x_1, x_2, \dots, x_n) \in K[x_1, \dots, x_n]$ be a po
     We say $p(x_1, x_2, \dots, x_n) \in K[x_1, x_2, \dots, x_n]$ is a {\bf symmetric polynomial} if for all permutations $\sigma \in S_n$, 
     $$p(x_1, x_2, \dots, x_n) = p(x_{\sigma(1)}, x_{\sigma(2)}, \dots, x_{\sigma(n)}) = p(x_1, x_2, \dots, x_n).$$
 \end{definition}
-For example, for all $k \leq 0$, $x_1^k + \dots 
+For example, for all $k \geq 0$, $x_1^k + \dots 
 + x_n
 ^k$ is a symmetric polynomial.
 
@@ -205,7 +205,7 @@ In other words, $K[x_1, x_2, \dots, x_n]^{S_n} = K[s_1, s_2, \dots, s_n]$.
 \end{theorem}
 For example, one has
 \begin{align*}
-x_1^2 + \dots + x_n^2 &= (x_1 + \dots + x_n)^2 - (x_1x_2 + x_1x_3 + \dots + x_{n-1}x_n) = s_1^2 - s_2 \\ 
+x_1^2 + \dots + x_n^2 &= (x_1 + \dots + x_n)^2 - 2(x_1x_2 + x_1x_3 + \dots + x_{n-1}x_n) = s_1^2 - 2s_2 \\ 
 x_1^3 + \dots + x_n^3 &= s_1^3 - 3s_1s_2 + 3s_3.
 \end{align*}
 
