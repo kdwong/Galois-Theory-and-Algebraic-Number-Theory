@@ -670,55 +670,103 @@ for any $K$-homomorphisms $\phi: L \to J$. Since the right hand side of the abov
 \end{example}
 
 \begin{theorem} \label{thm-normalsplitext}
-    Let $[L:K]\le \infty$, then 
-    \begin{center}
-    $[L:K]$ normal \quad $\Leftrightarrow$ \quad $L:K $ is the splitting extension of some $p(x)\in K[x]$.   
-    \end{center}
+Let $[L:K]<\infty$. Then
+\[
+L:K \text{ is normal}
+\quad\Longleftrightarrow\quad
+L:K \text{ is the splitting extension of some } p(x)\in K[x].
+\]
 \end{theorem}
+
 \begin{proof}
+$(\Rightarrow)$
+Suppose that $L:K$ is normal. Since $[L:K]<\infty$, choose a
+$K$-basis
+\[
+\alpha_1,\ldots,\alpha_n
+\]
+of $L$. For each $i$, let $m_{\alpha_i}(x)\in K[x]$ be the minimal
+polynomial of $\alpha_i$ over $K$. By normality, each
+$m_{\alpha_i}(x)$ splits in $L$.
 
-        $(\Rightarrow)$ 
-        Since $L$ over $K$ is of finite-dimensional, let $\alpha_{1}, \alpha_{2},\cdots \alpha_n \in L$ be basis of $L$ over $K$. Then $m_{\alpha_{i}}(x)$ splits in $L$ by normality of $L:K$.
-        
-        Define $p(x) :=\prod_{i=1}^n m_{\alpha_{i}}(x)$, then $p(x)=\prod_{j=1}^N (x-\beta_j)$ splits in L. Note that 
-        $$L=K(\alpha_1,\cdots \alpha_n)\subseteq K(\beta_1,\cdots \beta_N)\subseteq L$$
-        since $\alpha_i = \beta_j$ must be one of the roots of $m_{\alpha_{\ell}}(x)$ for some $\ell$. Finally we conclude that $L=K(\beta_1,\cdots,\beta_N)$ is the splitting field of $p(x)$.
+Set
+\[
+p(x):=\prod_{i=1}^n m_{\alpha_i}(x)\in K[x].
+\]
+Then $p(x)$ splits in $L$. Let
+\[
+p(x)=c\prod_{j=1}^N(x-\beta_j),
+\qquad \beta_j\in L.
+\]
+Since each $\alpha_i$ is a root of $m_{\alpha_i}(x)$, every
+$\alpha_i$ occurs among the roots $\beta_j$. Hence
+\[
+L=K(\alpha_1,\ldots,\alpha_n)
+   \subseteq K(\beta_1,\ldots,\beta_N)
+   \subseteq L.
+\]
+Therefore
+\[
+L=K(\beta_1,\ldots,\beta_N),
+\]
+so $L$ is the splitting extension of $p(x)$ over $K$.
 
-        \vspace{3mm}
-        \noindent $(\Leftarrow)$ Suppose $L=K(\beta_1,\cdots,\beta_n)$ is the splitting field of some polynomial $p(x) \in K[x]$ with
-        $$p(x) = c \prod_{i=1}^n(x-\beta_i) \in L[x].$$
-        
-        Consider {\it another} factorization of  $p(x)=c\prod_{j=1}^n (x-p_j)\in \bar{K}[x]$ in the algebraic closure $\overline{K}$ of $K$.
-        For each $p_j \in \overline{K}$, Proposition \ref{prop-simpKhomo} implies that there is a $K$-homomorphism $\phi_j: K(\alpha) \to \overline{K}$
-        \[\begin{tikzcd}
-	{K(\alpha)} &&&& {\bar{K}} \\
-	\\
-	&& K
-	\arrow["{\phi_j}", from=1-1, to=1-5]
-	\arrow[from=3-3, to=1-1]
-	\arrow[from=3-3, to=1-5]
-\end{tikzcd}\]
-    such that $\phi_j(\alpha)=p_j$. 
-    
-    By Theorem \ref{thm-genKhomo}, one can further extend $\phi_j$ to a $K(\alpha)$-homomorphism $\psi_j: L \to \overline{K}$:
-    \[\begin{tikzcd}
-	{L=K(\alpha)(\beta_1,\beta_2,\cdots,\beta_n)} &&&&& {\bar{K}} \\
-	\\
-	&&& {K(\alpha)}
-	\arrow["{\psi_j}", from=1-1, to=1-6]
-	\arrow[from=3-4, to=1-1]
-	\arrow["{\phi_j}"', from=3-4, to=1-6] \\
-    &&& K \arrow[hook, u]
-\end{tikzcd}\]
-    Therefore, $\psi_j : L \to \overline{K}$ is a $K$-homomorphism such that $\psi_j(\alpha) = p_j$ for each $1 \leq j \leq n$.
-    
-    Since $L:K$ is a splitting extension, Theorem \ref{thm-splittingfieldsameimage} implies that
-    $$\psi_1(L)=\psi_2(L)=\cdots=\psi_n(L).$$
-    Therefore, for any roots $p_j \in \overline{K}$ of $p(x)$, $p_j\in \psi_j(L)=\psi_1(L)$ and hence 
-    $$\{p_1,\cdots,p_n\} \subseteq \psi_1(L) \subseteq \overline{K}.$$ 
-    Note that $\psi_1: L\rightarrow \psi_1(L)$ is an isomorphism, so 
-    $$m_{\alpha}(x)= \prod_{i=1}^n (x-p_i) \in \phi_1(L)[x] \quad \Rightarrow \quad m_{\alpha}(x)= \prod_{i=1}^n (x-\psi_1^{-1}(p_i)) \in L[x]$$
-    in other words $m_\alpha(x)$ splits in $L$, and hence $L:K$ is normal.
+\medskip
+
+\noindent
+$(\Leftarrow)$
+Suppose that $L:K$ is the splitting extension of some
+$p(x)\in K[x]$. We must show that $L:K$ is normal.
+
+Fix an arbitrary $\alpha\in L$, and let
+\[
+m_\alpha(x)\in K[x]
+\]
+be its minimal polynomial. Let $\beta\in\overline K$ be an arbitrary
+root of $m_\alpha(x)$. Since $\alpha$ and $\beta$ have the same
+minimal polynomial over $K$, there exists a $K$-homomorphism
+\[
+\phi:K(\alpha)\longrightarrow \overline K
+\]
+such that
+\[
+\phi(\alpha)=\beta.
+\]
+
+By the extension theorem for field homomorphisms, $\phi$ extends to a
+$K$-homomorphism
+\[
+\psi:L\longrightarrow \overline K
+\]
+such that
+\[
+\psi|_{K(\alpha)}=\phi.
+\]
+In particular,
+\[
+\psi(\alpha)=\beta.
+\]
+
+Now let
+\[
+\iota:L\hookrightarrow\overline K
+\]
+be the natural inclusion. Since $L$ is a splitting extension of
+$p(x)\in K[x]$, Theorem~\ref{thm-splittingfieldsameimage} implies that
+any two $K$-homomorphisms from $L$ to $\overline K$ have the same
+image. Therefore
+\[
+\psi(L)=\iota(L)=L.
+\]
+Consequently,
+\[
+\beta=\psi(\alpha)\in\psi(L)=L.
+\]
+
+Since $\beta$ was an arbitrary root of $m_\alpha(x)$, every root of
+$m_\alpha(x)$ lies in $L$. Hence $m_\alpha(x)$ splits in $L$.
+
+Finally, since $\alpha\in L$ was arbitrary, $L:K$ is normal.
 \end{proof}
 \begin{corollary} \label{cor-groupsize}
     Let L:K be splitting extension of a separable polynomial $p(x)\in K[x]$, then the group $$\mathrm{Aut}_K(L):=\left\{\begin{tikzcd}
@@ -968,7 +1016,7 @@ given by
     so $\im \Phi=\operatorname{Gal}(M /K)$ and 
     \[
     \operatorname{Gal}(M /K)\cong \operatorname{Gal}(L /K)/\operatorname{Gal}(L /M). 
-    \]s
+    \]
 
     $(\Leftarrow)$: Suppose $\operatorname{Gal}(L /M)\lhd \operatorname{Gal}(L /K)$. Take any $\gamma\in \operatorname{Gal}(L /K)$, then $\gamma(M)$ is a subfield of $L$. Then 
     \[
@@ -986,12 +1034,72 @@ given by
     \gamma(M)=L^{\operatorname{Gal}(L /\gamma(M))}=L^{\operatorname{Gal}(L /M)}=M. 
     \]
 
-    Similar to the ``$(\Rightarrow)$'' direction, we can define $\Phi: \operatorname{Gal}(L /K)\to \operatorname{Gal}(M /K)$ by $\gamma\mapsto \gamma|_{M}$ and $\left| \im \Phi \right| =[M:K]$. 
-    Consider the field extensions $M\supseteq M^{\im \Phi}\supseteq M^{\operatorname{Gal}(M /K)}\supseteq K$, from Homework 2 Question 2, $M /M^{\im \Phi}$ is Galois. Hence 
-    \[
-    [M:M^{\im \Phi}]=\left| \operatorname{Gal}(M /M^{\im\Phi}) \right| = \left| \im \Phi \right| =[M:K].
-    \]
-    This implies $M^{\im \Phi}=K$ and thus $M^{\operatorname{Gal}(M /K)}=K$, i.e. $M :K$ is Galois. 
+Since \(
+\gamma(M)=M
+\) for every \(\gamma\in \operatorname{Gal}(L/K),\) we may define the restriction homomorphism
+\[
+\Phi:\operatorname{Gal}(L/K)\longrightarrow \operatorname{Aut}_K(M),
+\qquad
+\gamma\longmapsto \gamma|_M.
+\]
+with \(\ker\Phi
+=
+\{\gamma\in\operatorname{Gal}(L/K)\mid \gamma|_M=\operatorname{id}_M\}
+=
+\operatorname{Gal}(L/M).
+\) Hence, by the First Isomorphism Theorem,
+\[
+|\operatorname{im}\Phi|
+=
+\frac{|\operatorname{Gal}(L/K)|}
+     {|\operatorname{Gal}(L/M)|}.
+\]
+Since $L:K$ and $L:M$ are Galois,
+\[
+|\operatorname{Gal}(L/K)|=[L:K],
+\qquad
+|\operatorname{Gal}(L/M)|=[L:M].
+\]
+Therefore, by the Tower Law,
+\[
+|\operatorname{im}\Phi|
+=
+\frac{[L:K]}{[L:M]}
+=
+[M:K].
+\]
+By the claim in the proof of Theorem \ref{thm-FTGT-1},
+\[
+[M:M^{\operatorname{im}\Phi}]=|{\operatorname{im}\Phi}|=[M:K].
+\]
+where \(
+K\subseteq M^{\operatorname{im}\Phi}\subseteq M.
+\)
+Thus the Tower Law gives \(
+[M^{\operatorname{im}\Phi}:K]=1
+\)
+and hence
+\[
+M^{\operatorname{im}\Phi}=K.
+\]
+Finally, since
+\(
+{\operatorname{im}\Phi}\leq \operatorname{Aut}_K(M),
+\)
+we have
+\[
+M^{\operatorname{Aut}_K(M)}
+\subseteq M^{\operatorname{im}\Phi}=K.
+\]
+On the other hand, every $K$-automorphism fixes $K$, so
+\[
+K\subseteq M^{\operatorname{Aut}_K(M)}.
+\]
+Consequently,
+\(
+M^{\operatorname{Aut}_K(M)}=K
+\)
+and the result follows.
 \end{proof}
 
 \begin{remark}\label{rmk-GaloisExtensionEquiFixedField}
@@ -1138,14 +1246,17 @@ In fact, $ \operatorname{Gal}(\mathbb{Q}(\sqrt[3]{2}, \omega)/\mathbb{Q}) = S_3 
 \end{example}
 
 \begin{proof}
-    \textbf{(1)} Note that $\Delta$ is a symmetric polynomial of ${\alpha_1,\cdots,\alpha_n}$, hence $\Delta\in L^{\operatorname{Aut}_K(L)}$ (Recall the Fundamental Theorem of Symmetric Polynomials). 
-    
-    Besides, again by the Fundamental Theorem of Symmetric Polynomials over a field $K$, \[\Delta(\alpha_1, \alpha_2, ..., \alpha_n) \in K[S_1(\alpha_1, \alpha_2, ..., \alpha_n), ..., S_n(\alpha_1, \alpha_2, ..., \alpha_n)]\] 
-    and in field $L$, \[p(x) = c*\prod_{i=1}^{n} (x-a_i) = c*(x^n - S_1(\alpha_1, ..., \alpha_n)x^{n-1}+...+(-1)^n S_n(\alpha_1, ..., \alpha_n))\] so $\Delta(\alpha_1, \alpha_2, ..., \alpha_n)$ can be expressed by the coefficients of p(x). 
+    \textbf{(1)} Note that $\Delta$ is symmetric over ${\alpha_1,\cdots,\alpha_n}$. Since
+$\operatorname{Aut}_K(L) \leq S_n$ by Proposition, this implies
+\ref{prop-injectToSymmetricGroups}, 
+    $$\Delta\in L^{\operatorname{Aut}_K(L)} = K.$$ 
+    By the Fundamental Theorem of Symmetric Polynomials over a field $K$, \[\Delta \in K[s_1(\alpha_1, \alpha_2, ..., \alpha_n), ..., s_n(\alpha_1, \alpha_2, ..., \alpha_n)]\] 
+    On the other hand, \[p(x) = \prod_{i=1}^{n} (x-a_i) = x^n - s_1(\alpha_1, ..., \alpha_n)x^{n-1}+...+(-1)^n s_n(\alpha_1, ..., \alpha_n) \in K[x],\] so $s_i(\alpha_1, \dots,\alpha_n) \in K$ is the coefficient of $x^{n-k}$ in $p(x)$, and hence
+    $\Delta$ can be expressed by the coefficients of $p(x)$. 
     
 \textbf{(2)} Consider
 $$
-\Delta = \prod_{i<j} (\alpha_i - \alpha_j)
+\sqrt{\Delta} := \prod_{i<j} (\alpha_i - \alpha_j) \in L
 $$
 For all $\sigma \in \operatorname{Gal}(L/K)$, $\sigma$ permutes the $\alpha_i$'s. So one has:
 $$
@@ -1193,9 +1304,9 @@ Suppose $|\mu_n(K)| = k$. For any $\delta \in \mu_n(K)$, $\delta^k = 1$, hence:
 $$
 x^k - 1 = \prod_{\delta \in \mu_n(K)} (x - \delta)
 $$
-For any $d \mid k$:
+For any $d \mid k$, $x^k-1 \in K[x]$ can be factorized into:
 $$
-x^k - 1 = (x^d - 1)(x^{k-d} + x^{k-2d} + \cdots + 1)=\prod_{i=1}^{d}(x-\delta_i)(\text{other terms})
+x^k - 1 = (x^d - 1)\left(x^{k-d} + x^{k-2d} + \cdots + 1\right)=\left(\prod_{i=1}^{d}(x-\delta_i)\right)\left(\text{other terms}\right)
 $$
 Thus the roots $H :=\{\delta\in K\ |\  \delta^d=1 \} = \{\delta_1, \delta_2, \ldots, \delta_d\}$ form a subgroup of $\mu_n(K)$ of order $d$. Moreover, for any $H' \leq \mu_n(K)$ with $|H'| =d$, the elements $\epsilon \in H'$ must satisfy $\epsilon^d = 1$ by Lagrange's Theorem. Hence $\epsilon \in H$ and $H' = H$ is unique.\qedhere
 \end{proof}
@@ -1320,24 +1431,24 @@ In this section, we will study the polynomial $p(x)=x^n-a \in L[x]$, where $L$ s
     \item $\operatorname{char}(L) \nmid n$ (to ensure $p(x)$ has no repeated roots); and
     \item $x^n-1$ splits in $L[x]$ (we will write $\omega \in L$ as an $n^{th}$ primitive root).
 \end{itemize}
-Suppose $M:L$ be such that $\beta \in M$ is a root of $\kappa[x] := x^n-a$, then all the other roots of $\kappa[x]$ are given by $\omega^i\beta \in M$.
+Suppose $M:L$ be such that $\beta \in M$ is a root of $x^n-a$, then all its other roots are given by $\omega^i\beta \in M$.
 \begin{lemma} \label{lem-kummer}
     Let $M:L$ be Galois extension of $x^n-a\in L[x]$. For any root $\rho \in M$ of $x^n-a$, the map 
     $$\psi: \operatorname{Gal}(M/L) \hookrightarrow \mu_n(L)\simeq \mathbb{Z}_n$$ 
 $$\psi(\sigma):=\sigma(\rho)/\rho  $$  
 is a well-defined injective group homomorphism.
 
-Moreover, if $\kappa[x]$ is irreducible, then $\psi$ is an isomorphism with $\operatorname{Gal}(M/L) \cong \mathbb{Z}_n$.
+Moreover, if $x^n-a$ is irreducible, then $\psi$ is an isomorphism with $\operatorname{Gal}(M/L) \cong \mathbb{Z}_n$.
 \end{lemma}
 \begin{proof}
 Firstly, we need to show \(\sigma(\rho)/ \rho \in \mu_n(L)\). Since \begin{align*}
     \left(\frac{\sigma(\rho)}{\rho} \right)^n = \frac{\sigma(\rho^n)}{\rho^n} = \frac{\sigma(\alpha)}{\alpha} = \frac{a}{a} = 1,
 \end{align*}  
-the last two equalities holds since \(\sigma \in \mathrm{Gal}(M/L), a \in L\). We observe that \(\sigma(\rho)/\rho \in M\) is a root of the polynomial \(x^n -1\). Since \(x^n -1 = \displaystyle\prod_{\theta \in \mu_n(L)} (x-\theta) \in L[x] \subseteq M[x]\).  Therefore \( \sigma(\rho)/\rho = \theta \in \mu_n(L) \subseteq \mu_n(M)\).
+the last two equalities holds since \(\sigma \in \mathrm{Gal}(M/L), a \in L\). We observe that \(\sigma(\rho)/\rho \in M\) is a root of the polynomial \(x^n -1\). Since \(x^n -1 = \displaystyle\prod_{1 \leq i \leq n} (x-\omega^i) \in L[x] \subseteq M[x]\).  Therefore \( \sigma(\rho)/\rho = \omega^i \in \mu_n(L) \subseteq \mu_n(M)\).
 
-Secondly, we need to verify our definition of $\psi$ is independent of the choice of \(\rho\) -- Suppose that \(\chi \in M\) also satisfies \(\chi^n = a\), then \(\rho/ \chi = \theta' \in \mu_n(L)\) is primitive root. Since \((\rho/\chi)^n = a^n / a^n =1\), we can compute
+Secondly, we need to verify our definition of $\psi$ is independent of the choice of \(\rho\) -- Suppose that \(\chi \in M\) also satisfies \(\chi^n = a\), then \(\rho/ \chi = \omega^i \in \mu_n(L)\) is primitive root. Since \((\rho/\chi)^n = a^n / a^n =1\), we can compute
 \begin{align*}
-    \frac{\sigma(\rho)}{\rho} = \frac{\sigma(\theta' \chi)}{\theta' \chi} = \frac{\sigma(\theta')\sigma(\chi)}{\theta' \chi} = \frac{\theta'\sigma(\chi)}{\theta'\chi} = \frac{\sigma(\chi)}{\chi},
+    \frac{\sigma(\rho)}{\rho} = \frac{\sigma(\omega^i \chi)}{\omega^i \chi} = \frac{\sigma(\omega^i)\sigma(\chi)}{\omega^i\chi} = \frac{\omega^i\sigma(\chi)}{\omega^i\chi} = \frac{\sigma(\chi)}{\chi},
 \end{align*}
 with \(\theta' \in L\), the \(\sigma(\rho)/\rho\) is well defined.
 
@@ -1367,11 +1478,11 @@ The importance of the Lemma \ref{lem-kummer} is that its converse also holds:
 \end{theorem}
 From now on, we call such $M:L$ satisfying the hypotheses of the above theorem a {\bf Kummer extension}.
 \begin{proof}
-    (a) is proved in HW2 Q8. For (b), one can easily check that \(\sigma(\beta) = \omega^{-1} \beta \) which implies
+    (a) is proved in Homework 2 Question 8. For (b), one can easily check that \(\sigma(\beta) = \omega^{-1} \beta \) which implies
     \begin{equation*}
-        \sigma^i(\beta) = \omega^{-i} \beta     \quad \quad (*)
+        \sigma^i(\beta) = \omega^{-i} \beta     \quad \quad
     \end{equation*}
-    Also, \(\sigma^i(\beta^n) = \left(\sigma^i(\beta)\right)^n = \omega^{-in} \beta^n = 1^{-i}\beta = \beta^n\). Therefore, \(\beta^n\) is fixed by \(\langle \sigma \rangle = \mathrm{Gal}(M/L)\), \(i.e. \beta^n \in M^{\mathrm{Gal}(M/L)} = L.\)
+    Also, \(\sigma^i(\beta^n) = \left(\sigma^i(\beta)\right)^n = \omega^{-in} \beta^n = 1^{-i}\beta = \beta^n\). Therefore, \(\beta^n\) is fixed by \(\langle \sigma \rangle = \mathrm{Gal}(M/L)\), i.e. \(\beta^n \in M^{\mathrm{Gal}(M/L)} = L.\)
 
     For (c), Obviously, \(L(\beta) \subseteq M\). Since \([M:L] = |\mathrm{Gal}(M/L)| = n\), by tower law, we just need to show \(\left[L(\beta):L\right]=n\). We study the minimal polynomial \(m_\beta(x) \in L[x]\), by lemma \ref{lem-orbitMinimalPoly}
     \begin{align*}
@@ -3045,19 +3156,23 @@ $$\Delta_{\overline{m}_{\alpha}(x)} \equiv 0 \mod p$$
 By $(*)$, this implies $\Delta^2(1,\alpha, \dots, \alpha^{n-1}) = \Delta_{m_{\alpha}(x)}$ is a multiple of $p$, and hence the result follows.
 \end{proof}
 
-\section{Prime Ideals in Galois Extension}
+\section{Prime Ideals in Galois Extension} \label{sec-Galoisprime}
 Let $K:\mathbb{Q}$ be Galois extension with $Gal(K /\mathbb{Q})=\{\sigma_{1}=id,\sigma_{2},\dots, \sigma_{n}\}$. Let $P\lhd \mathcal{O}_{K}$ be a prime ideal over $p$ with $N(P)=p^{f}$. Then 
 \begin{itemize}
     \item $\sigma_{i}(P)$ is also a prime ideal. 
     \item $N(\sigma_{i}(P))=N(P)=p^{f}$. 
 \end{itemize}
-Let $orb(P)=\{\sigma_{i}(P)|\sigma_{i}\in Gal(K /\mathbb{Q})\}=\{P_{1}=P,P_{2},\dots, P_{k}\}$. By Theorem \ref{thm-orbitStablizer}, $k\mid n=\left| Gal(K /\mathbb{Q}) \right| $. 
+Let $orb(P)=\{\sigma_{i}(P)|\sigma_{i}\in Gal(K /\mathbb{Q})\}=\{P_{1}=P,P_{2},\dots, P_{g}\}$. By Theorem \ref{thm-orbitStablizer}, $g\mid n=\left| Gal(K /\mathbb{Q}) \right| $. 
 
 \begin{theorem}
-    Let $K :\mathbb{Q}$ be Galois extension. Let $P\lhd \mathcal{O}_{K}$ be a prime ideal with ramification index $e$ and lying above $p$. Then $(p)=P_{1}^{e}\cdots P_{k}^{e}$. In particular, all prime ideals lying above $p$ are Galois conjugates. 
+    Let $K :\mathbb{Q}$ be Galois extension. Let $P\lhd \mathcal{O}_{K}$ be a prime ideal with ramification index $e$ and lying above $p$. Then $(p)=P_{1}^{e}\cdots P_{g}^{e}$. In particular, all prime ideals lying above $p$ are Galois conjugates. Therefore, 
+    $$p^{[K:\mathbb{Q}]}= N((p)) = (N(P)^e)^g = p^{efg}$$
+    and hence $[K:\mathbb{Q}] = efg.$
 \end{theorem}
 
-\begin{example}
+The above 
+
+\begin{example} \label{eg-cycloram}
     Let $K=\mathbb{Q}(\omega)$, where $\omega$ is the primitive $p$-th root of unity. Then $K:\mathbb{Q}$ is Galois and $\mathbb{Z}[\omega]=\langle 1,\omega,\dots, \omega^{p-2}\rangle_{\mathbb{Z}}$ gives an integral basis. Denote $\underline{\omega}=\{1,\omega,\dots, \omega^{p-2}\}$, then $\left| \Delta^{2}(\underline{\omega}) \right|=p^{p-2}$. 
 
     Now we study the prime ideals in $\mathcal{O}_{K}$. We will apply Corollary \ref{cor-ramifiedPrimeNorm}. Let $q$ be a rational prime. 
@@ -3152,7 +3267,7 @@ For all $\mathbf{v}\in \mathbb{R}^{n}$, $\mathbf{v}$ is uniquely expressed as $\
     \end{proof}
 \end{example}
 
-\section{Minkowski's Bound}
+\section{Minkowski's Bound} \label{sec-minkowski}
 In this section, we will find a lattice and a bounded, measurable, convex and symmetric set and we will use Theorem \ref{thm-convexBody} to prove Theorem \ref{thm-MinkowskiBound}. 
 
 Let $K:\mathbb{Q}$ be a number field with $[K:\mathbb{Q}]=n=r+2s$, where 
@@ -3572,7 +3687,1292 @@ In conclusion, the only solutions of the Diophantine equation are
 \]
 \end{proof}
 
+\chapter{A First Look at Class Field Theory}
 
+In Chapters 7 and 8 we studied two kinds of objects attached to a number field $K$:
+\begin{itemize}
+    \item the factorization of prime ideals in extensions of $K$;
+    \item the ideal class group $C_K$.
+\end{itemize}
+Class field theory connects these two subjects. Very roughly, it describes finite abelian
+extensions of $K$ in terms of ideals of $\mathcal O_K$ together with congruence conditions
+on generators of principal ideals.
+
+The logical path of this chapter is
+\[
+\boxed{
+\text{prime decomposition}
+\longrightarrow
+\text{Frobenius automorphisms}
+\longrightarrow
+\text{Artin map}
+\longrightarrow
+\text{class fields}.}
+\]
+We first define the Artin map on the free abelian group generated by the unramified
+prime ideals. We then interpret this group concretely using fractional ideals and recover the
+ordinary ideal class group as a quotient. This leads naturally to the Hilbert class field, and
+finally to ray class groups, where congruence conditions account for ramification.
+
+The general proofs of class field theory are beyond the scope of this course. Our goal is to
+understand the statements, the elementary constructions that lead to them, and several
+important examples. We will freely use the analogues over a general number field $K$ of the
+prime-factorization results proved earlier over $\mathbb Q$.
+
+\section{Decomposition Groups and Frobenius Automorphisms}
+
+Let $L:K$ be a finite Galois extension of number fields with rings of integers $\mathcal O_L$, $\mathcal O_K$. Write
+\[
+G=\operatorname{Gal}(L/K).
+\]
+
+Let $P \lhd \mathcal O_K$ be a nonzero prime ideal and let $\mathfrak P\lhd \mathcal O_L$
+be a prime ideal lying above $P$, i.e.
+\[
+\mathfrak P\cap \mathcal O_K=P.
+\]
+The quotient rings
+\[
+k(P):=\mathcal O_K/P, \qquad k(\mathfrak P):=\mathcal O_L/\mathfrak P
+\]
+are finite fields. Put
+\[
+q:=|k(P)|=N(P).
+\]
+If
+\[
+f:=f(\mathfrak P/P)=[k(\mathfrak P):k(P)]
+\]
+is the residue degree, then
+\[
+|k(\mathfrak P)|=N(\mathfrak P)=q^f.
+\]
+
+\begin{definition}
+The {\bf decomposition group} of $\mathfrak P$ over $P$ is
+\[
+D(\mathfrak P/P):=\{\sigma\in G\mid \sigma(\mathfrak P)=\mathfrak P\}.
+\]
+Equivalently, it is the stabilizer of $\mathfrak P$ under the natural action of $G$ on the
+prime ideals of $\mathcal O_L$ lying above $P$.
+\end{definition}
+
+Recall from Section \ref{sec-Galoisprime} that $G$ acts transitively on the prime ideals
+of $\mathcal O_L$ lying above $P$. Let
+\[
+\mathfrak P_1=\mathfrak P,\mathfrak P_2,\dots,\mathfrak P_g
+\]
+be the distinct primes above $P$. Then
+\[
+P\mathcal O_L=\mathfrak P_1^e\cdots\mathfrak P_g^e,
+\qquad
+N(\mathfrak P_i)=N(P)^f.
+\]
+Taking absolute norms gives
+\[
+N(P)^{[L:K]}=N(P)^{efg},
+\]
+so
+\[
+\boxed{[L:K]=efg.}
+\]
+By the orbit--stabilizer theorem,
+\[
+|D(\mathfrak P/P)|=\frac{|G|}{g}=\frac{[L:K]}{g}=ef.
+\]
+
+We now explain the three integers $e,f,g$ directly in terms of the Galois group. The number $g$ comes from the orbit of a prime, $e$ from its inertia group, and $f$ from the induced action on its residue field.
+
+Every $\sigma\in D(\mathfrak P/P)$ preserves $\mathfrak P$, so it induces an automorphism
+of the residue field:
+\[
+\overline\sigma:k(\mathfrak P)\longrightarrow k(\mathfrak P),
+\qquad
+\alpha+\mathfrak P\longmapsto \sigma(\alpha)+\mathfrak P.
+\]
+Since $\sigma$ fixes $K$, this induced automorphism fixes $k(P)$. Hence we obtain a group
+homomorphism
+\[
+D(\mathfrak P/P)\longrightarrow \operatorname{Gal}(k(\mathfrak P)/k(P)).
+\]
+
+\begin{definition}
+The kernel
+\[
+I(\mathfrak P/P):=\ker\left(D(\mathfrak P/P)
+\longrightarrow \operatorname{Gal}(k(\mathfrak P)/k(P))\right)
+\]
+is called the {\bf inertia group} of $\mathfrak P$ over $P$.
+\end{definition}
+
+We quote the following standard theorem on prime ideals in a finite Galois extension.
+
+\begin{theorem}\label{thm-efg}
+Let $L:K$ be a finite Galois extension and let $\mathfrak P$ lie above $P$. Let $e$, $f$, $g$ be as given above. Then the following sequence
+\[
+1\longrightarrow I(\mathfrak P/P)
+\longrightarrow D(\mathfrak P/P)
+\longrightarrow \operatorname{Gal}(k(\mathfrak P)/k(P))
+\longrightarrow 1
+\]
+is exact. Consequently,
+\[
+|I(\mathfrak P/P)|=e,
+\]
+because $|D(\mathfrak P/P)|=ef$ and
+$|\operatorname{Gal}(k(\mathfrak P)/k(P))|=f$. 
+\end{theorem}
+
+The important case for us is when $P$ is unramified, i.e. $e=1$. Then
+$I(\mathfrak P/P)=\{id\}$ and therefore
+\[
+D(\mathfrak P/P)\cong \operatorname{Gal}(k(\mathfrak P)/k(P)).
+\]
+Since $k(\mathfrak P)$ is a finite extension of the finite field $k(P)$,
+its Galois group is cyclic of order $f$ and is generated by the finite-field Frobenius
+\[
+x\longmapsto x^q,
+\qquad q=|k(P)|=N(P).
+\]
+This motivates the following definition.
+
+\begin{definition}\label{def-Frob}
+Assume that $P$ is unramified in $L$. The {\bf Frobenius automorphism} of
+$\mathfrak P$ over $P$ is the unique element
+\[
+\operatorname{Frob}_{\mathfrak P}\in D(\mathfrak P/P)
+\]
+such that
+\[
+\operatorname{Frob}_{\mathfrak P}(\alpha)
+\equiv \alpha^{N(P)}\pmod{\mathfrak P}
+\]
+for every $\alpha\in\mathcal O_L$.
+\end{definition}
+
+This convention is sometimes called the {\bf arithmetic Frobenius} convention.
+
+\begin{proposition}\label{prop-FrobConjugate}
+Let $P$ be unramified in $L$ and let $\sigma\in G$. Then
+\[
+\operatorname{Frob}_{\sigma(\mathfrak P)}
+=
+\sigma\operatorname{Frob}_{\mathfrak P}\sigma^{-1}.
+\]
+\end{proposition}
+
+\begin{proof}
+Let $\tau=\operatorname{Frob}_{\mathfrak P}$. For every $\alpha\in\mathcal O_L$,
+\[
+\tau(\alpha)\equiv \alpha^{N(P)}\pmod{\mathfrak P}.
+\]
+Applying $\sigma$ gives
+\[
+\sigma\tau(\alpha)
+\equiv \sigma(\alpha)^{N(P)}\pmod{\sigma(\mathfrak P)}.
+\]
+Replacing $\alpha$ by $\sigma^{-1}(\alpha)$, we obtain
+\[
+\sigma\tau\sigma^{-1}(\alpha)
+\equiv \alpha^{N(P)}\pmod{\sigma(\mathfrak P)}.
+\]
+By the uniqueness in Definition \ref{def-Frob},
+$\sigma\tau\sigma^{-1}=\operatorname{Frob}_{\sigma(\mathfrak P)}$.
+\end{proof}
+
+Thus for a general Galois extension, a prime $P$ determines a conjugacy class of
+Frobenius elements. If $L:K$ is abelian, conjugation does nothing, and the Frobenius
+depends only on $P$.
+
+\begin{definition}
+Let $L:K$ be a finite abelian extension and let $P$ be unramified. The element
+\[
+\left(\frac{L/K}{P}\right):=\operatorname{Frob}_{P}
+\in\operatorname{Gal}(L/K)
+\]
+is called the {\bf Artin symbol} of $P$.
+\end{definition}
+
+\begin{proposition}\label{prop-orderFrob}
+Let $L:K$ be finite abelian and let $P$ be unramified. Then
+\[
+\operatorname{ord}\left(\frac{L/K}{P}\right)=f.
+\]
+In particular,
+\[
+P \text{ splits completely in }L
+\quad\Longleftrightarrow\quad
+\left(\frac{L/K}{P}\right)=id.
+\]
+\end{proposition}
+
+\begin{proof}
+Under the isomorphism
+\[
+D(\mathfrak P/P)\cong \operatorname{Gal}(k(\mathfrak P)/k(P)),
+\]
+the Frobenius corresponds to the generator
+$x\mapsto x^{N(P)}$ of a cyclic group of order $f$. Hence its order is $f$.
+Since $P$ is unramified, Theorem \ref{thm-efg} gives $[L:K]=fg$. Thus $P$ splits
+completely if and only if $g=[L:K]$, if and only if $f=1$, if and only if its Frobenius
+is the identity.
+\end{proof}
+
+\section{Examples of Frobenius Map} \label{sec-frobeg}
+
+\begin{example}[Quadratic fields]\label{eg-quadraticFrob}
+Let
+\(K = \mathbb{Q}\) and \(L=\mathbb Q(\sqrt d)\)
+where $d$ is squarefree, and let
+\[
+\operatorname{Gal}(L/\mathbb Q)=\{id,\sigma\},
+\qquad \sigma(\sqrt d)=-\sqrt d.
+\]
+Recall that a rational prime $p$ is
+unramified if and only if $p \nmid 4d$ does not divide the discriminant of $L$. 
+
+By Theorem \ref{thm-factorizationOfRationalPrimes}, 
+\begin{center}
+$(p)$ splits in $\mathcal O_L$ \quad $\Leftrightarrow$ \quad 
+$x^2-d$ has a root modulo $p$ \quad $\Leftrightarrow$ \quad
+\(\left(\frac d p\right)=1.
+\)
+\end{center}
+Therefore
+\[
+\left(\frac{L/\mathbb Q}{p}\right)
+=
+\begin{cases}
+ id, & \left(\frac d p\right)=1,\\
+ \sigma, & \left(\frac d p\right)=-1.
+\end{cases}
+\]
+\end{example}
+
+
+\begin{example}[Cyclotomic fields]\label{eg-cyclotomicFrob}
+Let
+\(L=\mathbb Q(\zeta_m),
+\)
+where $\zeta_m$ is a primitive $m$-th root of unity. We have already seen that
+\[
+\operatorname{Gal}(L/\mathbb Q)\cong (\mathbb Z/m\mathbb Z)^*,
+\]
+where $a\in(\mathbb Z/m\mathbb Z)^*$ corresponds to the automorphism
+\(\sigma_a(\zeta_m)=\zeta_m^a.
+\)
+
+
+By Example \ref{eg-cycloram},  $p$ is unramified in $L$ iff $p \nmid m$. Consider
+$\sigma_p\in\operatorname{Gal}(L/\mathbb Q)$ given by
+\[
+\sigma_p(\zeta_m)=\zeta_m^p.
+\]
+Since $\mathcal O_L=\mathbb Z[\zeta_m]$, every $\alpha\in\mathcal O_L$ has the form
+$\alpha=f(\zeta_m)$ with $f(x)\in\mathbb Z[x]$. Modulo a prime $\mathfrak P$ above $p$
+we are in characteristic $p$, and therefore
+\[
+\sigma_p(\alpha)=f(\zeta_m^p)
+\equiv f(\zeta_m)^p
+=\alpha^p
+\pmod{\mathfrak P}.
+\]
+Since $N((p))=p$, this is exactly the defining Frobenius congruence. Hence
+\[
+\operatorname{Frob}_p(\zeta_m)=\zeta_m^p.
+\]
+and hence
+\[
+\left(\frac{L/\mathbb Q}{p}\right)
+= p \in 
+\operatorname{Gal}(\mathbb Q(\zeta_m)/\mathbb Q)
+\cong(\mathbb Z/m\mathbb Z)^*,
+\]
+By Proposition \ref{prop-orderFrob}, the residue degree of a prime above $p$ is
+\[
+f=\operatorname{ord}_m(p),
+\]
+the multiplicative order of $p$ in $(\mathbb Z/m\mathbb Z)^*$. In particular,
+\[
+p\text{ splits completely in }\mathbb Q(\zeta_m)
+\quad\Longleftrightarrow\quad p\equiv 1\pmod m.
+\]
+\end{example}
+
+\begin{example}
+Take $m=5$. Then
+\[
+\operatorname{Gal}(\mathbb Q(\zeta_5)/\mathbb Q)
+\cong (\mathbb Z/5\mathbb Z)^*\cong\mathbb Z_4.
+\]
+For a rational prime $p\neq 5$:
+\begin{itemize}
+    \item if $p\equiv1\pmod 5$, then $f=1$ and $p$ splits completely;
+    \item if $p\equiv4\pmod 5$, then $f=2$, so $(p)$ is a product of two prime ideals,
+    each with residue degree $2$;
+    \item if $p\equiv2$ or $3\pmod 5$, then $f=4$, so $(p)$ remains prime.
+\end{itemize}
+Thus the congruence class of $p$ modulo $5$ determines the factorization of $(p)$ in
+$\mathbb Z[\zeta_5]$.
+\end{example}
+
+
+We end with an example where $L:K$ is unramified for all prime ideals $P \lhd \mathcal O_K$. This will play an important role in Hilbert Class Field Theory:
+\begin{example}\label{eg-FrobMinusFive}
+Let $
+K=\mathbb Q(\sqrt{-5}),\qquad L=K(i),
+$
+and write
+$$
+\operatorname{Gal}(L/K)=\{1,\sigma\},
+\qquad \sigma(i)=-i.
+$$
+
+We first check that $L:K$ is unramified. Since $m_i(x) =
+x^2+1,
+$
+whose discriminant is $-4$, every prime $P\nmid 2$ is unramified in
+$L:K$. Thus the only prime that still needs to be considered is
+$$
+P_2=(2,1+\sqrt{-5}),
+$$
+the unique prime of $K$ above $2$.
+
+To study $P_2$, observe that
+$$
+\sqrt5=i\sqrt{-5}\in L,
+$$
+so
+$$
+L=K(\sqrt5)
+ =K\left(\frac{1+\sqrt5}{2}\right).
+$$
+Put
+$$
+\eta=\frac{1+\sqrt5}{2}.
+$$
+Then $\eta$ satisfies
+$$
+f(x)=x^2-x-1,
+$$
+whose discriminant is $5$. Since $P_2\nmid 5$, the prime $P_2$ is
+unramified in $L:K$.
+
+Moreover,
+$$
+\mathcal O_K/P_2\cong\mathbb F_2,
+$$
+and modulo $P_2$ we have
+$$
+f(x)\equiv x^2+x+1.
+$$
+This polynomial has no root in $\mathbb F_2$, so it is irreducible.
+Hence $P_2$ is inert in the quadratic extension $L:K$, and hence all primes above $P$ are unramified.
+
+Now we compute $\left(\frac{L/K}{P}\right)$ for all such $P$: For $P = P_2$, since it is inert in $L$ (and does not split), one has
+$$
+\left(\frac{L/K}{P_2}\right)=\sigma.
+$$
+
+Now let $P\nmid 2$, and let $\mathfrak P$ be a prime of $L$ above $P$.
+By the defining property of the Frobenius element,
+$$
+\operatorname{Frob}_P(i)
+\equiv i^{N(P)}
+\pmod{\mathfrak P}.
+$$
+Since $P\nmid 2$, the elements $i$ and $-i$ are distinct modulo
+$\mathfrak P$. Also $N(P)$ is odd, and therefore
+$$
+i^{N(P)}
+=
+\begin{cases}
+i,&N(P)\equiv 1\pmod 4,\\
+-i,&N(P)\equiv 3\pmod 4.
+\end{cases}
+$$
+It follows that
+$$
+\boxed{
+\left(\frac{L/K}{P}\right)=
+\begin{cases}
+\sigma,&P=P_2\text{ or }N(P)\equiv3\pmod4,\\[2mm]
+1,&N(P)\equiv1\pmod4.
+\end{cases}}
+$$
+
+Thus we have computed the Frobenius element for every prime of $K$.
+\end{example}
+
+\section{The Artin Map}
+
+Let $L:K$ be a finite abelian extension, and let $S$ be the finite set of finite prime ideals
+of $\mathcal O_K$ which ramify in $L$. For every $P\notin S$, the Artin symbol
+\[
+\left(\frac{L/K}{P}\right)=\operatorname{Frob}_P
+\]
+is defined.
+
+At this stage, we do not yet need fractional ideals. Define $I_K(S)$ to be the free abelian
+group generated by the prime ideals $P\notin S$. Thus an element of $I_K(S)$ is a formal
+finite product
+\[
+\mathfrak a=\prod_{P\notin S}P^{n_P},
+\qquad n_P\in\mathbb Z,
+\]
+with all but finitely many $n_P$ equal to zero. Multiplication is given by adding the
+exponents. Because the factorization is unique, we may extend the Artin symbol
+multiplicatively from prime ideals to all elements of $I_K(S)$.
+
+\begin{definition}\label{def-ArtinMap}
+The {\bf Artin map} for $L:K$ is the homomorphism
+\[
+\Theta_{L/K}:I_K(S)\longrightarrow\operatorname{Gal}(L/K)
+\]
+defined by
+\[
+\boxed{
+\Theta_{L/K}\left(\prod_{P\notin S}P^{n_P}\right)
+=
+\prod_{P\notin S}
+\left(\frac{L/K}{P}\right)^{n_P}.}
+\]
+\end{definition}
+
+The product is finite, and it is unambiguous because $\operatorname{Gal}(L/K)$ is abelian.
+Thus the Artin map packages all Frobenius elements into one homomorphism. 
+
+A main problem of class field theory is to (1) understand the domain $I_K(S)$ of $\Theta_{L/K}$ in terms of ideal class group $C_K$; and (2) describe the kernel of $\Theta_{L/K}$.
+
+\begin{example}\label{eg-ArtinQi}
+Let
+\[
+L=\mathbb Q(i),
+\qquad
+K=\mathbb Q.
+\]
+Then
+\[
+\operatorname{Gal}(L/K)=\{1,\sigma\},
+\qquad
+\sigma(i)=-i.
+\]
+The only ramified rational prime is $2$, so $I_{\mathbb Q}(\{2\})$ is the free abelian group
+generated by the odd rational prime ideals $(p) \lhd K$. We have seen in Section \ref{sec-frobeg} that
+\[
+\operatorname{Frob}_p=
+\begin{cases}
+1,&p\equiv1\pmod4,\\
+\sigma,&p\equiv3\pmod4.
+\end{cases}
+\]
+Hence, if $n$ is an odd positive integer with prime factorization
+\(n=\prod_{p\mid n}p^{v_p(n)},
+\) then
+\[
+\Theta_{L/K}\left(\prod_{p\mid n}(p)^{v_p(n)}\right)
+=
+\prod_{p\mid n}\operatorname{Frob}_p^{v_p(n)}
+=
+\begin{cases}
+1,&n\equiv1\pmod4,\\
+c,&n\equiv3\pmod4.
+\end{cases}
+\]
+In particular,
+\[
+\Theta_{L/K}((3))=c\neq1.
+\]
+\end{example}
+
+\begin{example}
+\label{eg-ArtinPrincipalMinusFive}
+Let
+$
+K=\mathbb Q(\sqrt{-5})$, $L=\mathbb Q(i,\sqrt5)
+$ with
+$
+\operatorname{Gal}(L/K)=\{1,\sigma\},
+$ and
+$$
+\operatorname{Frob}_P=
+\begin{cases}
+\sigma,&P=P_2\text{ or }N(P)\equiv3\pmod4,\\
+1,&\text{otherwise},
+\end{cases}
+$$
+We claim that every nonzero principal integral ideal of $K$ maps to the
+identity under the Artin map. Let
+$$
+\alpha=a+b\sqrt{-5}\in\mathcal O_K,
+\qquad
+\alpha\neq0,
+$$
+and put
+$$
+n=N((\alpha))
+=|N_{K/\mathbb Q}(\alpha)|
+=a^2+5b^2.
+$$
+
+Write
+$$
+(\alpha)=P_2^{e_2}\prod_{P\neq P_2}P^{e_P}.
+$$
+By the Frobenius computation above,
+$$
+\Theta_{L/K}((\alpha))=\sigma^E,
+\qquad
+E\equiv
+e_2+
+\sum_{\substack{P\neq P_2\\N(P)\equiv3\pmod4}}
+e_P
+\pmod2.
+$$
+We show that $E$ is even.
+
+First write
+$$
+a=2^r a_0,\qquad b=2^r b_0,
+$$
+where $a_0,b_0$ are not both even. Since
+$$
+(\alpha)=(2)^r(a_0+b_0\sqrt{-5})
+=P_2^{2r}(a_0+b_0\sqrt{-5}),
+$$
+the factor $P_2^{2r}$ does not affect $E$ modulo $2$. Thus we may assume
+that $a$ and $b$ are not both even.
+
+Suppose first that one of $a,b$ is even and the other is odd. Then
+$$
+n=a^2+5b^2\equiv1\pmod4.
+$$
+In particular $e_2=0$. Since
+$$
+n=\prod_{P\neq P_2}N(P)^{e_P},
+$$
+and every odd $N(P)$ is congruent to $1$ or $3$ modulo $4$, the
+congruence $n\equiv1\pmod4$ implies that
+$$
+\sum_{\substack{P\neq P_2\\N(P)\equiv3\pmod4}}e_P
+$$
+is even. Hence $E$ is even.
+
+Now suppose that $a$ and $b$ are both odd. Then
+$$
+n=a^2+5b^2\equiv6\pmod8.
+$$
+Thus
+$$
+e_2 =1, \qquad 
+\frac n2\equiv3\pmod4.
+$$
+But
+$$
+\frac n2=\prod_{P\neq P_2}N(P)^{e_P},
+$$
+so the number of factors $N(P)\equiv3\pmod4$, counted with
+multiplicity, is odd. Therefore
+$$
+E\equiv1+1\equiv0\pmod2.
+$$
+
+Thus in every case
+$$
+\boxed{\Theta_{L/K}((\alpha))=1.}
+$$
+i.e. every principal ideal lies in the kernel of the Artin map. Later we will see that this is precisely what should happen: $L$ is the
+Hilbert class field of $K =\mathbb  Q(\sqrt{-5})$.
+%The same is therefore true for every principal fractional ideal, since
+%$$\Theta_{L/K}((\alpha)(\beta)^{-1}) =
+%\Theta_{L/K}((\alpha)) \Theta_{L/K ((\beta))^{-1}=1.$$
+%Hence
+
+\end{example}
+
+
+
+
+\section{Fractional Ideals and the Ideal Class Group}
+To relate the Artin map $\Theta_{L/K}$ to the ideal class group $C_K$, we now give a concrete interpretation of
+the group $I_K(S)$ when $S = \emptyset$, i.e. all ideals $\mathfrak P \lhd \mathcal O_L$ over a prime ideal $P \lhd \mathcal O_K$ are unramified. In such a case, we call $L:K$ an {\bf unramified} extension.
+
+Recall that in Chapter 6, $C_K$ was defined using equivalence classes of nonzero integral ideals
+$I,J\lhd \mathcal O_K$, where
+\[
+I\sim J
+\]
+if there exists nonzero $\alpha,\beta\in\mathcal O_K$ such that
+\[
+(\alpha)I=(\beta)J.
+\]
+
+We now introduce fractional ideals.
+
+\begin{definition}
+A {\bf fractional ideal} of $K$ is a nonzero $\mathcal O_K$-submodule
+\[
+\mathfrak a\subseteq K
+\]
+such that there exists a nonzero $d\in\mathcal O_K$ with
+\[
+d\mathfrak a\subseteq\mathcal O_K.
+\]
+\end{definition}
+
+Thus every nonzero ideal $I \lhd \mathcal O_K$ is a fractional ideal. Conversely, if $\mathfrak a$ is a fractional ideal and
+$d\mathfrak a\subseteq\mathcal O_K$, then
+\[
+I:=d\mathfrak a
+\]
+is an integral ideal and
+\[
+\mathfrak a=\frac1d I.
+\]
+
+For a nonzero ideal $J\subseteq\mathcal O_K$, define its {\bf inverse fractional ideal} by
+\[
+J^{-1}:=\{x\in K:xJ\subseteq\mathcal O_K\}.
+\]
+In particular, for a principal ideal $(d)$,
+\[
+(d)^{-1}=\frac1d\mathcal O_K.
+\]
+Thus, if $\mathfrak a=\frac1d I$, then
+\[
+\mathfrak a=(d)^{-1}I.
+\]
+
+Now factor the two integral ideals:
+\[
+I=\prod_P P^{a_P},
+\qquad
+(d)=\prod_P P^{b_P},
+\]
+with $a_P,b_P\geq0$. Hence
+\[
+\mathfrak a
+=(d)^{-1}I
+=\prod_P P^{a_P-b_P}.
+\]
+Therefore every nonzero fractional ideal has a unique expression
+\[
+\mathfrak a=\prod_P P^{n_P},
+\qquad n_P\in\mathbb Z,
+\]
+where all but finitely many $n_P$ are zero.
+
+
+\begin{definition}
+Let 
+$$I_K := \left\{\prod_P P^{n_P},
+\ \Large|\ n_P\in\mathbb Z\right\}$$
+denote the abelian group of all nonzero fractional ideals of $K$, with multiplication of ideals as the group operation.
+\end{definition}
+Recall the definition of $I_K(S)$. In the case when $L:K$ is unramified, one therefore has
+$$I_K(S) = I_K(\emptyset) = I_K.$$
+
+We next single out the principal fractional ideals.
+
+\begin{definition}
+Let
+\[
+P_K:=\{(\alpha)=\alpha\mathcal O_K\mid \alpha\in K^\times\}.
+\]
+Then $P_K$ is a subgroup of $I_K$, called the group of {\bf principal fractional ideals}.
+\end{definition}
+
+The quotient $I_K/P_K$ is exactly the ideal class group defined in Chapter 6.
+
+\begin{proposition}\label{prop-classgroup-fractional}
+There is a natural isomorphism
+\[
+\boxed{
+C_K\cong I_K/P_K.
+}
+\]
+\end{proposition}
+
+\begin{proof}
+Define
+\[
+\Phi:C_K\longrightarrow I_K/P_K
+\]
+by
+\[
+\Phi([I])=I P_K,
+\]
+where $I\lhd\mathcal O_K$ is a nonzero integral ideal.
+
+We first check that $\Phi$ is well-defined. Suppose
+\[
+I\sim J.
+\]
+By definition, there exist nonzero $\alpha,\beta\in\mathcal O_K$ such that
+\[
+(\alpha)I=(\beta)J.
+\]
+Therefore, as fractional ideals,
+\[
+IJ^{-1}=\left(\frac{\beta}{\alpha}\right)
+\]
+is principal. Hence
+\[
+IP_K=JP_K.
+\]
+
+The map $\Phi$ is surjective. Indeed, let $\mathfrak a$ be any fractional ideal. Choose
+$d\in\mathcal O_K\setminus\{0\}$ such that
+\[
+I:=d\mathfrak a\subseteq\mathcal O_K.
+\]
+Then $I$ is an integral ideal and
+\[
+\mathfrak a=\frac1d I.
+\]
+Since $(1/d)$ is principal,
+\[
+\mathfrak a P_K=IP_K.
+\]
+
+Finally, suppose
+\[
+\Phi([I])=\Phi([J]).
+\]
+Then
+\[
+IP_K=JP_K,
+\]
+so
+\[
+I=(\gamma)J
+\]
+for some $\gamma\in K^\times$. Write
+\[
+\gamma=\frac{\alpha}{\beta}
+\]
+for some nonzero $\alpha,\beta\in\mathcal O_K$. Then
+\[
+(\beta)I=(\alpha)J.
+\]
+Hence $I\sim J$, so
+\[
+[I]=[J].
+\]
+Thus $\Phi$ is injective.
+
+Therefore
+\(C_K\cong I_K/P_K.
+\)
+\end{proof}
+
+
+%By unique factorization of fractional ideals, the abstract group $I_K(S)$ introduced in the previous section is now identified with the subgroup
+%\[ I_K(S) = \left\{ \prod_P P^{n_P}\in I_K \;\middle|\; n_P=0\text{ for every }P\in S \right\}.\]
+%In other words, $I_K(S)$ is precisely the group of fractional ideals whose prime factorization involves no prime in $S$. Thus the domain of the Artin map has acquired its usual concrete interpretation.
+
+\section{The Hilbert Class Field}
+We now consider the first case in class field theory - we construct a unramified field extension of $H_K : K$ (Hilbert class field), so that $I_K(S) = I_K$, and the kernel of the Artin map is precisely $P_K$. 
+
+\begin{theorem}[Hilbert Class Field Theorem]\label{thm-HilbertClassField}
+For every number field $K$, there exists a finite abelian Galois extension
+\[
+H_K:K,
+\]
+called the {\bf Hilbert class field} of $K$, with the following properties:
+\begin{enumerate}
+    \item every nonzero prime ideal $P\subseteq\mathcal O_K$ is unramified in $H_K$ (and hence $I_K(S) = I_K$);
+    \item for each real embedding
+\(\sigma:K\hookrightarrow\mathbb R,
+\) (see Section \ref{sec-minkowski}), there are exactly $[H_K:K]$ embeddings
+\(\widetilde{\sigma}:H_K\hookrightarrow\mathbb R
+\) extending $\sigma$;
+    \item every finite abelian extension of $K$ satisfying (1) and (2) is contained in $H_K$;
+    \item the Artin map induces an isomorphism
+    \[
+    \boxed{C_K\ \cong\ \operatorname{Gal}(H_K/K)},
+    \qquad
+    [P]\longmapsto\operatorname{Frob}_P.
+    \]
+\end{enumerate}
+\end{theorem}
+
+We will not prove the Hilbert class field theorem. Its proof is one of the main results of
+global class field theory. What matters here is the precise relation between the theorem and
+the quotient $C_K=I_K/P_K$.
+
+\begin{corollary}\label{cor-HilbertKernel}
+For the Hilbert class field,
+\[
+\boxed{\ker\Theta_{H_K/K}=P_K.}
+\]
+Equivalently, a fractional ideal has trivial Artin symbol in $H_K$ if and only if it is
+principal.
+\end{corollary}
+
+\begin{proof}
+The Artin map
+\[
+\Theta_{H_K/K}:I_K\longrightarrow\operatorname{Gal}(H_K/K)
+\]
+induces, by Theorem \ref{thm-HilbertClassField}, an isomorphism
+\[
+\theta_{H_K/K}:I_K/P_K\xrightarrow{\sim}\operatorname{Gal}(H_K/K).
+\]
+Therefore its kernel is exactly $P_K$.
+\end{proof}
+
+\begin{corollary}\label{cor-HilbertDegree}
+The degree of the Hilbert class field is the class number:
+\[
+\boxed{[H_K:K]=h_K.}
+\]
+\end{corollary}
+
+\begin{proof}
+By Theorem \ref{thm-HilbertClassField},
+\[
+\operatorname{Gal}(H_K/K)\cong C_K.
+\]
+Hence
+\([H_K:K]=|\operatorname{Gal}(H_K/K)|=|C_K|=h_K.
+\)
+\end{proof}
+
+Thus the class number has the interpretation
+\[
+\boxed{
+h_K=\text{degree of the maximal everywhere-unramified abelian extension of }K.}
+\]
+
+\begin{corollary}\label{cor-principalSplit}
+Let $P$ be a prime ideal of $\mathcal O_K$. Then
+\[
+\boxed{
+P\text{ is principal}
+\quad\Longleftrightarrow\quad
+P\text{ splits completely in }H_K.}
+\]
+\end{corollary}
+
+\begin{proof}
+Under the Artin isomorphism,
+\[
+[P]\longmapsto\operatorname{Frob}_P.
+\]
+Now
+\[
+P\text{ is principal}
+\quad\Longleftrightarrow\quad
+[P]=e,
+\]
+while Proposition \ref{prop-orderFrob} gives
+\[
+P\text{ splits completely in }H_K
+\quad\Longleftrightarrow\quad
+\operatorname{Frob}_P=id.
+\]
+The two conditions are therefore equivalent.
+\end{proof}
+
+\begin{corollary}
+The following are equivalent:
+\begin{enumerate}
+    \item $C_K=\{e\}$;
+    \item $h_K=1$;
+    \item $\mathcal O_K$ is a PID;
+    \item $H_K=K$.
+\end{enumerate}
+\end{corollary}
+
+\begin{example}\label{eg-HilbertMinusFive}
+Let
+\(K=\mathbb Q(\sqrt{-5})\),
+\(L=\mathbb Q(i,\sqrt5).
+\) Earlier we computed
+\[
+C_K\cong\mathbb Z_2,
+\qquad
+h_K=2.
+\]
+In Example \ref{eg-FrobMinusFive} we showed directly that $L:K$ is a quadratic extension
+unramified at every finite prime of $K$. Since $K$ is imaginary quadratic, it has no
+real places, so $L:K$ is unramified everywhere. Hence, by the Hilbert class field theorem,
+\[
+L\subseteq H_K.
+\]
+But \([L:K]=2=h_K=[H_K:K],
+\) and therefore
+\[
+\boxed{H_K=L=\mathbb Q(i,\sqrt5).}
+\]
+Consequently, the Artin map induces an isomorphism
+\[
+\theta_{L/K}: I_K/P_K \cong C_K
+\stackrel{\sim}{\longrightarrow}
+\operatorname{Gal}(H_K/K).
+\]
+(Note that we have checked $\ker \Theta_{L/K} = P_K$ in Example \ref{eg-ArtinPrincipalMinusFive}). More precisely, the nonprincipal prime ideal
+\([P_2]=[(2,1+\sqrt{-5})]
+\)
+represents the nontrivial class in $C_K$, and one has
+$$\theta_{L/K}([P_2]) = \sigma.$$
+\end{example}
+
+
+The Fundamental Theorem of Galois Theory gives a further interpretation of the subgroup
+structure of $C_K$. If
+\[
+K\subseteq M\subseteq H_K
+\]
+and $A\leq C_K$ corresponds to $M$ under
+$C_K\cong\operatorname{Gal}(H_K/K)$, then
+\[
+\operatorname{Gal}(M/K)\cong C_K/A.
+\]
+Thus subgroups of the ideal class group describe the intermediate abelian extensions inside
+the Hilbert class field.
+
+\begin{remark}
+Sections 9.1--9.5 form the unramified part of the story. The remaining sections explain how
+congruence conditions enlarge this picture to arbitrary finite abelian extensions.
+\end{remark}
+
+\section{Ray Class Groups}
+
+The Hilbert class field is governed by the quotient $I_K/P_K$. For a ramified abelian
+extension, the example $\mathbb Q(i):\mathbb Q$ above shows that $P_K$ is too large to
+be the kernel of the Artin map. The correction is to keep only those principal ideals which
+admit generators satisfying specified congruence and sign conditions.
+
+\begin{definition}
+A {\bf modulus} of $K$ is a formal product
+\[
+\mathfrak m=\mathfrak m_0\mathfrak m_\infty,
+\]
+where
+\[
+\mathfrak m_0=\prod_P P^{n_P},
+\qquad n_P\geq1,
+\]
+is a nonzero integral ideal with only finitely many primes occurring, and
+$\mathfrak m_\infty$ is a product of distinct real places of $K$ (here real place means an embedding $K \hookrightarrow \mathbb{R}$).
+\end{definition}
+
+The finite part $\mathfrak m_0$ records finite primes where ramification is allowed. The
+infinite part $\mathfrak m_\infty$ records real places which are allowed to become complex.
+
+Let
+\[
+I_K(\mathfrak m)
+=
+\left\{\prod_P P^{n_P}\in I_K\;\middle|\; n_P=0
+\text{ whenever }P\mid\mathfrak m_0\right\}.
+\]
+Thus $I_K(\mathfrak m)$ is the group of fractional ideals prime to the finite part
+$\mathfrak m_0$.
+
+\begin{definition}\label{def-rayCongruence}
+Let $\alpha\in K^*$. We write
+\[
+\alpha\equiv1\pmod{\mathfrak m}
+\]
+if the following two conditions hold:
+\begin{enumerate}
+    \item for every $P^{n_P}\mid\mathfrak m_0$, one has
+    \[
+    v_P(\alpha-1)\geq n_P;
+    \]
+    \item for every real place $\sigma$ occurring in $\mathfrak m_\infty$, one has
+    \[
+    \sigma(\alpha)>0.
+    \]
+\end{enumerate}
+Here $v_P$ denotes the exponent of $P$ in the prime-ideal factorization of a principal
+fractional ideal. Equivalently, when $\alpha=a/b$ with $a,b\in\mathcal O_K$ both coprime to
+$\mathfrak m_0$, the first condition says
+\[
+a\equiv b\pmod{P^{n_P}}
+\]
+for every $P^{n_P}\mid\mathfrak m_0$.
+\end{definition}
+
+Let $P_{K,\mathfrak m,1}$ be the subgroup of $I_K(\mathfrak m)$ consisting of principal
+fractional ideals $(\alpha)$ with
+\[
+\alpha\equiv1\pmod{\mathfrak m}.
+\]
+Notice that the congruence condition forces $v_P(\alpha)=0$ for every
+$P\mid\mathfrak m_0$, so $(\alpha)$ is indeed prime to $\mathfrak m_0$.
+
+\begin{definition}
+The {\bf ray class group modulo $\mathfrak m$} is
+\[
+\boxed{C_K(\mathfrak m):=I_K(\mathfrak m)/P_{K,\mathfrak m,1}.}
+\]
+\end{definition}
+
+For the trivial modulus $\mathfrak m=1$, we have
+\[
+I_K(1)=I_K,
+\qquad
+P_{K,1,1}=P_K,
+\]
+and therefore
+\[
+\boxed{C_K(1)=C_K.}
+\]
+Thus the ordinary ideal class group is the first ray class group, with no congruence or sign
+conditions imposed.
+
+\begin{example}[Ray class groups of $\mathbb Q$]\label{eg-rayQ}
+Let $K=\mathbb Q$ and take the modulus
+\[
+\mathfrak m=m\infty,
+\]
+where $\infty$ denotes the unique real place of $\mathbb Q$. Every fractional ideal of
+$\mathbb Z$ is principal. If $\mathfrak a\in I_{\mathbb Q}(m\infty)$, then among the two
+generators $\pm r$ of $\mathfrak a$ there is a unique positive generator $r>0$. Write
+\[
+r=\frac ab,
+\qquad a,b\in\mathbb Z_{>0},
+\qquad \gcd(ab,m)=1.
+\]
+Define
+\[
+\Phi:I_{\mathbb Q}(m\infty)\longrightarrow(\mathbb Z/m\mathbb Z)^*
+\]
+by
+\[
+\Phi(\mathfrak a)=ab^{-1}\pmod m.
+\]
+This is well-defined. Indeed, if $a/b=a'/b'$ and all four integers are coprime to $m$,
+then $ab'=a'b$, so after reducing modulo $m$ and multiplying by $b^{-1}(b')^{-1}$ we get
+\[
+ab^{-1}\equiv a'(b')^{-1}\pmod m.
+\]
+It is clearly a surjective homomorphism.
+
+Now $\mathfrak a=(a/b)$ lies in the kernel precisely when
+\[
+a\equiv b\pmod m.
+\]
+Because $a/b>0$, this is exactly the condition
+\[
+\frac ab\equiv1\pmod{m\infty}.
+\]
+Hence
+\[
+\ker\Phi=P_{\mathbb Q,m\infty,1}.
+\]
+By the First Isomorphism Theorem,
+\[
+\boxed{C_{\mathbb Q}(m\infty)\cong(\mathbb Z/m\mathbb Z)^*.}
+\]
+
+The infinite place is essential here. Without the positivity condition, the same ideal has
+generators $r$ and $-r$, whose residue classes differ by $-1$ modulo $m$; one would instead
+identify these two classes.
+\end{example}
+
+Compare this with the familiar isomorphism
+\[
+\operatorname{Gal}(\mathbb Q(\zeta_m)/\mathbb Q)
+\cong(\mathbb Z/m\mathbb Z)^*.
+\]
+Class field theory explains why the same group appears in both places.
+
+\section{Artin Reciprocity and the Existence Theorem}
+
+We can now state the two global theorems which complete the picture.
+
+\begin{theorem}[Artin Reciprocity]\label{thm-ArtinReciprocity}
+Let $L:K$ be a finite abelian extension. Then there exists a modulus $\mathfrak m$ containing
+all finite and infinite places which ramify in $L$ such that the Artin map
+\[
+\Theta_{L/K}:I_K(\mathfrak m)\longrightarrow\operatorname{Gal}(L/K)
+\]
+is surjective and
+\[
+P_{K,\mathfrak m,1}\subseteq\ker\Theta_{L/K}.
+\]
+Consequently, $\Theta_{L/K}$ factors through the ray class group and gives a surjection
+\[
+\boxed{C_K(\mathfrak m)\twoheadrightarrow\operatorname{Gal}(L/K).}
+\]
+\end{theorem}
+
+The theorem only asserts
+\[
+P_{K,\mathfrak m,1}\subseteq\ker\Theta_{L/K};
+\]
+for a general abelian extension the kernel can be strictly larger. Equality characterizes the
+full ray class field attached to $\mathfrak m$.
+
+Among all moduli through which the Artin map factors, there is a unique minimal one under
+divisibility. It is called the {\bf conductor} of $L:K$.
+
+The converse to Artin reciprocity is the existence theorem. It is most useful in the
+following subgroup form.
+
+\begin{theorem}[Existence Theorem]\label{thm-ClassFieldExistence}
+Let $\mathfrak m$ be a modulus of $K$, and let $H$ be a subgroup satisfying
+\[
+P_{K,\mathfrak m,1}\subseteq H\subseteq I_K(\mathfrak m).
+\]
+Then there exists a unique finite abelian extension $L:K$ inside a fixed algebraic closure,
+with conductor dividing $\mathfrak m$, for which the Artin map induces an isomorphism
+\[
+\boxed{I_K(\mathfrak m)/H\ \cong\ \operatorname{Gal}(L/K).}
+\]
+In particular, taking
+\[
+H=P_{K,\mathfrak m,1}
+\]
+gives the {\bf ray class field} $K_{\mathfrak m}$ and an isomorphism
+\[
+\boxed{C_K(\mathfrak m)\cong\operatorname{Gal}(K_{\mathfrak m}/K).}
+\]
+\end{theorem}
+
+We will not prove Theorems \ref{thm-ArtinReciprocity} and
+\ref{thm-ClassFieldExistence}. Together they give the basic dictionary
+\[
+\boxed{
+\text{finite abelian extensions of }K
+\longleftrightarrow
+\text{congruence subgroups of fractional ideals}.}
+\]
+
+For the trivial modulus $\mathfrak m=1$, the subgroup on the ideal side is
+$P_{K,1,1}=P_K$. Hence
+\[
+K_1=H_K,
+\qquad
+C_K=C_K(1)
+\cong\operatorname{Gal}(H_K/K).
+\]
+Thus the Hilbert class field theorem is the unramified special case of the general theory.
+
+\begin{example}[Class field theory over $\mathbb Q$]
+By Example \ref{eg-rayQ},
+\[
+C_{\mathbb Q}(m\infty)\cong(\mathbb Z/m\mathbb Z)^*.
+\]
+On the other hand,
+\[
+\operatorname{Gal}(\mathbb Q(\zeta_m)/\mathbb Q)
+\cong(\mathbb Z/m\mathbb Z)^*,
+\]
+and Example \ref{eg-cyclotomicFrob} shows that, for every prime $p\nmid m$,
+\[
+\operatorname{Frob}_p(\zeta_m)=\zeta_m^p.
+\]
+More generally, if $\mathfrak a=(a/b)\in I_{\mathbb Q}(m\infty)$ is written using its
+positive generator, then the Artin map corresponds to
+\[
+\mathfrak a\longmapsto ab^{-1}\pmod m.
+\]
+This is exactly the isomorphism constructed in Example \ref{eg-rayQ}; hence its kernel is
+$P_{\mathbb Q,m\infty,1}$. By the uniqueness part of the existence theorem,
+\[
+\boxed{K_{m\infty}=\mathbb Q(\zeta_m).}
+\]
+Thus cyclotomic fields are precisely the full ray class fields of $\mathbb Q$ for the moduli
+$m\infty$.
+\end{example}
+
+As a consequence, the class-field description over $\mathbb Q$ becomes the following
+classical theorem.
+
+\begin{theorem}[Kronecker--Weber Theorem]\label{thm-KroneckerWeber}
+Every finite abelian extension $L:\mathbb Q$ is contained in a cyclotomic field:
+\[
+\boxed{L\subseteq\mathbb Q(\zeta_m)}
+\]
+for some $m\geq1$.
+\end{theorem}
+
+Indeed, Artin reciprocity places $L$ inside the class field attached to some congruence
+subgroup modulo $m\infty$, and the existence theorem realizes that class field as an
+intermediate field of $K_{m\infty}=\mathbb Q(\zeta_m)$.
+
+\medskip
+We end with the structural picture developed in this chapter:
+\[
+\boxed{
+\begin{gathered}
+\text{prime ideals}
+\longrightarrow
+\text{Frobenius elements}
+\longrightarrow
+\text{Artin map}
+\\[-1mm]
+\downarrow
+\\[-1mm]
+\text{ray class quotients}
+\longleftrightarrow
+\text{finite abelian extensions}.
+\end{gathered}}
+\]
+The two basic special cases are
+\[
+\boxed{C_K\cong\operatorname{Gal}(H_K/K)}
+\]
+and
+\[
+\boxed{(\mathbb Z/m\mathbb Z)^*
+\cong\operatorname{Gal}(\mathbb Q(\zeta_m)/\mathbb Q).}
+\]
+The first says that ideal classes control everywhere-unramified abelian extensions. The
+second says that congruence classes modulo $m$ control cyclotomic extensions. Artin
+reciprocity and the existence theorem place both statements in one framework.
+
+\section*{Exercises}
+
+\begin{enumerate}
+\item Let $L:K$ be finite Galois and let $P$ be unramified. Show that $P$ splits completely
+in $L$ if and only if $\operatorname{Frob}_{\mathfrak P}=id$ for one, and hence every,
+$\mathfrak P$ above $P$.
+
+\item Let $L=\mathbb Q(\zeta_7)$. For each nonzero congruence class of $p$ modulo $7$,
+determine the residue degree $f$ and the number $g$ of prime ideals lying above $p$.
+Hint: $f=\operatorname{ord}_7(p)$ and $fg=6$.
+
+\item Let $K=\mathbb Q(\sqrt5)$. For an odd prime $p\neq5$, show that
+\[
+p\text{ splits in }K
+\quad\Longleftrightarrow\quad
+\left(\frac5p\right)=1,
+\]
+and interpret the two possible values of the Legendre symbol in terms of Frobenius.
+
+\item Suppose $C_K\cong\mathbb Z_6$. Determine all possible degrees $[M:K]$ for
+$K\subseteq M\subseteq H_K$, and describe the corresponding subgroups of $C_K$.
+
+\item We computed earlier that $C_{\mathbb Q(\sqrt{-5})}\cong\mathbb Z_2$.
+Without explicitly constructing $H_K$, determine $[H_K:K]$, its Galois group, and the
+criterion for a prime ideal $P$ to split completely in $H_K$.
+
+
+\item Let $L=\mathbb Q(i)$. For every odd positive integer $n$, show directly that
+\[
+\Theta_{L/\mathbb Q}((n))=
+\begin{cases}
+1,&n\equiv1\pmod4,\\
+c,&n\equiv3\pmod4,
+\end{cases}
+\]
+where $c(i)=-i$. Explain why this shows that principal ideals need not lie in the kernel of
+the Artin map for a general abelian extension.
+
+\item Prove directly that
+\[
+C_{\mathbb Q}(m\infty)\cong(\mathbb Z/m\mathbb Z)^*.
+\]
+Explain why the positivity condition at the real place is needed to distinguish $a$ from
+$-a$.
+\end{enumerate}
 
 \end{document}
 
