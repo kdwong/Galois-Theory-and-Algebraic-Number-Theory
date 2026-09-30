@@ -40,7 +40,7 @@ jobs:
         shell: bash
         run: |
           cp main.pdf MAT5210___Galois_Theory_and_Algebraic_Number_Theory.pdf
-          cp Homework/HW7.pdf Homework/5210_HW7.pdf
+          cp HW7.pdf Homework/5210_HW7.pdf
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add MAT5210___Galois_Theory_and_Algebraic_Number_Theory.pdf Homework/5210_HW7.pdf
