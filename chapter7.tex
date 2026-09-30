@@ -1,6 +1,6 @@
 \chapter{Prime Ideals in $\mathcal{O}_{K}$}
 \section{Ideals Lying Above a Rational Prime}
-We now study the structure of prime ideals $P\lhd \mathcal{O}_{K}$. To begin with, note that $P\cap \mathbb{Z}=(p)_{\mathbb{Z}}\lhd \mathbb{Z}$ for some rational prime $p$. So $(p)\subseteq P$ as ideals in $\mathcal{O}_{K}$. Therefore, all prime ideals $P\lhd \mathcal{O}_{K}$ must be a factor of $(p)$ for some rational prime $p$. 
+We now study the structure of nonzero prime ideals $P\lhd \mathcal{O}_{K}$. To begin with, note that $P\cap \mathbb{Z}=(p)_{\mathbb{Z}}\lhd \mathbb{Z}$ for some rational prime $p$. So $(p)\subseteq P$ as ideals in $\mathcal{O}_{K}$. Therefore, all prime ideals $P\lhd \mathcal{O}_{K}$ must be a factor of $(p)$ for some rational prime $p$. 
 
 \begin{definition}
     Let $p\in \mathbb{N}$ be a rational prime and $(p)=P_{1}^{e_{1}}\cdots P_{k}^{e_{k}}$ be the prime factorization of $(p)$. 
@@ -44,7 +44,7 @@ As discussed above, in order to get all prime ideals of $\mathcal{O}_K$, one stu
 
     For $p=5$, $\overline{m_{\alpha}}(x)=x^{2}+3$ is irreducible in $\mathbb{Z}_{5}[x]$, so $(5) = (5, \alpha^2+3) = (5,0) = (5)$ is itself a prime ideal in $\mathcal{O}_{K}$. 
 
-    If we want to deal with $p=2$, we may choose $\alpha'=\frac{1+\sqrt{-3}}{2}$ instead, so that $[\mathcal{O}_K : \mathbb{Z}[\alpha']] = 1$ . Then $\overline{m_{\alpha}}(x)=x^{2}+x+1$ is irreducible in $\mathbb{Z}_{2}[x]$. So $(2)$ is prime ideal in $\mathcal{O}_{K}$. 
+    If we want to deal with $p=2$, we may choose $\alpha'=\frac{1+\sqrt{-3}}{2}$ instead, so that $[\mathcal{O}_K : \mathbb{Z}[\alpha']] = 1$ . Then $\overline{m_{\alpha'}}(x)=x^{2}+x+1$ is irreducible in $\mathbb{Z}_{2}[x]$. So $(2)$ is prime ideal in $\mathcal{O}_{K}$. 
 \end{example}
 
 \begin{proof}[Proof of Theorem \ref{thm-factorizationOfRationalPrimes}]
@@ -52,10 +52,7 @@ Suppose $ p \nmid [\mathcal{O}_k : \mathbb{Z}[\alpha]]$. Then consider the homom
 $$
 \Phi: \mathbb{Z}[\alpha] \longrightarrow \frac{\mathcal{O}_K}{(p)} \quad \quad \Phi(\beta):= \beta + (p).
 $$
-Then its kernel is of the form
-$
-p \cdot \beta \in \mathcal{O}_K \cap \mathbb{Z}[\alpha] \text{ for some } \beta \in \mathcal{O}_K.
-$
+An element $x\in\mathbb{Z}[\alpha]$ lies in $\ker\Phi$ exactly when $x=p\beta$ for some $\beta\in\mathcal{O}_K$.
 
 We \textit{claim} that $\beta \in \mathbb{Z}[\alpha]$ - if not, then
 $\beta + \mathbb{Z}[\alpha]$ is an order $p$ element in $\mathcal{O}_K/\mathbb{Z}[\alpha]$. Consequently, the cyclic subgroup
@@ -76,7 +73,7 @@ So the $\leq$ in $(*)$ above is an equality, i.e. one has $$\mathcal{O}_K/(p) \c
 
 Now we study all prime ideals $P \lhd \mathcal{O}_K$ lying above $p$: Note that
 $$\mathcal{O}_K \supseteq P \supseteq (p) 
-\ \leftrightarrow \ \mathcal{O}_k/(p) \supseteq P/(p) \supseteq \{1\} \ \leftrightarrow \ \mathbb{Z}_p[x]/\langle \overline{m}_{\alpha}(x)\rangle \supseteq Q' \supseteq \{1\} \ \leftrightarrow \  \mathbb{Z}_p[x] \supseteq Q \supseteq \langle \overline{m}_{\alpha}(x)\rangle$$
+\ \leftrightarrow \ \mathcal{O}_K/(p) \supseteq P/(p) \supseteq \{0\} \ \leftrightarrow \ \mathbb{Z}_p[x]/\langle \overline{m}_{\alpha}(x)\rangle \supseteq Q' \supseteq \{1\} \ \leftrightarrow \  \mathbb{Z}_p[x] \supseteq Q \supseteq \langle \overline{m}_{\alpha}(x)\rangle$$
 where the first and last $\leftrightarrow$ are given by the correspondence theorem, and the middle $\leftrightarrow$ is the isomorphism given above. Moreover, one has
 \begin{itemize}
     \item $P \lhd \mathcal{O}_K$ is a prime ideal $\leftrightarrow$ $Q \lhd \mathbb{Z}_p[x]$ is a prime ideal. 
@@ -89,8 +86,10 @@ $$P_i := (p, g_i(\alpha))$$
 as given in the theorem.
 
 So we are left to prove $(p) = \prod_{i=1}^k P_i^{e_i}$. To see this,
+Since $\prod_i g_i(x)^{e_i}\equiv m_\alpha(x)\pmod p$, we have $\prod_i g_i(\alpha)^{e_i}\in(p)$. Hence
 $$
-\prod_{i=1}^k P_i^{e_i} = \prod_{i=1}^k (p, g_i(\alpha))^{e_i} \subseteq \prod_{i=1}^k (p, g_i(\alpha))^{e_i} \subseteq \left(p, \prod_{i=1}^k g_i(\alpha)^{e_i}\right) = (p, f(\alpha)) = (p, 0) = (p).
+\prod_{i=1}^k P_i^{e_i}=\prod_{i=1}^k (p,g_i(\alpha))^{e_i}
+\subseteq \left(p,\prod_{i=1}^k g_i(\alpha)^{e_i}\right)=(p).
 $$
 (exercise: check the above $\subseteq$ holds). Comparing norms on both sides:
 \begin{align*}
@@ -106,7 +105,7 @@ As a consequence, the inclusions are indeed equalities, and hence $(p) = \prod_{
 \end{corollary}
 
 \begin{example}
-    Let $K=\mathbb{Q}[\sqrt{-5}]$, $\mathcal{O}_{K}=\mathbb{Z}[\sqrt{-5}]$. Take $\alpha=\sqrt{-5}$, then $\Delta^{2}(1,\alpha)=-20$. So the only possible $p\in \mathbb{N}$ that ramifies in $\mathcal{O}_{K}$ are 2 and 5. Indeed, from Theorem \ref{thm-factorizationOfRationalPrimes}, $(2)=(2,1+\sqrt{-5})^{2}$ and $5=(\sqrt{-5})^{2}$ both ramifies in $\mathcal{O}_K$. 
+    Let $K=\mathbb{Q}(\sqrt{-5})$, $\mathcal{O}_{K}=\mathbb{Z}[\sqrt{-5}]$. Take $\alpha=\sqrt{-5}$, then $\Delta^{2}(1,\alpha)=-20$. So the only possible $p\in \mathbb{N}$ that ramifies in $\mathcal{O}_{K}$ are 2 and 5. Indeed, from Theorem \ref{thm-factorizationOfRationalPrimes}, $(2)=(2,1+\sqrt{-5})^{2}$ and $5=(\sqrt{-5})^{2}$ both ramifies in $\mathcal{O}_K$. 
 \end{example}
 
 \begin{proof}[Proof of Corollary \ref{cor-ramifiedPrimeNorm}]
@@ -123,7 +122,7 @@ $p \mid \Delta^2(1,\alpha, \dots, \alpha^{n-1})$ regardless of whether $p$ ramif
 \medskip
 \noindent \fbox{\textbf{Case II:} $ p \nmid [\mathcal{O}_K : \mathbb{Z}[\alpha]] $} Let $L:K$ be a splitting field of $m_{\alpha}(x) \in \mathbb{Z}[x]$, whose roots are $\alpha = \alpha_1, \dots, \alpha_n \in \mathcal{O}_L$. 
 By Example \ref{eg-discrim}, 
-$$\Delta^2((1,\alpha, \dots, \alpha^{n-1})) = \prod_{i \leq j} (\alpha_i - \alpha_j)^2 = \Delta_{m_{\alpha}(x)} \in \mathbb{Z}.$$
+$$\Delta^2((1,\alpha, \dots, \alpha^{n-1})) = \prod_{i < j} (\alpha_i - \alpha_j)^2 = \Delta_{m_{\alpha}(x)} \in \mathbb{Z}.$$
 where $\Delta_{p(x)}$ is the discriminant of a polynomial $p(x) \in F[x]$ as defined in Theorem \ref{thm-discrim}. In particular, $\Delta \neq 0$ if and only if $p(x)$ has no repeated roots (in its splitting extension). 
 
 By Theorem \ref{thm-discrim}, the discriminant $\Delta_{p(x)}$ for any $p(x)$ can be expressed in terms of its coefficients (see Homework 1 Question 7 for the formula of $\Delta$ for cubic polynomials). Therefore, the discriminant of the reduced polynomial $\overline{m}_{\alpha}(x) \in \mathbb{Z}_p[x]$ satisfies:
@@ -153,8 +152,6 @@ Let $orb(P)=\{\sigma_{i}(P)|\sigma_{i}\in Gal(K /\mathbb{Q})\}=\{P_{1}=P,P_{2},\
     $$p^{[K:\mathbb{Q}]}= N((p)) = (N(P)^e)^g = p^{efg}$$
     and hence $[K:\mathbb{Q}] = efg.$
 \end{theorem}
-
-The above 
 
 \begin{example} \label{eg-cycloram}
     Let $K=\mathbb{Q}(\omega)$, where $\omega$ is the primitive $p$-th root of unity. Then $K:\mathbb{Q}$ is Galois and $\mathbb{Z}[\omega]=\langle 1,\omega,\dots, \omega^{p-2}\rangle_{\mathbb{Z}}$ gives an integral basis. Denote $\underline{\omega}=\{1,\omega,\dots, \omega^{p-2}\}$, then $\left| \Delta^{2}(\underline{\omega}) \right|=p^{p-2}$. 
