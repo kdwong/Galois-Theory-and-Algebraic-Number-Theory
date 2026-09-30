@@ -363,7 +363,7 @@ As an immediate consequence of the above corollary, one has $C_{K}=\{[J]\ |\ N(J
 Since $R$ is not principal (the equation $a^2+29b^2=5$ has no integer solutions), we conclude that the order of \([R]\) is \(3\). 
 
 \medskip
-Now we study \(I' = (1+\sqrt{-29})\) with \(N(J) = 30\), one can easily check that \(I' | (2)(3)(5)\), which implies that 
+Now we study \(I' = (1+\sqrt{-29})\) with \(N(I') = 30\), one can easily check that \(I' | (2)(3)(5)\), which implies that 
 \begin{align*}
     I' | P^2\cdot Q Q'  \cdot RR'.
 \end{align*}
@@ -374,7 +374,7 @@ PQR \\
 PQ'R \\
 PQR' \\
 PQ'R'
-\end{matrix}\right. \quad \Rightarrow \quad [I] = \left\{\begin{matrix}
+\end{matrix}\right. \quad \Rightarrow \quad [I'] = \left\{\begin{matrix}
 [P][Q][R] \\
 [P][Q]^{-1}[R] \\
 [P][Q][R]^{-1} \\
@@ -478,18 +478,18 @@ But $b^3 \equiv 0,1,8 \mod 9$, while $3c^2 + 2 \equiv 2, 5 \mod 9$.  \qed
 
 \medskip
 \noindent {\bf Claim 2:
-$(Y + 3\sqrt{6}), (Y - 3\sqrt{6})$ has no common prime factors.}
+$(Y + 3\sqrt{-6}), (Y - 3\sqrt{-6})$ has no common prime factors.}
 
-Suppose on contrary $P \mid (Y \pm 3\sqrt{6})$, then as before
-$$2 \cdot 3\sqrt{-6} \in P \ \Rightarrow\ P \mid (6\sqrt{-6}) = -(\sqrt{-6})^3 \ \Rightarrow \ P \mid (\sqrt{6})\ \Rightarrow \ (\sqrt{6}) \subseteq P \ \Rightarrow \ \sqrt{6} \in P$$
+Suppose on contrary $P \mid (Y \pm 3\sqrt{-6})$, then as before
+$$2 \cdot 3\sqrt{-6} \in P \ \Rightarrow\ P \mid (6\sqrt{-6}) = -(\sqrt{-6})^3 \ \Rightarrow \ P \mid (\sqrt{-6})\ \Rightarrow \ (\sqrt{-6}) \subseteq P \ \Rightarrow \ \sqrt{-6} \in P$$
 Thus
-$$\sqrt{6}, Y + 3\sqrt{6} \in P\ \Rightarrow\ Y \in P \ \Rightarrow \  P \mid (Y)\ \Rightarrow\ N(P) \mid N((Y)) = Y^2$$
+$$\sqrt{-6}, Y + 3\sqrt{-6} \in P\ \Rightarrow\ Y \in P \ \Rightarrow \  P \mid (Y)\ \Rightarrow\ N(P) \mid N((Y)) = Y^2$$
 But $P \mid (\sqrt{-6})$ implies that $N(P) \mid N((\sqrt{-6}))=6$. Since $P$ is prime, $N(P)$ is $2$ or $3$, so either $2\mid Y$ or $3\mid Y$, contradicting Claim 1. \qed
 
 
 \bigskip
 As in Example 1, one can use Claim 2 and the fact that $|C_K| =2$ to conclude that 
-$$(Y + 3\sqrt{6}) = (a + b \sqrt{-6})^3 = (\{a^3-18ab^2\} + \{3a^2b-6b^3\}\sqrt{-6})$$
+$$(Y + 3\sqrt{-6}) = (a + b \sqrt{-6})^3 = (\{a^3-18ab^2\} + \{3a^2b-6b^3\}\sqrt{-6})$$
 for some $a,b \in \mathbb{Z}$, which yields
 $$Y = \pm a(a^2-18b^2) \quad \quad 3 = \pm 3b(a^2-2b^2)$$
 So $b = \pm 1$ and $a=\pm1$ from the second equation, forcing $Y=\pm17$ in the first equation. Putting it back to the original equation, one has $X = 7$.
