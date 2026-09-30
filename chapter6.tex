@@ -112,7 +112,7 @@ As a direct consequence of the example above, one has:
     $\mathcal{O}_{K}$ is a PID if and only if $h_{K}=1$. 
 \end{theorem}
 
-Therefore $C_{K}$ (or $h_K$) gives an measure on how ``far'' $\mathcal{O}_{K}$ from being PID. We will first study the structure of $C_{K}$ in this section. The ultimate goal of this section is to prove: 
+Therefore $C_{K}$ (or $h_K$) gives a measure on how ``far'' $\mathcal{O}_{K}$ from being PID. We will first study the structure of $C_{K}$ in this section. The ultimate goal of this section is to prove: 
 \begin{center}
     \fbox{For number field $K :\mathbb{Q}$, the ideal class $C_{K}$ has a finite abelian group structure} 
 \end{center}
@@ -408,9 +408,9 @@ In order to show the factorization is unique, we need
 \end{theorem}
 
 \begin{proof}
-    $P_{1}\cdots P_{k}=Q_{1}\cdots Q_{l}$ so $P_{1}\mid Q_{1}\cdots Q_{l}$. We leave an exercise to show that if $P$ is prime ideal and $P\mid AB$, then $P\mid A$ or $P\mid B$. So $P_{1}\mid Q_{1}$ or $P_{1}\mid Q_{2}\cdots Q_{l}$. If $P_{1}\mid Q_{1}$, we wins, otherwise $P_{1}\mid Q_{2}\cdots Q_{l}$ so $P_{1}\mid Q_{2}$ or $P\mid Q_{3}\cdots Q_{l}$. Continuing these steps we can find $j$ such that $P_{1}\mid Q_{j}$, and $Q_{j}\subseteq P_{1}$. Since $Q_{j}$ and $P_{1}$ are prime ideals, they are all maximal, we conclude that $P_{1}=Q_{j}$. 
+    $P_{1}\cdots P_{k}=Q_{1}\cdots Q_{l}$ so $P_{1}\mid Q_{1}\cdots Q_{l}$. We leave an exercise to show that if $P$ is prime ideal and $P\mid AB$, then $P\mid A$ or $P\mid B$. So $P_{1}\mid Q_{1}$ or $P_{1}\mid Q_{2}\cdots Q_{l}$. If $P_{1}\mid Q_{1}$, we are done, otherwise $P_{1}\mid Q_{2}\cdots Q_{l}$ so $P_{1}\mid Q_{2}$ or $P\mid Q_{3}\cdots Q_{l}$. Continuing these steps we can find $j$ such that $P_{1}\mid Q_{j}$, and $Q_{j}\subseteq P_{1}$. Since $Q_{j}$ and $P_{1}$ are prime ideals, they are all maximal, we conclude that $P_{1}=Q_{j}$. 
 
-    Therefore, we have $P_{1}P_{2}\cdots P_{k}=P_{1}Q_{1}\cdots\hat{Q_{j}}\cdots Q_{l}$. By the cancelation of ideals, $P_{2}\cdots P_{k}=Q_{1}\cdots \hat{Q_{j}}\cdots Q_{l}$. The result follows by induction on the number of prime factors $k$. 
+    Therefore, we have $P_{1}P_{2}\cdots P_{k}=P_{1}Q_{1}\cdots\hat{Q_{j}}\cdots Q_{l}$. By the cancellation of ideals, $P_{2}\cdots P_{k}=Q_{1}\cdots \hat{Q_{j}}\cdots Q_{l}$. The result follows by induction on the number of prime factors $k$. 
 \end{proof}
 
 \begin{example}
@@ -440,7 +440,7 @@ In order to show the factorization is unique, we need
 \end{definition}
 
 \begin{remark}
-    If $R=\mathcal{O}_{K}$, then $A,B\lhd \mathcal{O}_{K}$ coprime if and only if there're no common prime factor $P\mid A$ and $P\mid B$. 
+    If $R=\mathcal{O}_{K}$, then $A,B\lhd \mathcal{O}_{K}$ coprime if and only if there are no common prime factors $P\mid A$ and $P\mid B$. 
 
     To see why, suppose $A+B=I\neq \mathcal{O}_{K}$, then we have a maximal ideal $P$ such that $A+B\subseteq P$, so $P\mid A$ and $P\mid B$. The converse holds since $P\mid A$, $P\mid B$ implies $A+B\subseteq P$. 
 \end{remark}
