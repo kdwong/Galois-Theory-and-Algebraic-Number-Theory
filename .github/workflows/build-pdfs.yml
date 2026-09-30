@@ -1,0 +1,46 @@
+name: Build PDFs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install TeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-pictures texlive-science
+
+      - name: Build course notes
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          cp main.pdf MAT5210___Galois_Theory_and_Algebraic_Number_Theory.pdf
+
+      - name: Build Homework 7
+        run: |
+          cd Homework
+          latexmk -pdf -interaction=nonstopmode -halt-on-error "MAT5210 HW7.tex"
+          cp "MAT5210 HW7.pdf" 5210_HW7.pdf
+
+      - name: Commit generated PDFs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add MAT5210___Galois_Theory_and_Algebraic_Number_Theory.pdf Homework/5210_HW7.pdf
+          if git diff --cached --quiet; then
+            echo "PDFs are already up to date."
+          else
+            git commit -m "Update compiled PDFs"
+            git push
+          fi
