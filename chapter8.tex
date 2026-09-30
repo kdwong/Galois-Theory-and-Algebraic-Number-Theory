@@ -304,7 +304,7 @@ As an immediate consequence of the above corollary, one has $C_{K}=\{[J]\ |\ N(J
     Let \(K = \mathbb{Q}(\sqrt{-163})\) and \(\mathcal{O}_K = \displaystyle \mathbb{Z}[\frac{1+\sqrt{-163}}{2}]\). One can easily compute \(m_K = \frac{4}{\pi} \frac{1}{2} \sqrt{163} = 8. \cdots\).
 
     By the Remark above, 
-    \[C_K = \langle J\ |\ N(J) = 2,3,5,7 \rangle\] 
+    \[C_K = \langle [J]\ |\ N(J) = 2,3,5,7 \rangle\] 
     So we can apply theorem \ref{thm-factorizationOfRationalPrimes}, with \(\alpha = \frac{1+\sqrt{-163}}{2}\) to find the ideals $J$ lying above $2,3,5,7$. Since the minimal polynomial of $\alpha$ is
     \begin{align*}
         m_\alpha(x) = x^2 - x + 41,
@@ -316,10 +316,10 @@ As an immediate consequence of the above corollary, one has $C_{K}=\{[J]\ |\ N(J
         \item[\((5)\):] \(\bar m_\alpha(x) = x^2 - x + 1\) irreducible in \(\mathbb{Z}_5[x] \Rightarrow (5)\) is prime;
         \item[\((7)\):] \(\bar m_\alpha(x) = x^2 - x - 1\) irreducible in \(\mathbb{Z}_7[x] \Rightarrow (7)\) is prime.
     \end{itemize}
-    Therefore there is no \(J\) with \(N(J) =2,3,5,7\). Hence 
-    \begin{align*}
-        C_K = <\emptyset> = {e}
-    \end{align*}
+    Therefore there is no prime ideal \(J\) with \(N(J)=2,3,5,7\). Hence
+    \[
+        C_K=\{e\}.
+    \]
     is the trivial group. \(i.e.\) \(\mathcal{O}_K\) is a PID.
 \end{example}
 
@@ -330,7 +330,7 @@ As an immediate consequence of the above corollary, one has $C_{K}=\{[J]\ |\ N(J
         (3) &= Q Q' = (3, 1+\sqrt{-29})(3,1-\sqrt{-29});\\
         (5) &= R R' = (5, 1+\sqrt{-29})(5, 1-\sqrt{-29}).
     \end{align*}
-    we can get \(C_K = \left< [P], [Q], [Q'], [R], [R']  \right>\). We want to study the relation between ideal classes \([P],[Q],[R], [Q'],[R']\). Obviously
+    we can get \(C_K = \langle [P], [Q], [Q'], [R], [R']\rangle\). We want to study the relation between ideal classes \([P],[Q],[R], [Q'],[R']\). Obviously
     \[
         [P]^2=[Q][Q']=[R][R']=e.
     \]
@@ -388,7 +388,7 @@ PQ'R'
 \end{align*}
 hence \([Q]\) can be expressed as
 \begin{align*}
-    [Q] =  [P][R] \quad \text{or}\quad [P][R]^{-1} \in \left<[P] ,[R]\right>.
+    [Q] =  [P][R] \quad \text{or}\quad [P][R]^{-1} \in \langle[P],[R]\rangle.
 \end{align*}
 
 As a conclusion, 
