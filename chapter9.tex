@@ -228,8 +228,7 @@ where $d$ is squarefree, and let
 \operatorname{Gal}(L/\mathbb Q)=\{id,\sigma\},
 \qquad \sigma(\sqrt d)=-\sqrt d.
 \]
-Recall that a rational prime $p$ is
-unramified if and only if $p \nmid 4d$ does not divide the discriminant of $L$. 
+Recall that a rational prime $p$ is unramified if and only if $p$ does not divide the discriminant of $L$. 
 
 By Theorem \ref{thm-factorizationOfRationalPrimes}, 
 \begin{center}
@@ -477,16 +476,16 @@ Hence, if $n$ is an odd positive integer with prime factorization
 =
 \begin{cases}
 1,&n\equiv1\pmod4,\\
-c,&n\equiv3\pmod4.
+\sigma,&n\equiv3\pmod4.
 \end{cases}}
 \]
 In particular,
 \[
-\Theta_{L/K}((3))=c\neq1.
+\Theta_{L/K}((3))=\sigma\neq1.
 \]
 \end{example}
 
-Here is an example where $L:K$ is ramified:
+Here is an example where $L:K$ is unramified:
 \begin{example}
 \label{eg-ArtinPrincipalMinusFive}
 Let
@@ -665,8 +664,7 @@ where all but finitely many $n_P$ are zero.
 
 \begin{definition}
 Let 
-$$I_K := \left\{\prod_P P^{n_P},
-\ \Large|\ n_P\in\mathbb Z\right\}$$
+$$I_K := \left\{\prod_P P^{n_P}\ \middle|\ n_P\in\mathbb Z,\ n_P=0\text{ for all but finitely many }P\right\}$$
 denote the abelian group of all nonzero fractional ideals of $K$, with multiplication of ideals as the group operation.
 \end{definition}
 Recall the definition of $I_K(S)$. In the case when $L:K$ is unramified, one therefore has
@@ -912,7 +910,7 @@ Consequently, the Artin map induces an isomorphism
 \stackrel{\sim}{\longrightarrow}
 \operatorname{Gal}(H_K/K).
 \]
-(Note that we have checked $\ker \Theta_{L/K} = P_K$ in Example \ref{eg-ArtinPrincipalMinusFive}). More precisely, the nonprincipal prime ideal
+(In Example \ref{eg-ArtinPrincipalMinusFive}, we checked directly that principal ideals lie in $\ker\Theta_{L/K}$.) More precisely, the nonprincipal prime ideal
 \([P_2]=[(2,1+\sqrt{-5})]
 \)
 represents the nontrivial class in $C_K$, and one has
@@ -1117,7 +1115,7 @@ In particular, if one takes
 \[
 H=P_{K,\mathfrak m,1}
 \]
-Then $K_{\mathfrak m} :=L_{P_{K,\mathfrak m,1}}$
+then $K_{\mathfrak m}:=L_{P_{K,\mathfrak m,1}}$
 is called the {\bf ray class field}, and one has:
 \[
 C_K(\mathfrak m)\cong\operatorname{Gal}(K_{\mathfrak m}/K).
@@ -1259,7 +1257,7 @@ That is, there is a surjective homomorphism
 \theta_{L/\mathbb Q}:
 C_{\mathbb Q}(q\infty)\cong(\mathbb Z/q\mathbb Z)^*
 \longrightarrow
-\operatorname{Gal}(L/\mathbb Q) \cong \{\pm 1\}
+\operatorname{Gal}(L/\mathbb Q) \cong \{\pm 1\}.
 \]
 Thus the action of $\operatorname{Frob}_p$ on $\sqrt{q^*}$ is given by a
 nontrivial quadratic character of $(\mathbb Z/q\mathbb Z)^*$.
