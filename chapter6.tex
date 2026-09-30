@@ -9,7 +9,7 @@ are $(x,y) = (3,\pm 5)$.
 \end{example}
 
 \begin{proof}
-To begin with, it is obvious that \( y \) must be odd. Now consider \( K = \mathbb{Q}(\sqrt{-2}) \) with \( \mathcal{O}_K = \mathbb{Z}[\sqrt{-2}] \), so that
+To begin with, it is obvious that \( y \) must be odd. Now consider \( K = \mathbb{Q}(\sqrt{-2}) \) with \( \mathcal{O}_K = \mathbb{Z}[\sqrt{-2}] \). Recall that $\mathbb{Z}[\sqrt{-2}]$ is Euclidean with respect to the norm, hence a UFD. Thus
 \[ (y + \sqrt{-2})(y - \sqrt{-2}) = x^3  \quad \quad (*)\]
 
 Suppose there exists\( \ \alpha \in \mathcal{O}_K \) irreducible such that:
@@ -29,7 +29,7 @@ for some $\beta \in \mathcal{O}_K$.
 
 Let \( \beta = a + b\sqrt{-2}\) for $a, b \in \mathbb{Z}$, then:
 \[ y + \sqrt{-2} = a(a^2-6b^2) + b(3a^2-2b^2)\sqrt{-2} \]
-which implies that $1 = b(3a^2-2b^2)$. Therefore, the only possibilities of $a,b$ are $\pm 1$. By trial end error, one can check that $y$ can only be equal to $\pm 5$, which forces $x = 3$. And they are the only solutions of the equation.
+which implies that $1 = b(3a^2-2b^2)$. Therefore $b=1$ and $a=\pm1$. Substituting back, one gets $y=\pm5$, which forces $x = 3$. And they are the only solutions of the equation.
 \end{proof}
 
 However, this is {\bf NOT} true in general that $\mathcal{O}_K$ is a UFD. Indeed, let \( K = \mathbb{Q}(\sqrt{-5}) \), then \( \mathcal{O}_K = \mathbb{Z}[\sqrt{-5}] \) and 
@@ -38,9 +38,9 @@ in \( \mathcal{O}_K \). One can see that the above terms are not associates with
 \[ 4, \ 9, \ 6, \ 6 \]
 Therefore $2, 3 \nsim (1 \pm \sqrt{-5})$ by Corollary \ref{cor-normz}(b). 
 
-Moreover, the terms in the factorization are all irreducible: suppose for instance that there exists \( \alpha = u + v\sqrt{-5} \in \mathcal{O}_K \) such that \( \alpha \mid 2 \). Then by multiplicativity of $\mathrm{Norm}$, one has
-$$\mathrm{Norm}(\alpha) = u^2 + 5v^2 \mid \mathrm{Norm}(2) = 4,$$
-which implies that $\alpha = \pm 2 \sim 2$.
+Moreover, the terms in the factorization are all irreducible. For instance, if \( \alpha = u + v\sqrt{-5} \in \mathcal{O}_K \) is a nonunit divisor of $2$, then by multiplicativity of $\mathrm{Norm}$,
+$$\mathrm{Norm}(\alpha) = u^2 + 5v^2 \mid \mathrm{Norm}(2) = 4.$$
+Since there are no elements of norm $2$, one must have $\mathrm{Norm}(\alpha)=4$, hence $\alpha=\pm2$. The same norm argument shows that $3$ and $1\pm\sqrt{-5}$ are irreducible.
 Consequently, we factorize $6 \in \mathcal{O}_K$ into irreducibles into {\bf two} different ways, and hence it is not a UFD.
 
 \bigskip
@@ -69,7 +69,7 @@ We can now state the theorem of unique factorization of ideals in $\mathcal{O}_K
 \section{Ideal Class}
 We first give the definition of ideal class using the equivalence of ideals.
 \begin{definition}
-    Let $I, J\lhd \mathcal{O}_{K}$ be ideals. We say $I\sim J$ if $\exists \alpha,\beta \in \mathcal{O}_{K}$ such that $(\alpha)I=(\beta)J$. 
+    Let $I, J\lhd \mathcal{O}_{K}$ be nonzero ideals. We say $I\sim J$ if $\exists \alpha,\beta \in \mathcal{O}_{K}\setminus\{0\}$ such that $(\alpha)I=(\beta)J$. 
 
     The collection of all equivalence classes of $I\lhd \mathcal{O}_{K}$ is called the {\bf ideal classes} of $K$:
     \[
@@ -120,15 +120,15 @@ Therefore $C_{K}$ (or $h_K$) gives an measure on how ``far'' $\mathcal{O}_{K}$ f
 \noindent \underline{\bf Goal I: $h_{K}= |C_K| <\infty$:} 
 
 \begin{lemma}[Hurwitz]\label{lem-Hurwitz}
-    Let $K:\mathbb{Q}$ be a number field and $[K:\mathbb{Q}]=n$. The there exists large integer $M$ such that $\forall \gamma\in K$, there exist integer $1\leq t\leq M$ and $\omega \in \mathcal{O}_{K}$ with the inequality $\mathrm{Norm}_{K /\mathbb{Q}}(t\gamma-\omega)<1$. 
+    Let $K:\mathbb{Q}$ be a number field and $[K:\mathbb{Q}]=n$. Then there exists a large integer $M$ such that $\forall \gamma\in K$, there exist an integer $1\leq t\leq M$ and $\omega \in \mathcal{O}_{K}$ with $\left|\mathrm{Norm}_{K /\mathbb{Q}}(t\gamma-\omega)\right|<1$. 
 \end{lemma}
 
 \begin{proof}
     Let $\{\omega_{1},\dots, \omega_{n}\}$ be an integral basis of $\mathcal{O}_{K}$, i.e. $\mathcal{O}_{K}=\langle \omega_{1},\dots, \omega_{n}\rangle_{\mathbb{Z}}$. For any $\gamma\in K=\mathrm{Span}_{\mathbb{Q}}\{\omega_{1},\dots, \omega_{n}\}$, assume $\gamma=a_{1}\omega_{1}+\cdots+a_{n}\omega_{n}$. Let 
     \begin{align*}
-    \lfloor \gamma \rfloor =\lfloor a_{1}]\omega_{1}+\cdots+\lfloor a_{n} \rfloor \omega_{n}, \quad \{\gamma\}=b_{1}\omega_{1}+\cdots+b_{n}\omega_{n},
+    \lfloor \gamma \rfloor =\lfloor a_{1}\rfloor\omega_{1}+\cdots+\lfloor a_{n} \rfloor \omega_{n}, \quad \{\gamma\}=b_{1}\omega_{1}+\cdots+b_{n}\omega_{n},
     \end{align*}
-    where $b_{i}=a_{i}-\lfloor a_{i}\rfloor $ satisfies $0\leq b_{i}<1$, i.e. $\lfloor \gamma \rfloor \in \mathcal{O}_K$ is the integer part of $\gamma$ and $\{\gamma\}$ is the decimal part of $\gamma$, so that $$\gamma=[\gamma]+\{\gamma\}.$$
+    where $b_{i}=a_{i}-\lfloor a_{i}\rfloor $ satisfies $0\leq b_{i}<1$, i.e. $\lfloor \gamma \rfloor \in \mathcal{O}_K$ is the integer part of $\gamma$ and $\{\gamma\}$ is the decimal part of $\gamma$, so that $$\gamma=\lfloor\gamma\rfloor+\{\gamma\}.$$
 
     \medskip
     Consider
@@ -148,12 +148,15 @@ Therefore $C_{K}$ (or $h_K$) gives an measure on how ``far'' $\mathcal{O}_{K}$ f
     
     Take $t:=l-k$, then 
     $$t\gamma=l\gamma-k\gamma=(\lfloor l\gamma\rfloor-\lfloor k\gamma\rfloor)+(\{l\gamma\}-\{k\gamma\}) =\omega + (\{l\gamma\}-\{k\gamma\}),$$ 
-    where $\omega:=\lfloor l\gamma \rfloor -\lfloor k\gamma\rfloor \in \mathcal{O}_K$. Then
+    where $\omega:=\lfloor l\gamma \rfloor -\lfloor k\gamma\rfloor \in \mathcal{O}_K$. Since $t\gamma-\omega=\{l\gamma\}-\{k\gamma\}$, write
     \[
-    \mathrm{Norm}_{K/\mathbb{Q}}(t\gamma-\omega)-\mathrm{Norm}_{K /\mathbb{Q}}(\{l\gamma\}-\{k\gamma\})=\mathrm{Norm}_{K /\mathbb{Q}}(c_{1}\omega_{1}+\cdots+c_{n}\omega_{n}) 
+    \{l\gamma\}-\{k\gamma\}=c_1\omega_1+\cdots+c_n\omega_n,
     \]
-    with $0\leq c_{i}< 1$. By applying the inequality above on $\{l\gamma\}-\{k\gamma\}$, one concludes that
-    \[\left| \mathrm{Norm}_{K /\mathbb{Q}}(\{l\gamma\}-\{k\gamma\}) \right| <C\cdot \max_{i}\{\left| c_{i} \right| \}^{n}<m^{n}\cdot (\frac{1}{m})^{n}=1 \]
+    where $|c_i|<1/m$ because the two points lie in the same cube. Applying the inequality above gives
+    \[
+    \left|\mathrm{Norm}_{K/\mathbb{Q}}(t\gamma-\omega)\right|
+    <C\left(\frac1m\right)^n<1,
+    \]
     and the result follows.
 \end{proof}
 
@@ -201,7 +204,7 @@ We define a binary operator $*:C_{K}\times C_{K}\to C_{K}$ by
     \]
 To make $C_{K}$ a group, we have several things to check: 
 \begin{enumerate}
-    \item Well-definess: $I_{1}\sim I_{2}$, $J_{1}\sim J_{2}$, then $I_{1}I_{2}\sim J_{1}J_{2}$ by Homework 5. 
+    \item Well-definedness: if $I_{1}\sim I_{2}$ and $J_{1}\sim J_{2}$, then $I_{1}J_{1}\sim I_{2}J_{2}$ by Homework 5. 
     \item Associativity: $([I]*[J])*[K]=[I]*([J]*[K])$ is obvious true by the associativity of $\mathcal{O}_{K}$. Note it is also clear that $[I]*[J]=[J]*[I]$. 
     \item Identity element: take $e=[\mathcal{O}_{K}]=[(1)]$. Then clearly $[I]*[\mathcal{O}_{K}]=[\mathcal{O}_{K}]*[I]=[I]$. 
 \end{enumerate}
@@ -209,7 +212,7 @@ To make $C_{K}$ a group, we have several things to check:
 We also have to show that $[I]$ has an inverse. 
 
 \begin{lemma}\label{lem-idealCancelation}
-    Let $I,J\lhd \mathcal{O}_{K}$ be ideals such that $JI=I$. Then $J=\mathcal{O}_{K}$. 
+    Let $I,J\lhd \mathcal{O}_{K}$ be ideals with $I\neq(0)$ such that $JI=I$. Then $J=\mathcal{O}_{K}$. 
 \end{lemma}
 
 \begin{proof}
@@ -239,7 +242,7 @@ We also have to show that $[I]$ has an inverse.
 \end{proof}
 
 \begin{lemma}\label{lem-idealCancelationPrincipal}
-    Let $I,J\lhd \mathcal{O}_{K}$. Suppose $IJ=(\omega)I$, then $J=(\omega)$. 
+    Let $I,J\lhd \mathcal{O}_{K}$ with $I\neq(0)$, and let $\omega\neq0$. Suppose $IJ=(\omega)I$, then $J=(\omega)$. 
 \end{lemma}
 
 \begin{proof}
@@ -276,7 +279,7 @@ We also have to show that $[I]$ has an inverse.
 \end{theorem}
 
 \begin{proof}
-    Consider the set of ideals $\{I^{k}|1\leq k\leq h^{K}+1\}$, there are $1\leq x<y\leq h_{K}+1$ such that $[I^{x}]=[I^{y}]$. So $I^{x}\sim I^{y}$ and $(a)I^{x}=(b)I^{y-x}I^{x}$ for some $a,b\in \mathcal{O}_{K}$. Let $l=y-x$, by Lemma \ref{lem-idealCancelationPrincipal}, $(a)=(b)I^{l}$. Thus $I^{l}\sim \mathcal{O}_{K}$ and it is principal. 
+    Consider the set of ideals $\{I^{k}|1\leq k\leq h_{K}+1\}$, there are $1\leq x<y\leq h_{K}+1$ such that $[I^{x}]=[I^{y}]$. So $I^{x}\sim I^{y}$ and $(a)I^{x}=(b)I^{y-x}I^{x}$ for some $a,b\in \mathcal{O}_{K}$. Let $l=y-x$, by Lemma \ref{lem-idealCancelationPrincipal}, $(a)=(b)I^{l}$. Thus $I^{l}\sim \mathcal{O}_{K}$ and it is principal. 
 \end{proof}
 So we have finished proving {\bf Goal II}.
 
