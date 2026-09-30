@@ -22,7 +22,8 @@ As discussed above, in order to get all prime ideals of $\mathcal{O}_K$, one stu
     Suppose the minimal polynomial $m_{\alpha}(x)\in \mathbb{Z}[x]$ factorizes as 
         \[
         \overline{m_{\alpha}}(x)=\prod_{i=1}^{k}\overline{g_{i}}(x)^{e_{i}}\in \mathbb{Z}_{p}[x]. 
-        \]then 
+        \]
+    then 
     \[
     (p)=\prod_{i=1}^{k}(p,h_{i}(\alpha))^{e_{i}},
     \]
@@ -105,7 +106,7 @@ As a consequence, the inclusions are indeed equalities, and hence $(p) = \prod_{
 \end{corollary}
 
 \begin{example}
-    Let $K=\mathbb{Q}(\sqrt{-5})$, $\mathcal{O}_{K}=\mathbb{Z}[\sqrt{-5}]$. Take $\alpha=\sqrt{-5}$, then $\Delta^{2}(1,\alpha)=-20$. So the only possible $p\in \mathbb{N}$ that ramifies in $\mathcal{O}_{K}$ are 2 and 5. Indeed, from Theorem \ref{thm-factorizationOfRationalPrimes}, $(2)=(2,1+\sqrt{-5})^{2}$ and $5=(\sqrt{-5})^{2}$ both ramifies in $\mathcal{O}_K$. 
+    Let $K=\mathbb{Q}(\sqrt{-5})$, $\mathcal{O}_{K}=\mathbb{Z}[\sqrt{-5}]$. Take $\alpha=\sqrt{-5}$, then $\Delta^{2}(1,\alpha)=-20$. So the only possible $p\in \mathbb{N}$ that ramifies in $\mathcal{O}_{K}$ are 2 and 5. Indeed, from Theorem \ref{thm-factorizationOfRationalPrimes}, $(2)=(2,1+\sqrt{-5})^{2}$ and $(5)=(\sqrt{-5})^{2}$ both ramify in $\mathcal{O}_K$. 
 \end{example}
 
 \begin{proof}[Proof of Corollary \ref{cor-ramifiedPrimeNorm}]
@@ -140,12 +141,12 @@ By $(*)$, this implies $\Delta^2(1,\alpha, \dots, \alpha^{n-1}) = \Delta_{m_{\al
 \end{proof}
 
 \section{Prime Ideals in Galois Extension} \label{sec-Galoisprime}
-Let $K:\mathbb{Q}$ be Galois extension with $Gal(K /\mathbb{Q})=\{\sigma_{1}=id,\sigma_{2},\dots, \sigma_{n}\}$. Let $P\lhd \mathcal{O}_{K}$ be a prime ideal over $p$ with $N(P)=p^{f}$. Then 
+Let $K:\mathbb{Q}$ be Galois extension with $\operatorname{Gal}(K /\mathbb{Q})=\{\sigma_{1}=id,\sigma_{2},\dots, \sigma_{n}\}$. Let $P\lhd \mathcal{O}_{K}$ be a prime ideal over $p$ with $N(P)=p^{f}$. Then 
 \begin{itemize}
     \item $\sigma_{i}(P)$ is also a prime ideal. 
     \item $N(\sigma_{i}(P))=N(P)=p^{f}$. 
 \end{itemize}
-Let $orb(P)=\{\sigma_{i}(P)|\sigma_{i}\in Gal(K /\mathbb{Q})\}=\{P_{1}=P,P_{2},\dots, P_{g}\}$. By Theorem \ref{thm-orbitStablizer}, $g\mid n=\left| Gal(K /\mathbb{Q}) \right| $. 
+Let $orb(P)=\{\sigma_{i}(P)|\sigma_{i}\in \operatorname{Gal}(K /\mathbb{Q})\}=\{P_{1}=P,P_{2},\dots, P_{g}\}$. By Theorem \ref{thm-orbitStablizer}, $g\mid n=\left| \operatorname{Gal}(K /\mathbb{Q}) \right| $. 
 
 \begin{theorem}
     Let $K :\mathbb{Q}$ be Galois extension. Let $P\lhd \mathcal{O}_{K}$ be a prime ideal with ramification index $e$ and lying above $p$. Then $(p)=P_{1}^{e}\cdots P_{g}^{e}$. In particular, all prime ideals lying above $p$ are Galois conjugates. Therefore, 
