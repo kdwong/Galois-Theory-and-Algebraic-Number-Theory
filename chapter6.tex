@@ -289,7 +289,7 @@ So we have finished proving {\bf Goal II}.
 Before going into the proof of Dedekind theorem (Theorem \ref{thm-dedekind}), we need some tools to study $I\lhd\mathcal{O}_{K}$. 
 
 \begin{lemma}
-    Let $I\lhd \mathcal{O}_{K}$ be an ideal, then $I\cap \mathbb{Z}\neq \varnothing$. 
+    Let $I\lhd \mathcal{O}_{K}$ be a nonzero ideal. Then $I\cap \mathbb{Z}$ contains a nonzero integer. 
 \end{lemma}
 
 \begin{proof}
@@ -311,14 +311,14 @@ Before going into the proof of Dedekind theorem (Theorem \ref{thm-dedekind}), we
 \end{proof}
 
 \begin{definition}
-    Let $I\lhd \mathcal{O}_{K}$. The {\bf norm of ideal} $I$ is defined as $N(I)=[\mathcal{O}_{K}:I]=\left| \mathcal{O}_{K} /I \right| $. 
+    Let $I\lhd \mathcal{O}_{K}$ be a nonzero ideal. The {\bf norm of ideal} $I$ is defined as $N(I)=[\mathcal{O}_{K}:I]=\left| \mathcal{O}_{K} /I \right| $. 
 \end{definition}
 
 \begin{remark}
     \begin{enumerate}
         \item If $I\lhd \mathcal{O}_{K}$ is ``small'' then $N(I)$ is ``big''; if $I\lhd \mathcal{O}_{K}$ is ``big'' then $N(I)$ is small. 
         \item If $N(I)=p$ is a rational prime, then $I\lhd \mathcal{O}_{K}$ is maximal and hence prime. 
-        \item In the special case when $K=\mathbb{Q}$ and $\mathcal{O}_{K}=\mathbb{Z}$, the norm of any $I=(m)$ is $N((m))=\left| \mathbb{Z} /m\mathbb{Z} \right| =m$. 
+        \item In the special case when $K=\mathbb{Q}$ and $\mathcal{O}_{K}=\mathbb{Z}$, the norm of any nonzero $I=(m)$ is $N((m))=\left| \mathbb{Z} /m\mathbb{Z} \right| =|m|$. 
     \end{enumerate}
 \end{remark}
 
@@ -328,7 +328,7 @@ Before going into the proof of Dedekind theorem (Theorem \ref{thm-dedekind}), we
 
 \begin{proof}
     Let $\mathcal{O}_{K}=\langle \omega_{1},\dots,\omega_{n}\rangle_{\mathbb{Z}}$ be a integral basis, then $(\alpha)=\langle \alpha\omega_{1},\dots, \alpha\omega_{n}\rangle_{\mathbb{Z}}$ is a $\mathbb{Z}$-basis of $(\alpha)$. 
-    By Proposition \ref{prop-indexfree}, $[\mathcal{O}_{K}:(\alpha)]=\det(A)$, where $A$ is the change of basis matrix $\{\omega_{1},\dots, \omega_{n}\}\to \{\alpha\omega_{1},\dots,\alpha\omega_{n}\}$. 
+    By Proposition \ref{prop-indexfree}, $[\mathcal{O}_{K}:(\alpha)]=|\det(A)|$, where $A$ is the change of basis matrix $\{\omega_{1},\dots, \omega_{n}\}\to \{\alpha\omega_{1},\dots,\alpha\omega_{n}\}$. 
     
     
     
@@ -366,7 +366,7 @@ Before going into the proof of Dedekind theorem (Theorem \ref{thm-dedekind}), we
 Obviously, if $B\mid A$, then $B\supseteq A$. The converse also holds: 
 
 \begin{proposition}\label{prop-inclusionEquivDivision}
-    Let $A,B\lhd \mathcal{O}_{K}$, then $B\mid A$ if and only if $B\supseteq A$. 
+    Let $A,B\lhd \mathcal{O}_{K}$ be nonzero ideals, then $B\mid A$ if and only if $B\supseteq A$. 
 \end{proposition}
 
 \begin{proof}
@@ -384,13 +384,13 @@ Obviously, if $B\mid A$, then $B\supseteq A$. The converse also holds:
 \begin{proof}
     Suppose on the contrary that there are $I\lhd \mathcal{O}_{K}$ cannot be divided into product of prime ideals. Then take $B\lhd \mathcal{O}_{K}$ to be on such ideals with minimal norm. Then there exists a maximal ideal $P$ (which is also prime!) such that $B\subseteq P$.  
 
-    Proposition \ref{prop-inclusionEquivDivision} implies $P\mid B$, i.e. $PC=B$ for some $C\lhd \mathcal{O}_{K}$. Note that $B\neq C$, otherwise by the \ref{lem-idealCancelation}, $PB=B$ implies $B=\mathcal{O}_{K}$. So $B\supsetneq C$ and $N(C)<N(B)$. By the minimality of $N(B)$, $C$ can be written as product of prime ideals $C=Q_{1}\cdots Q_{l}$. Thus $B=PC=PQ_{1}\cdots Q_{l}$ can be factorized into prime ideals. Contradiction! 
+    Proposition \ref{prop-inclusionEquivDivision} implies $P\mid B$, i.e. $PC=B$ for some $C\lhd \mathcal{O}_{K}$. Note that $B\neq C$, otherwise Lemma \ref{lem-idealCancelation} applied to $PB=B$ would imply $P=\mathcal{O}_{K}$. Since $B=PC\subseteq C$, we have $B\subsetneq C$ and hence $N(C)<N(B)$. By the minimality of $N(B)$, $C$ can be written as product of prime ideals $C=Q_{1}\cdots Q_{l}$. Thus $B=PC=PQ_{1}\cdots Q_{l}$ can be factorized into prime ideals. Contradiction! 
 \end{proof}
 
 In order to show the factorization is unique, we need 
 
 \begin{lemma}
-    Let $I\lhd \mathcal{O}_{K}$ be an ideal. Then $I$ is maximal if and only if $I$ is prime. 
+    Let $I\lhd \mathcal{O}_{K}$ be a nonzero proper ideal. Then $I$ is maximal if and only if $I$ is prime. 
 \end{lemma}
 
 \begin{proof}
@@ -510,7 +510,7 @@ In order to show the factorization is unique, we need
     \[
     \begin{aligned}
         N(IJ)&=N(P_{1}^{e_{1}+f_{1}})\cdots N(P_{m}^{e_{m}+f_{m}})N(P_{m+1}^{e_{m+1}})\cdots N(P_{k}^{e_{k}})N(Q_{m+1}^{f_{m+1}})\cdots N(Q_{l}^{f_{l}})\\
-        &=N(P_{1})^{e_{1}+f_{1}}\cdots N(P_{m})^{e_{m}+f_{m}}N(P_{m+1})^{e_{m+1}}\cdots N(P_{k})^{e_{k}}N(Q_{m+1})^{f_{m}}\cdots N(Q_{l})^{f_{l}}\\
+        &=N(P_{1})^{e_{1}+f_{1}}\cdots N(P_{m})^{e_{m}+f_{m}}N(P_{m+1})^{e_{m+1}}\cdots N(P_{k})^{e_{k}}N(Q_{m+1})^{f_{m+1}}\cdots N(Q_{l})^{f_{l}}\\
         &=(\prod_{i=1}^{k}N(P_{i})^{e_{i}})(\prod_{j=1}^{l}N(Q_{j})^{f_{j}})\\
         &=N(\prod_{i=1}^{k}P_{i}^{e_{i}})N(\prod_{j=1}^{l}Q_{j}^{f_{j}})\\
         &=N(I)N(J). 
