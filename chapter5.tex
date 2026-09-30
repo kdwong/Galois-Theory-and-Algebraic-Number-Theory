@@ -64,7 +64,7 @@ given by
 \end{proof}
 
 \begin{example}
-Let $K = \mathbb{Q}(\theta), \text{ where } \theta^3 = 2$. Then $|K : \mathbb{Q}| = 3$, and we have $3$ injections $\sigma_i: K \to \mathbb{C}$ given by 
+Let $K = \mathbb{Q}(\theta), \text{ where } \theta^3 = 2$. Then $[K : \mathbb{Q}] = 3$, and we have $3$ injections $\sigma_i: K \to \mathbb{C}$ given by 
 \begin{center}
 $\sigma_1(\theta) = \sqrt[3]{2}$, \quad $\sigma_2(\theta) = \sqrt[3]{2}\omega$, \quad $\sigma_3(\theta) = \sqrt[3]{2}\omega^2$,    
 \end{center}
@@ -142,7 +142,7 @@ where the summand in the last term is equal to $\text{Tr}_{K/\mathbb{Q}}(\omega_
 1 & \theta_n & \dots & \theta_n^{n-1}
 \end{pmatrix}^2 = \prod_{1\leq i<j \leq n} (\theta_i - \theta_j)^2
 \]
-Indeed, this is just the determinant of Vendemonde matrix. So we get back our definition of $\Delta(\theta_1, \dots, \theta_n)^2 \in \mathbb{Q}$ in Homework 1.
+Indeed, this is just the determinant of Vandermonde matrix. So we get back our definition of $\Delta(\theta_1, \dots, \theta_n)^2 \in \mathbb{Q}$ in Homework 1.
 \end{example}
 Obviously, since $m_{\theta}(x)$ is separable, $\theta_i - \theta_j \neq 0$ for all $i \neq j$ and hence $\Delta(1,\theta,\dots,\theta^{n-1})^2 \neq 0$. In Homework 4, you will prove that for any basis $\beta = \{\beta_1, \dots, \beta_n\}$ of $K$ (as a $\mathbb{Q}$-vector space), $\Delta(\beta_1, \dots, \beta_n)^2 \neq 0$
 
@@ -223,7 +223,7 @@ where $ \langle \alpha_1, \dots, \alpha_k \rangle_{\mathbb{Z}} := \{\sum_{i=1}^k
     $\mathcal{O}_K$ is a ring.
 \end{theorem}
 \begin{proof}
-    Suppose $\alpha,\beta \in \mathcal{O}_K$ with minimal polynomials $m_{\alpha}(x) = x^n + \dots + a_1x + a_0$, $m_{\beta}(x) = x^m + \dots + b_1x + b_0$ in $\mathbb{Z}[x]$. We want to show that $\alpha \pm \beta. \alpha\beta\in \mathcal{O}_K$.
+    Suppose $\alpha,\beta \in \mathcal{O}_K$ with minimal polynomials $m_{\alpha}(x) = x^n + \dots + a_1x + a_0$, $m_{\beta}(x) = x^m + \dots + b_1x + b_0$ in $\mathbb{Z}[x]$. We want to show that $\alpha \pm \beta,\ \alpha\beta\in \mathcal{O}_K$.
     
     Consider the $\mathbb{Z}$-module $\mathbb{Z}[\alpha, \beta]$. Since $\alpha^n$ and $\beta^m$ can be expressed as $\mathbb{Z}$-linear combination of terms of lower powers, then so does $\alpha^N$ and $\beta^M$ for all $N > n$ and $M > m$. This implies the $\mathbb{Z}$-module $\mathbb{Z}[\alpha, \beta]$ is $mn$-generated:
     $$\mathbb{Z}[\alpha, \beta]:=\langle \alpha^i\beta^j\ |\ 0\leq i\leq n-1, 0\leq j\leq m-1\rangle_\mathbb{Z} $$
@@ -276,7 +276,7 @@ $\sigma_1(F_{\alpha}(\alpha)) = F_{\alpha}(\sigma_1(\alpha)) = F_{\alpha}(\alpha
 \end{align*}
 and hence $\alpha^{-1} = \mp (\alpha^{n-1} + \dots + a_1) \in \mathcal{O}_K$.    
 \item[(b)] This follows immediately from (a) and the fact that $\mathrm{Norm}_{K/\mathbb{Q}}(\gamma \beta) = \mathrm{Norm}_{K/\mathbb{Q}}(\gamma) \mathrm{Norm}_{K/\mathbb{Q}}(\beta)$ is multiplicative.
-\item[(c)] Again, this follows from the multiplicativity of $\mathrm{Norm}_{K/\mathbb{Q}}$, and by Corollary \ref{cor-normz} that $\mathrm{Norm}_{K/\mathbb{Q}}(\alpha) \in \mathbb{Z}$.
+\item[(c)] Again, this follows from the multiplicativity of $\mathrm{Norm}_{K/\mathbb{Q}}$, and by Corollary \ref{cor-trnormz} that $\mathrm{Norm}_{K/\mathbb{Q}}(\alpha) \in \mathbb{Z}$.
 \end{itemize}
 \end{proof}
 Note that the converse of (b) and (c) in the above Corollary are not true.
