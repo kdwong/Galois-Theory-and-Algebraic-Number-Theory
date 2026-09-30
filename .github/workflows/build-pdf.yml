@@ -43,3 +43,4 @@ jobs:
           git push
 # Rebuild after note corrections
 # Rebuild final
+# Rebuild final source
