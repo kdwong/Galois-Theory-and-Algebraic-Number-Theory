@@ -62,7 +62,7 @@ For all $\mathbf{v}\in \mathbb{R}^{n}$, $\mathbf{v}$ is uniquely expressed as $\
     \[
     S\subseteq \cdots\subseteq (1+\frac{1}{n})S\subseteq 2S, 
     \]
-    the sequence $(\mathbf{v}_{n})$ has a subsequence convergent to some $\mathbf{v}\in S$. 
+    Since $2S\cap L$ is finite, some nonzero lattice point occurs infinitely often among the $\mathbf{v}_n$. Hence there is a nonzero $\mathbf{v}\in S\cap L$. 
 \end{remark}
 
 \begin{example}
@@ -208,7 +208,7 @@ vol(R_{t})=\frac{2^{r}t^{n}(\frac{\pi}{2})^{s}}{n!}.
 \begin{proof}
     Take $t>0$ such that $\frac{\pi^{s}t^{n}}{n!}=4^{s}\sqrt{\left| \Delta^{2}(K) \right| }N(I)$ and consider $R_{t}\subseteq \mathbb{R}^{n}$. 
     \[vol(R_{t})=\frac{2^{r}t^{n}(\frac{\pi}{2})^{s}}{n!}=2^{r+2s}vol(L_{I})=2^{n}vol(L_{I}).\]
-    By Theorem \ref{thm-convexBody}, there exists $\alpha\in I\backslash \{0\}$ s.t. $\sigma(\alpha)\in R_{t}$, i.e. 
+    Since $R_t$ is compact, by the closed-set version of Theorem \ref{thm-convexBody} in the preceding remark, there exists $\alpha\in I\backslash \{0\}$ s.t. $\sigma(\alpha)\in R_{t}$, i.e. 
     \[
     \sum_{i=1}^{r}\left| \sigma_{i}(\alpha) \right| +\sum_{j=1}^{s}2\left| \sigma_{r+j}(\alpha) \right|\leq t. 
     \]
