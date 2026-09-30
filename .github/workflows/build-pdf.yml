@@ -42,3 +42,4 @@ jobs:
           git commit -m "Update compiled course PDFs"
           git push
 # Rebuild after note corrections
+# Rebuild final
