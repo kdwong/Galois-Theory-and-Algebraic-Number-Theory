@@ -1,0 +1,482 @@
+\chapter{Algebraic Integers}
+\section{Preliminaries}
+From this Chapter on, we will study some basics in Algebraic Number Theory. To begin with, we will focus on {\bf number fields}:
+\begin{definition}
+A number field $K$ is a finite extension of $\mathbb{Q}$.
+\end{definition}
+Note that by Primitive Element Theorem (Theorem \ref{thm-primelt}), there exists an element $\theta \in K$ such that $K = \mathbb{Q}(\theta)$ is a simple extension. Moreover, 
+if $[K : \mathbb{Q}] = n$, then
+    $K = \mathbb{Q}(\theta) = \mathrm{Span}_{\mathbb{Q}}\{1, \theta, \ldots, \theta^{n-1}\}$.
+
+In Algebraic Number Theory, we would like to study the `integers' of $K$ defined as follows: 
+\begin{definition}
+    Let $K:\mathbb{Q}$ be a number field. An element $\alpha \in K$ is an {\it algebraic integer} if $\alpha$ is a root of a monic polynomial $p(x) \in \mathbb{Z}[x]$.
+
+    The collection of all algebraic integers of $K$ is called the {\bf ring of integers} $\mathcal{O}_K$.
+\end{definition}
+It is easy to check (see Example \ref{eg-OQ=z} below) that the algebraic integers of $\mathbb{Q}$ are the usual integers $\mathcal{O}_{\mathbb{Q}} = \mathbb{Z}$, and the algebraic integers of $\mathbb{Q}(i)$ are the Gaussian integers $\mathcal{O}_{\mathbb{Q}(i)} = \mathbb{Z}[i]$. 
+
+We will prove in Theorem \ref{thm-okring} below that $\mathcal{O}_K$ is always a ring (and hance an integral domain). The main question is the following:
+\begin{center}
+    Is $\mathcal{O}_K$ an PID? If not, how far is it away from being a PID?
+\end{center}
+
+By knowing whether $\mathcal{O}_K$ is PID or not, one can solve some Diophantine equations such as the {\bf Pythagorean Equation}: 
+\begin{center}
+Find all integer solutions of $x^2 + y^2 = z^2$.     
+\end{center}
+Instead of working in $\mathbb{Z}$, one can work on Gaussian integers $\mathbb{Z}[i]$, which is known to be a ED (and hence PID):
+    \begin{equation*}
+         (x + yi)(x - yi) = z^2
+    \end{equation*}
+By using unique factorization of $\mathbb{Z}[i]$, one can get a general solution of $x,y,z \in \mathbb{Z}$ (MAT3004). 
+
+\medskip
+Before we move on, we need some preliminary definitions and theorems:
+\begin{definition}
+A {\bf free abelian group} $G$ of rank $n$ with basis $e_1, \dots, e_n \in G$ is defined by
+\begin{equation*}
+    G = \mathbb{Z}e_1 \oplus \mathbb{Z}e_2 \oplus \cdots \oplus \mathbb{Z}e_n = \left\{ \sum_{i=1}^n a_i e_i \mid a_i \in \mathbb{Z} \right\}.
+\end{equation*}
+\end{definition}
+
+\begin{proposition} \label{prop-indexfree}
+Let $G$ be a free abelian group of rank $n$ with basis $\{e_1, \ldots, e_n\}$, and $M = (m_{ij})$ be an $n \times n$ matrix with $m_{ij} \in \mathbb{Z}$ such that $\det(M) \neq 0$.
+Suppose $f_1, \dots, f_n \in G$ defined by $f_i := \sum_{j=1}^n m_{ij} e_j$.
+and 
+$$H := \langle f_1, \dots, f_n\rangle_{\mathbb{Z}} = \left\{\sum_{i=1}^n \alpha_if_i\ |\ \alpha_i \in \mathbb{Z}\right\}.$$
+Then $H$ is a subgroup of $G$, with
+\begin{equation*}
+    [G : H] = |\det(M)|
+\end{equation*}
+In particular, $f_1, \dots, f_n$ is a basis of $G$ if and only if $\det(M) = \pm 1$ (such $M \in M_{n \times n}(\mathbb{Z})$ are called {\bf unimodular} matrices).
+\end{proposition}
+
+
+\section{Discriminants, Norms and Traces}
+
+\begin{theorem} \label{thm-numfieldinj} Let $K:\mathbb{Q}$ be a number field of degree $n$. Then there are $n$ distinct injective homomorphisms $\sigma_i: K \hookrightarrow \mathbb{C}$.
+\end{theorem}
+
+\begin{proof} Let $K = \mathbb{Q}(\theta)$ for some $\theta \in K$ with minimal polynomial $m_{\theta}(x) \in \mathbb{Q}[x]$ of $\theta$. Suppose $\theta_1, \theta_2, \dots, \theta_n \in \mathbb{C}$ are the (distinct) roots of $m_{\theta}(x)$ in $\mathbb{C}$, then Proposition \ref{prop-simpKhomo} implies that there are precisely $n$ $\mathbb{Q}$-injections $\sigma_i: K= \mathbb{Q}(\theta) \hookrightarrow \mathbb{C}$
+given by
+\(\sigma_i(\theta) := \theta_i \in \mathbb{C}\).
+\end{proof}
+
+\begin{example}
+Let $K = \mathbb{Q}(\theta), \text{ where } \theta^3 = 2$. Then $|K : \mathbb{Q}| = 3$, and we have $3$ injections $\sigma_i: K \to \mathbb{C}$ given by 
+\begin{center}
+$\sigma_1(\theta) = \sqrt[3]{2}$, \quad $\sigma_2(\theta) = \sqrt[3]{2}\omega$, \quad $\sigma_3(\theta) = \sqrt[3]{2}\omega^2$,    
+\end{center}
+ where $\omega = e^{\frac{2\pi i}{3}}$ is the primitive cube root of unity in $\mathbb{C}$.
+\end{example}
+
+
+\begin{definition} \label{def-fieldpoly} Let $K = \mathbb{Q}(\theta)$, and $\sigma_i: K \to \mathbb{C}$ are the embeddings given in Theorem \ref{thm-numfieldinj}. The {\bf field polynomial} of $\alpha \in K$ is
+defined as:
+\[
+F_{\alpha}(t) = \prod_{i=1}^n (t - \sigma_i(\alpha))
+\]
+\end{definition}
+
+\begin{theorem} \label{thm-fieldpoly} The coefficients of $F_{\alpha}(t)$ are in $\mathbb{Q}$, i.e. $F_{\alpha}(t) \in \mathbb{Q}[t]$.
+\end{theorem}
+
+\begin{proof} Let $K = \mathbb{Q}(\theta) = \mathrm{Span}_{\mathbb{Q}}(1,\theta,\dots,\theta^{n-1})$. For any $\alpha \in K$, $\alpha$ can be expressed as $\alpha = a_0 + a_1\theta + \dots + a_{n-1}\theta^{n-1}$ for some $a_i \in \mathbb{Q}$. Then
+\[
+\sigma_i(\alpha) = \sigma_i(a_0 + a_1\theta + \dots + a_{n-1}\theta^{n-1}) = a_0 + a_1\theta_i + \dots + a_{n-1}\theta_i^{n-1}
+\]
+where $\sigma_i$ are roots of $m_{\theta}(x)$ in $\mathbb{C}$.
+Therefore,
+\[
+F_{\alpha}(t) = \prod_{i=1}^n (t - \sigma_i(\alpha))
+= t^n - s_1(\sigma_1(\alpha), \dots, \sigma_n(\alpha))t^{n-1} + \dots + (-1)^n s_n(\sigma_1(\alpha), \dots, \sigma_n(\alpha))
+\]
+where each coefficient $s_1(\sigma_1(\alpha), \dots, \sigma_n(\alpha))$ of $F_{\alpha}(t)$ is symmetric over the roots $\theta_i \in \mathbb{C}$ of $m_{\theta}(x)$. By Theorem \ref{thm-FTSP}, these coefficients can be written as combinations of the symmetric polynomials $s_i(\theta_1, \theta_2, \dots, \theta_n)$, i.e.
+$$s_i(\sigma_1(\alpha), \dots, \sigma_n(\alpha)) \in \mathbb{Q}[\theta_1, \theta_2, \dots, \theta_n]^{S_n} = \mathbb{Q}[s_1(\theta_1, \theta_2, \dots, \theta_n), \dots, s_n(\theta_1, \theta_2, \dots, \theta_n)].$$
+On the other hand, each $s_i(\theta_1, \theta_2, \dots, \theta_n)$ is the coefficient of $x^{n-i}$ in $m_{\theta}(x) \in \mathbb{Q}[x]$, hence it is in  $\mathbb{Q}$ and the result follows.
+\end{proof}
+
+\begin{definition} Let $|K : \mathbb{Q}| = n$ with $\sigma_i: K \to \mathbb{C}$ be the embeddings of $K$ into $\mathbb{C}$. 
+
+\medskip
+For any $\alpha \in K$:
+\begin{enumerate}
+    \item[(a)] The {\bf norm} of $\alpha \in K$ is defined as \(
+\text{Norm}_{K/\mathbb{Q}}(\alpha) := \prod_{i=1}^n \sigma_i(\alpha)
+\) 
+\item[(b)] The {\bf trace} of $\alpha \in K$ is defined as
+\(
+\text{Tr}_{K/\mathbb{Q}}(\alpha) := \sum_{i=1}^n \sigma_i(\alpha).
+\)
+    \item[(c)] The {\bf $K$-conjugates} of $\alpha$ are given by $\{\sigma_1(\alpha), \dots, \sigma_n(\alpha)\}$.
+\end{enumerate}
+(note that in $\text{Norm}_{K/\mathbb{Q}}(\alpha), \text{Tr}_{K/\mathbb{Q}}(\alpha) \in \mathbb{Q}$ by the theorem above).
+
+\medskip
+For any $\omega := \{\omega_1, \dots, \omega_n\} \subseteq K$:
+\begin{enumerate}
+\item[(d)] The {\bf discriminant} of $\omega$ is defined by $\Delta(\omega) := \det(\sigma_i(\omega_j))$. 
+\end{enumerate}
+\end{definition}
+
+\begin{lemma} $\Delta(\omega)^2 = \det(\text{Tr}_{K/\mathbb{Q}}(\omega_i\omega_j)) \in \mathbb{Q}$.
+\end{lemma}
+
+\begin{proof} Let $A := (\sigma_i(\omega_j))$. Then
+\begin{align*}
+\Delta(\omega)^2 = \det(A^t A) &= \det\left(\sum_k (\sigma_i(\omega_j))^t_{ik}(\sigma_i(\omega_j))_{kj}\right)
+\\ &= \det\left(\sum_k \sigma_k(\omega_i)\sigma_k(\omega_j)\right)\\
+&= \det\left(\sum_k \sigma_k(\omega_i\omega_j)\right)
+\end{align*}
+where the summand in the last term is equal to $\text{Tr}_{K/\mathbb{Q}}(\omega_i\omega_j)$.
+\end{proof}
+
+\begin{example} \label{eg-discrim} Let $K = \mathbb{Q}(\theta), \omega = \{1, \theta, \dots, \theta^{n-1}\}$ a basis of $K$ over $\mathbb{Q}$. Let $\theta_1, \dots, \theta_n \in \mathbb{C}$ be the roots of $m_{\theta}(x) \in \mathbb{Q}[x]$ as before, then
+\[
+\Delta(\omega)^2 = \det(\sigma_i(\theta^{j-1}))^2 = \det((\theta_i^{j-1})_{i,j})^2
+= \det\begin{pmatrix}
+1 & \theta_1 & \dots & \theta_1^{n-1} \\
+1 & \theta_2 & \dots & \theta_2^{n-1} \\
+\vdots & \vdots & \ddots & \vdots \\
+1 & \theta_n & \dots & \theta_n^{n-1}
+\end{pmatrix}^2 = \prod_{1\leq i<j \leq n} (\theta_i - \theta_j)^2
+\]
+Indeed, this is just the determinant of Vendemonde matrix. So we get back our definition of $\Delta(\theta_1, \dots, \theta_n)^2 \in \mathbb{Q}$ in Homework 1.
+\end{example}
+Obviously, since $m_{\theta}(x)$ is separable, $\theta_i - \theta_j \neq 0$ for all $i \neq j$ and hence $\Delta(1,\theta,\dots,\theta^{n-1})^2 \neq 0$. In Homework 4, you will prove that for any basis $\beta = \{\beta_1, \dots, \beta_n\}$ of $K$ (as a $\mathbb{Q}$-vector space), $\Delta(\beta_1, \dots, \beta_n)^2 \neq 0$
+
+\section{Ring of Integers $\mathcal{O}_K$}
+Let's recall the definition of algebraic integers at the beginning of this section:
+\begin{definition}
+Let $ K: \mathbb{Q} $ be a number field. 
+\begin{enumerate}
+    \item[(a)] An element $ \alpha \in K $ is an {\bf algebraic integer} if there exists a monic polynomial $ g(x) \in \mathbb{Z}[x] $ such that $ g(\alpha) = 0 $.
+    \item[(b)] The {\bf ring of integers} of $ K $ is the collection of all algebraic integers, i.e.,
+$$
+\mathcal{O}_K := \{\alpha \in K \mid g(\alpha) = 0 \text{ for some monic } g \in \mathbb{Z}[x]\}.
+$$
+\end{enumerate}
+\end{definition}
+
+Note that we have not justified the term {\it ring} of integers above yet. Later on, we will prove that $\mathcal{O}_K$ is indeed a ring (and hence an integral domain). Before doing so, here is an easier criterion to check whether an element $\alpha \in K$ is an algebraic integer or not:
+\begin{lemma} \label{lem-okminpoly}
+Let $\alpha \in K$. Then $ \alpha \in \mathcal{O}_K $ if and only if the minimal polynomial $ m_\alpha(x) \in \mathbb{Q}[x] $ is in $ \mathbb{Z}[x] $.
+\end{lemma}
+
+\begin{proof}
+\noindent $ (\Leftarrow) $ is automatic by taking $ g(x) = m_\alpha(x)$.
+
+\noindent $ (\Rightarrow) $ Suppose $ g(x) \in \mathbb{Z}[x] $ is monic such that $ g(\alpha) = 0 $. If $ g(x) $ is irreducible over $ \mathbb{Q} $, then $ g = m_\alpha $, and we are done. Otherwise, by Gauss's lemma, $ g(x) = h(x) \cdot r(x) $ is reducible in $\mathbb{Z}[x]$. By multiplying by $-1$ if necessary, both $ h(x) $ and $ r(x) $ are monic, with either $ h(\alpha) $ or $ r(\alpha) = 0 $. So one can repeat the process on $h(x)$ or $r(x) \in \mathbb{Z}[x]$ until you hit the irreducible polynomial, which is the minimal polynomial $ m_\alpha(x)$.
+\end{proof}
+
+\begin{example} \label{eg-OQ=z}
+Let $ K = \mathbb{Q} $. Then by Lemma \ref{lem-okminpoly},
+$$
+\alpha \in \mathcal{O}_\mathbb{Q} \iff m_\alpha(x) = x - \alpha \in \mathbb{Z}[x] \iff \alpha \in \mathbb{Z}.
+$$
+In fact, for any $ K \supseteq \mathbb{Q} $, the same argument implies that $ \mathbb{Z} \subseteq \mathcal{O}_K $. 
+\end{example}
+
+\begin{example} \label{eg-quadraticok}
+We now study the ring of integers for quadratic extensions $ K = \mathbb{Q}(\sqrt{d}) $, where $ d \in \mathbb{Z} $ is {\bf square-free}, i.e. $ d $ doesn't have a power $ \geq 2 $ in its prime factorization (e.g., $ d = 12 = 2^2 \cdot 3 $ is NOT square-free). For all $ \alpha = a + b\sqrt{d} \in K $, the minimal polynomial is
+$$
+m_\alpha(x) = x^2 - 2ax + (a^2 - db^2).
+$$
+Therefore,
+$
+\alpha \in \mathcal{O}_K$ iff $2a$, $a^2 - db^2 \in \mathbb{Z}.
+$, and one has
+$$
+(2a)^2 - d(2b)^2 \in \mathbb{Z} \implies d \cdot (2b)^2 \in \mathbb{Z}.
+$$
+Since $ d $ is square-free, we must have $ 2b \in \mathbb{Z} $.  
+
+Let $ A := 2a $ and $ B := 2b \in \mathbb{Z} $. Since $ a^2 - db^2 \in \mathbb{Z} $, multiplying by 4 gives $ A^2 - dB^2 \in 4\mathbb{Z} $. Thus,
+$$
+A^2 \equiv dB^2 \equiv 0, 1 \pmod{4} \quad (*)
+$$
+
+We divide two cases for $d$, noting that $d \notin 4\mathbb{Z}$ since it is square-free.
+
+\smallskip
+\noindent{\bf Case (I):} If $ d \equiv 2, 3 \pmod{4} $, then $B^2 \equiv 0 \pmod{4} $ (by (*)), and hence $B \in 2\mathbb{Z}$, which immediately implies $b$ (as well as $a$) are both in $\mathbb{Z}$.
+
+\smallskip
+\noindent {\bf Case (II):} If $ d \equiv 1 \pmod{4} $, then (*) implies that $ A^2 \equiv B^2 \pmod{4} \implies A \equiv B \pmod{2} $. Therefore, $ a $ and $ b $ are both in $ \mathbb{Z} $ or both in $ \mathbb{Z} + \frac{1}{2}$.
+
+\smallskip
+\noindent {\bf Conclusion:} The above arguments gives a necessary condition for $\alpha = a+b\sqrt{d}$ to be in $\mathcal{O}_K$. On the other hand, if $\alpha$ satisfies the above conditions, then one can easily check that $m_{\alpha}(x) \in \mathbb{Z}[x]$. Consequently, one has:
+$$
+\mathcal{O}_K =
+\begin{cases}
+\langle 1, \sqrt{d} \rangle_{\mathbb{Z}} & \text{if } d \equiv 2, 3 \pmod{4}, \\
+\langle 1, \frac{1+\sqrt{d}}{2} \rangle_{\mathbb{Z}} & \text{if } d \equiv 1 \pmod{4},
+\end{cases}
+$$
+where $ \langle \alpha_1, \dots, \alpha_k \rangle_{\mathbb{Z}} := \{\sum_{i=1}^k m_i \alpha_i \mid m_i \in \mathbb{Z}\} $. %(e.g., In $ K = \mathbb{Q}(\sqrt{5}) $, $ \frac{1}{2} + \frac{\sqrt{5}}{2} \in \mathcal{O}_K $ with minimal polynomial $ x^2 - x - 1 $).
+\end{example}
+
+
+
+\begin{theorem} \label{thm-okring}
+    $\mathcal{O}_K$ is a ring.
+\end{theorem}
+\begin{proof}
+    Suppose $\alpha,\beta \in \mathcal{O}_K$ with minimal polynomials $m_{\alpha}(x) = x^n + \dots + a_1x + a_0$, $m_{\beta}(x) = x^m + \dots + b_1x + b_0$ in $\mathbb{Z}[x]$. We want to show that $\alpha \pm \beta. \alpha\beta\in \mathcal{O}_K$.
+    
+    Consider the $\mathbb{Z}$-module $\mathbb{Z}[\alpha, \beta]$. Since $\alpha^n$ and $\beta^m$ can be expressed as $\mathbb{Z}$-linear combination of terms of lower powers, then so does $\alpha^N$ and $\beta^M$ for all $N > n$ and $M > m$. This implies the $\mathbb{Z}$-module $\mathbb{Z}[\alpha, \beta]$ is $mn$-generated:
+    $$\mathbb{Z}[\alpha, \beta]:=\langle \alpha^i\beta^j\ |\ 0\leq i\leq m-1, 0\leq j\leq n-1\rangle_\mathbb{Z} $$
+    (they may be linearly dependent over $\mathbb{Z})$.
+    Now since $\mathbb{Z}$ is a PID, recall from MAT3042 on modules over PID, we know 
+    \begin{center}
+        \fbox{$M$ is $k$-generated $\Rightarrow$ all submodules $N \leq M$  are $k$-generated.}
+    \end{center}
+    
+    Now consider the submodule $\mathbb{Z}[\alpha+\beta] \leq \mathbb{Z}[\alpha,\beta]$. We can conclude that $\mathbb{Z}[\alpha,\beta] $ is $mn$-generated. Hence we have $$\mathbb{Z}[\alpha+\beta]=\langle p_1(\alpha+\beta), p_2(\alpha+\beta),\cdots p_{mn}(\alpha+\beta)\rangle_{\mathbb{Z}}$$
+    for some polynomials $p_i(\alpha+\beta) \in \mathbb{Z}[\alpha+\beta]$.
+    Consider an integer $t > \max\{\operatorname{deg}p_1,\cdots \operatorname{deg}p_{mn}\}$, 
+    then there exists $a_{i} \in \mathbb{Z}$ such that 
+    $$(\alpha+\beta)^t= a_1p_1(\alpha+\beta)+\cdots + a_{mn}p_{mn}(\alpha+\beta) \quad \in \mathbb{Z}(\alpha+\beta)$$ 
+    So the monic polynomial 
+    $$g(x)=x^t-a_1p_1(x) \cdots - a_{mn}p_{mn}(x) \in \mathbb{Z}[x]$$ 
+    satisfies $g(\alpha+\beta)=0$, i.e. $\alpha + \beta \in \mathcal{O}_K$.
+    Similarly one can consider the $\mathbb{Z}$-modules $\mathbb{Z}[\alpha - \beta],\ \mathbb{Z}[\alpha \beta] \leq\mathbb{Z}[\alpha,\beta]$, to conclude that $\alpha - \beta, \alpha\beta \in \mathcal{O}_K$
+\end{proof}
+\begin{corollary} \label{cor-trnormz}
+    Let $K:\mathbb{Q}$ be a number field, and $\sigma_i:K\hookrightarrow \mathbb{C} $ be the embeddings. If $\alpha\in \mathcal{O}_K$, then the field polynomial (Definition \ref{def-fieldpoly}) $F_{\alpha}(t):=\prod_{i=1}^n (t-\sigma_i(\alpha)) $ is in $\mathbb{Z}[t]$ (Recall in Theorem \ref{thm-fieldpoly} that $F_{\alpha}(t) \in \mathbb{Q}[t]$ for every $\alpha\in K$). In particular, $$\operatorname{Tr}_{K/\mathbb{Q}}(\alpha), \operatorname{Norm}_{K/\mathbb{Q}}(\alpha) \in \mathbb{Z}.$$
+\end{corollary}
+\begin{proof}
+    Consider the minimal polynomial $m_{\alpha}(x)\in \mathbb{Z}[x]$ of $\alpha \in \mathcal{O}_K$. Then for any $\sigma_i(\alpha) \in \mathbb{C}$, $\sigma_i(\alpha)$ is a root of $m_\alpha(x)$. Let $L:\mathbb{Q}$ be any algebraic extension containing $\sigma_1(\alpha),\cdots\sigma_n(\alpha) \in \mathbb{C}$, then $\sigma_i(\alpha)\in \mathcal{O}_L$. By the fact that $\mathcal{O}_L$ is a ring, we have $$s_j(\sigma_1(\alpha),\cdots ,\sigma_n(\alpha))\in \mathcal{O}_L.$$ 
+    Meanwhile, we know $F_{\alpha}(t)=t^n+s_1(\sigma_1(\alpha),\cdots ,\sigma_n(\alpha))t^{n-1}+\cdots s_n(\sigma_1(\alpha),\cdots ,\sigma_n(\alpha)) \in \mathbb{Q}[x]$ and hence $$s_j(\sigma_1(\alpha),\cdots,\sigma_n(\alpha))\in \mathcal{O}_L \cap \mathbb{Q},$$ 
+    and hence it is in $\mathbb{Z}$.
+\end{proof}
+
+\begin{corollary} \label{cor-normz}
+    Let $\alpha, \beta \in \mathcal{O}_K$. Then the following holds:
+    \begin{enumerate}
+        \item[(a)] $\alpha\text{ is a unit in } \mathcal{O}_K \Leftrightarrow \operatorname{Norm}_{K/\mathbb{Q}}(\alpha)=\pm 1.$
+        \item[(b)] If $\alpha \sim \beta$ are associates (i.e. $\alpha = u\beta$ for a unit $u \in \mathcal{O}_K$), then $\operatorname{Norm}_{K/\mathbb{Q}}(\alpha)= \pm \operatorname{Norm}_{K/\mathbb{Q}}(\beta)$.
+        \item[(c)] If $\operatorname{Norm}_{K/\mathbb{Q}}(\alpha) = p$ is a prime number, then $\alpha$ is irreducible (i.e. if $\alpha = \gamma \delta$ for some $\gamma, \delta \in \mathcal{O}_K$, then either $\gamma$ or $\delta$ are units).
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+\begin{itemize} 
+    \item[(a)] $(\Rightarrow)$ If $\alpha$ is a unit, then there exists $\alpha^{-1} \in \mathcal{O}_K$, and we have:
+$$\mathrm{Norm}(\alpha) \cdot \mathrm{Norm}(\alpha^{-1}) = \mathrm{Norm}(\alpha \alpha^{-1}) = \mathrm{Norm}(1) = 1.$$
+$(\Leftarrow)$ If $\mathrm{Norm}(\alpha) = \pm 1$, then 
+\begin{align*}
+F_\alpha(t) = t^n + \dots + a_1 t + (-1)^n \mathrm{Norm}(\alpha)
+= t^n + \dots + a_1 t + (-1)^n \pm 1.
+\end{align*}
+Note that for $\sigma_1: K \hookrightarrow \mathbb{C}$,
+$\sigma_1(F_{\alpha}(\alpha)) = F_{\alpha}(\sigma_1(\alpha)) = F_{\alpha}(\alpha_1) = \prod_{i=1}^n(\alpha_1 - \alpha_i) = 0$. Since $\sigma_1$ is injective, one has $F_{\alpha}(\alpha) = 0$, and:
+\begin{align*}
+\alpha^n + \dots + a_1 \alpha = \mp 1, \quad \Rightarrow \quad \alpha \left( \mp (\alpha^{n-1} + \dots + a_1) \right) = 1
+\end{align*}
+and hence $\alpha_1^{-1} = \mp (\alpha_1^{n-1} + \dots + a_1) \in \mathcal{O}_K$.    
+\item[(b)] This follows immediately from (a) and the fact that $\mathrm{Norm}_{K/\mathbb{Q}}(\gamma \beta) = \mathrm{Norm}_{K/\mathbb{Q}}(\gamma) \mathrm{Norm}_{K/\mathbb{Q}}(\beta)$ is multiplicative.
+\item[(c)] Again, this follows from the multiplicativity of $\mathrm{Norm}_{K/\mathbb{Q}}$, and by Corollary \ref{cor-normz} that $\mathrm{Norm}_{K/\mathbb{Q}}(\alpha) \in \mathbb{Z}$.
+\end{itemize}
+\end{proof}
+Note that the converse of (b) and (c) in the above Corollary are not true.
+
+\section{Integral Basis Theorem}
+
+\begin{theorem}[Integral Basis] \label{thm-intbasis}
+Let $K:\mathbb{Q}$ be a number field with $[K:\mathbb{Q}] = n$, and $\mathcal{O}_K$ its ring of integers. Then there exists $\omega_1, \ldots, \omega_n \in \mathcal{O}_k$ such that:
+\begin{enumerate}
+    \item $Span_{\mathbb{Q}}\{\omega_1, \ldots, \omega_n\} = K$ (i.e. $\omega_1, \ldots, \omega_n$ is a basis of $K$ as a vector space over $\mathbb{Q}$); and
+    \item $\langle \omega_1, \ldots, \omega_n \rangle_{\mathbb{Z}} = \mathcal{O}_K$ (i.e., $\omega_1, \ldots, \omega_n$ is a basis of $\mathcal{O}_K$ as a free module over $\mathbb{Z}$).
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+If $\theta_1, \ldots, \theta_n \in \mathcal{O}_K$ satisfies $\langle \theta_1, \ldots, \theta_n \rangle_{\mathbb{Z}} = \mathcal{O}_K$, then $\theta_1, \ldots, \theta_n$ is automatically a basis of $K$ over $\mathbb{Q}$ -- Suppose on contrary that $\{\theta_1, \ldots, \theta_n\}$ is not a basis. Then $\{\theta_1, \ldots, \theta_n\}$ must be linearly dependent and does not span $K$. In particular, there exists $\beta \in K \setminus \mathrm{Span}_{\mathbb{Q}}\{\theta_1, \ldots, \theta_n\}$.
+
+\medskip
+\noindent \textbf{Claim:} $\exists M \in \mathbb{N}$ such that $M\beta \in \mathcal{O}_k$. 
+
+\begin{proof}[Proof of Claim]
+Let $m_\beta(x) = x^k + b_{k-1}x^{k-1} + \cdots + b_1x + b_0 \in \mathbb{Q}[x]$ be the minimal polynomial. Then:
+$$
+m_\beta(\beta) = \beta^k + b_{k-1}\beta^{k-1} + \cdots + b_1\beta + b_0 = 0.
+$$
+Multiply by $M^k$:
+$$
+(M\beta)^k + b_{k-1}M(M\beta)^{k-1} + \cdots + b_1M^{k-1}(M\beta) + M^k b_0 = 0.
+$$
+Choose $M$ such that $b_{k-i}M^i \in \mathbb{Z}$ for all $i$. Then $g(x) = x^k + b_{k-1}Mx^{k-1} + \cdots + M^k b_0 \in \mathbb{Z}[x]$, so $M\beta \in \mathcal{O}_K = \langle \theta_1, \ldots, \theta_n \rangle_{\mathbb{Z}}$.
+\end{proof}
+Therefore, there exists integers $c_1, \dots, c_n \in \mathbb{Z}$ such that 
+$$M\beta = c_1\theta_1 + \dots + c_n\theta_n \quad \Rightarrow \quad \beta = \frac{c_1}{M}\theta_1 + \dots + \frac{c_n}{M}\theta_n$$
+In other words, $\beta \in Span_{\mathbb{Q}}\{\theta_1,\dots,\theta_n\}$, a contradiction.
+\end{remark}
+
+In view of the above remark, one only needs to prove statement (2) of Theorem \ref{thm-intbasis}.
+
+\medskip
+\noindent\textbf{Proof of Integral Basis Theorem:} Let $\tilde{\omega}_1, \ldots, \tilde{\omega}_n$ be any basis of $K$ over $\mathbb{Q}$. By multiplying $\tilde{\omega}_i$ by a large integer $M_i$ (as in the Claim above), we get $\omega_i = M_i \tilde{\omega}_i \in \mathcal{O}_K$, and $\{\omega_1, \ldots, \omega_n\} \subseteq \mathcal{O}_K$ remains a basis of $K$ over $\mathbb{Q}$. Consider:
+$$
+\Delta^2(\omega) = \det\left(\mathrm{Tr}_{k/\mathbb{Q}}(\omega_i \omega_j)\right) \in \mathbb{Z}.
+$$
+Among all bases $\underline{\omega} = \{\omega_1, \ldots, \omega_n\} \subseteq \mathcal{O}_k$ of $K$ (as a vector space over $\mathbb{Q}$) - 
+\begin{center}
+\fbox{{\it Claim:} The ones with minimal $|\Delta^2(\omega)|$ are  integral bases of $\mathcal{O}_K$.    }
+\end{center}
+Suppose not. Then $\exists \beta \in \mathcal{O}_K \setminus \langle \omega_1, \ldots, \omega_n \rangle_{\mathbb{Z}}$. Then
+$\beta \in K = Span_{\mathbb{Q}}\{\omega_1, \dots, \omega_n\}$, i.e. 
+$$
+\beta = \delta_1 \omega_1 + \cdots + \delta_n \omega_n, \quad \delta_i \in \mathbb{Q}
+$$
+with some $\delta_i \notin \mathbb{Z}$ (we assume $\delta_1 \notin \mathbb{Z}$ without loss of generality). By subtracting $\beta$ by some element in $\langle \omega_1, \ldots, \omega_n \rangle_{\mathbb{Z}}$, i.e. some integer linear combination of $\omega_1, \dots, \omega_n$, one obtains $\beta' \in \mathcal{O}_K \setminus \langle \omega_1, \ldots, \omega_n \rangle_{\mathbb{Z}}$ such that
+$$
+\beta' = \delta_1' \omega_1 + \cdots + \delta_n' \omega_n, \quad 0 < |\delta_1'| \leq 1/2.
+$$
+Replace $\omega_1$ with $\beta'$ to form a new basis $\underline{\omega}' = \{\beta',\omega_2,\dots,\omega_n\}$, the change of basis matrix looks like $A := \begin{pmatrix}
+\delta_1' &    &  &  \\
+\delta_2' & 1   &  &  \\
+\vdots &  &   \ddots  &  \\
+\delta_n' &    &   &  1 \\
+\end{pmatrix}$, and hence discriminant becomes:
+$$
+\Delta^2(\omega') = \det(A)^2\Delta^2(\omega) = \delta_1'^2\Delta^2(\omega) \leq \frac{1}{4} \Delta^2(\omega) \quad (\text{for some prime } p),
+$$
+(the first equality comes from Homework 4 Question 3 - $\Delta(\omega') = \det(A)\Delta(\omega)$). So it contradicts the minimality of $\Delta(\omega)$. \qed
+
+\begin{definition} 
+The determinant of a number field $K:\mathbb{Q}$ is 
+$$\Delta^2(K) := \Delta^2(\omega)$$ for any integral basis $\omega$ of $\mathcal{O}_K$.
+\end{definition}
+
+
+
+\begin{remark} \label{rmk-intbasis}
+    Let $\underline{\omega}$ be an integral basis of $\mathcal{O}_K$. Then for any $\underline{\theta} = \{\theta_1, \dots,\theta_n\} \subseteq \mathcal{O}_K$ such that $\underline{\theta}$ spans $K$ as a vector space over $\mathbb{Q}$, one has $\langle \underline{\theta} \rangle_{\mathbb{Z}} \leq \mathcal{O}_K = \langle \underline{\omega} \rangle_{\mathbb{Z}}$ as a $\mathbb{Z}$-module (or as abelian groups). Proposition \ref{prop-indexfree} implies that the index of the subgroup is given by
+    $$\det(A) = [\langle \underline{\omega} \rangle_{\mathbb{Z}}: \langle \underline{\theta} \rangle_{\mathbb{Z}}] = [\mathcal{O}_K: \langle \underline{\theta} \rangle_{\mathbb{Z}}]$$
+    where $A$ is the change of basis matrix $\underline{\omega} \mapsto \underline{\theta}$. On the other hand, by Homework 4 Question 3, 
+    $\Delta^2(\underline{\theta}) = \det(A)^2 \Delta^2(\underline{\omega})$. So one has
+    $$\Delta^2(\underline{\theta}) = [\mathcal{O}_K: \langle \underline{\theta} \rangle_{\mathbb{Z}}]^2 \Delta^2(K).$$
+    In other words, one always has
+    $$\Delta^2(K)\ |\ \Delta^2(\underline{\theta})$$
+    and they are equal if and only if $\underline{\theta}$ is an integral basis of $\mathcal{O}_K$.
+    \end{remark}
+
+\noindent \textbf{Procedure of finding an Integral Basis:}
+\begin{enumerate}
+    \item[(a)] Take any  $\{\tilde{\alpha}_1,\cdots,\tilde{\alpha}_n\}$ basis of $K$ over $\mathbb{Q}$.
+    \item[(b)] We can multiply large integers to each term in the above basis, and obtain a basis of $K$ over $\mathbb{Q}$ such that $\underline{\alpha}:=\{ \alpha_1,\cdots,\alpha_n\}$ are all in $\mathcal{O}_K$.
+    Find all primes $p_1 < p_2 < \dots < p_k$ satisfying $p_i^2\ \mid |\Delta^2(\alpha)|$.
+    
+    \item[(c)] Apply the following algorithm on $\underline{\alpha}$:
+    \begin{itemize}
+        \item[(1)]  Start with $\ell = 1$.
+        \item[(2)] For all $1 \leq i \leq n$, compute the minimal polynomial $m_{\gamma}(x) \in \mathbb{Q}[x]$ for all  $$\gamma:=\frac{a_1}{p_{\ell}}\alpha_1+\cdots+\frac{a_{i-1}}{p_{\ell}}\alpha_{i-1}+\frac{1}{p_{\ell}}\alpha_i+\frac{a_{i+1}}{p_{\ell}}\alpha_{i+1}+\cdots+\frac{a_n}{p_{\ell}}\alpha_n$$
+    satisfying $0 \leq a_j < p_{\ell}$ for all $j \neq i$.
+        \item[(3)] If there exists a $\gamma$ in Step (2) such that $m_{\gamma}(x)\in \mathbb{Z}[x]$ (i.e. $\gamma \in \mathcal{O}_K$), replace 
+    \begin{center}
+    $\underline{\alpha}=\{\alpha_1,\alpha_2,\cdots,\alpha_n\}$ \quad $\longrightarrow$ \quad $\underline{\alpha'}=\{\alpha_1,\cdots,\alpha_{i-1},\gamma,\alpha_{i+1},\cdots, \alpha_n\}$,    
+    \end{center}
+     so that $\Delta^2(\underline{\alpha'})=(\frac{1}{p_{\ell}})^2\Delta^2(\underline{\alpha})$. There are two possibilities for $\underline{\alpha}$:
+     \begin{itemize}
+         \item[(i)] If $p_{\ell}^2\ \mid\ \Delta^2(\underline{\alpha'})$, repeat Step (1) for $\underline{\alpha'}$ with the same $\ell$.
+         \item[(ii)] If $p_{\ell}^2\ \nmid\ \Delta^2(\underline{\alpha'})$, repeat Step (1) for $\underline{\alpha'}$ with $\ell$ replaced by $\ell+1$. 
+     \end{itemize}
+     \item[(4)] If $m_{\gamma}(x)\notin \mathbb{Z}[x]$ for all $\gamma$ in Step (2), repeat Step (1) for $\underline{\alpha}$ with $\ell$ replaced by $\ell+1$.
+    \end{itemize}
+    
+    \item[(d)] After running through all $1 \leq \ell \leq k$ in the above algorithm, we obtain $\underline{\omega}$. {\bf This is an integral basis of $\mathcal{O}_K$.}
+\end{enumerate}
+
+To see why the above algorithm works, suppose on contrary $[\mathcal{O}_K: \langle \underline{\omega} \rangle_{\mathbb{Z}}] \neq 1$. Then there exists a prime $r$ such that 
+$$r\ |\ [\mathcal{O}_K: \langle \underline{\omega} \rangle_{\mathbb{Z}}].$$ 
+Note that by Remark \ref{rmk-intbasis} (and the obvious fact that $\Delta^2(\underline{\omega})\ |\ \Delta^2(\underline{\alpha})$), 
+$r = p_{\ell}$ for some $1 \leq \ell \leq k$. Then the quotient group $\mathcal{O}_K/\langle \underline{\omega} \rangle_{\mathbb{Z}}$ has order equal to a multiple of $p_{\ell}$. By Cauchy's theorem, there must be some $\beta \in \mathcal{O}_K$ such that the element 
+            $$\beta +  \langle \underline{\omega} \rangle_{\mathbb{Z}} \in  \mathcal{O}_K/\langle \underline{\omega} \rangle_{\mathbb{Z}}$$
+    of order $p_{\ell}$, i.e. 
+    $$p_{\ell} \cdot (\beta + \langle \underline{\omega} \rangle_{\mathbb{Z}}) = 0_{\mathcal{O}_K/\langle \underline{\omega} \rangle_{\mathbb{Z}}}  \quad \Leftrightarrow \quad p_{\ell}\cdot \beta = A_1 \omega_1 + \dots + A_n \omega_n \in \langle \underline{\omega} \rangle_{\mathbb{Z}}$$
+    for some $A_1, \dots, A_n \in \mathbb{Z}$ not all multiples of $p_{\ell}$. Let's assume $\gcd(A_i,p_{\ell})=1$, and $B_i \in \mathbb{Z}$ be such that $A_iB_i \equiv 1 \pmod{p_{\ell}}$, then 
+    $$B_i \beta = \frac{B_iA_1}{p_{\ell}}\omega_1+\cdots+\frac{B_iA_i}{p_{\ell}}\omega_i+\dots+\frac{B_iA_n}{p_{\ell}}\omega_n \in \mathcal{O}_K.$$
+by subtracting each $\frac{B_iA_j}{p_{\ell}}\omega_j$ in the above expression by a suitable integer multiple of $\omega_j \in \mathcal{O}_K$, one can conclude that there exists
+$$\gamma =\frac{a_1}{p_{\ell}}\omega_1+\cdots+\frac{a_{i-1}}{p_{\ell}}\omega_{i-1}+\frac{1}{p_{\ell}}\omega_i+\frac{a_{i+1}}{p_{\ell}}\omega_{i+1}+\cdots+\frac{a_n}{p_{\ell}}\omega_n \in \mathcal{O}_K$$
+satisfying $0 \leq a_j < p_{\ell}$ for all $j \neq i$. However, by our construction of $\underline{\omega}$, all such elements cannot be in $\mathcal{O}_K$ (or else we can replace $\underline{\omega}$ with $\underline{\omega'}$ in Step (3), so that $\underline{\omega}$ is not the final outcome). So we have a contradiction.
+
+\bigskip
+With the recipe above, we can re-obtain $\mathcal{O}_K$ for the quadratic extension $K=\mathbb{Q}(\sqrt{d})$:
+\begin{example}
+    Let $K=\mathbb{Q}(\sqrt{d}):\mathbb{Q} $, with $d$ square-free, then one can take $\underline{\alpha} = \{1,\sqrt{d}\}$ in the above algorithm, which has
+    $$\Delta^2(\underline{\alpha})= \det\begin{pmatrix}
+        1 & \sqrt{d} \\ 1 & -\sqrt{d}
+    \end{pmatrix}^2 = (-2\sqrt{d})^2 = 4d$$
+    Since $d$ is square free, the only $p$ such that $p^2\ |\ \Delta^2(\underline{\alpha})$ is $p_1 = 2$. By Step (2), we consider
+    $$\beta = \frac{1}{2}, \quad \frac{1}{2}\sqrt{d}, \quad \frac{1}{2} + \frac{1}{2}\sqrt{d}$$
+    with minimal polynomials:
+    $$m_{\beta}(x) = x^2-\frac{1}{4}, \quad, x^2-\frac{d}{4}, \quad x^2-x -\frac{d-1}{4}$$
+    respectively. 
+    
+    If $d \equiv 2,3 \pmod{4}$, then none of the above are in $\mathbb{Z}[x]$ , so immediately hit Step (4) and continue our algorithm with another prime $p_2 > p_1 = 2$. But there is no such $p_2$, so we stop here and conclude that $\underline{\alpha} = \{1,\sqrt{d}\}$ is an integral basis.
+    
+    On the other hand, if $d \equiv 1 \pmod{4}$, then 
+    we have $\beta = \frac{1}{2} + \frac{1}{2}\sqrt{d} \in \mathcal{O}_K$, so we replace $\underline{\alpha}=\{1,\sqrt{d}\}$ by $\underline{\alpha'}=\{1,\frac{1+\sqrt{d}}{2}\}$, with 
+    $$\Delta^2(\underline{\alpha'})= \frac{1}{2^2}\Delta^2(\underline{\alpha}) = \frac{1}{2^2}(4d)= d$$
+    So we are in the situation of Step (3)(ii), and consider $\underline{\alpha'}$ with $p_2 > p_1 = 2$. Once again, since we do not have such $p_2$, $\underline{\alpha'} = \{1,\frac{1+\sqrt{d}}{2}\}$ is an integral basis.
+
+    In conclusion, we have:
+    \begin{itemize}
+        \item $\mathcal{O}_K=\langle1,\sqrt{d}\rangle_{\mathbb{Z}}$ if $d\equiv2,3 \pmod{4}$, with $\Delta^2(K) = 4d$.
+        \item $\mathcal{O}_K=\langle 1,\frac{1+\sqrt{d}}{2}\rangle_{\mathbb{Z}}$,if $d\equiv 1 \pmod{4}$, with $\Delta^2(K) = d$.
+    \end{itemize}
+
+
+\end{example}
+Also, we can find the integral basis to the cyclotomic number field $K=\mathbb{Q}(\omega)$, where $\omega$ is a primitive $p^{th}$ root of unity for prime $p$:
+\begin{theorem}
+    Let $p$ be an rational prime, and $\omega$ is a primitive $p^{th}$ root of unity. Consider $K=\mathbb{Q(\omega)}$, then $\mathcal{O}_K=\mathbb{Z}[\omega] = \langle 1, \omega, \dots, \omega^{p-2} \rangle_{\mathbb{Z}}$, i.e. $\{1,\omega,\omega^2,\cdots,\omega^{p-2}\}$ is an integral basis.
+
+\end{theorem}
+\begin{proof}
+The minimal polynomial of $\omega$ is
+$
+m_\omega(x) = \prod_{i=1}^{p-1}(x-\omega^i) =x^{p-1} + x^{p-2} + \cdots + 1
+.$ 
+Hence $[K:\mathbb{Q}] = \deg m_\omega(x) = p-1$, and $\{1, \omega, \omega^2, \dotsc, \omega^{p-2}\}$ forms a basis for $K/\mathbb{Q}$. We need to show $\mathbb{Z}[\omega] = \mathcal{O}_K$. 
+
+Note that $\omega \in \mathcal{O}_K$ by above, and hence $\mathbb{Z}[\omega] \subseteq \mathcal{O}_K$. It suffices to prove the reverse inclusion. By Homework 4, the discriminant calculation gives:
+\begin{align*}
+\Delta^2(1, \omega, \dotsc, \omega^{p-2}) &= (-1)^{\frac{(p-1)(p-2)}{2}} \operatorname{Norm}_{K/\mathbb{Q}}(m_\omega'(\omega)) \\
+&= (-1)^{\frac{(p-1)(p-2)}{2}} \operatorname{Norm}_{K/\mathbb{Q}}\left(\frac{p}{\omega - 1}\right) \\
+&= (-1)^{\frac{(p-1)(p-2)}{2}} \prod_{i=1}^{p-1}\left(\frac{p}{\omega^{i} - 1}\right) \\
+&= (-1)^{\frac{(p-1)(p-2)}{2}} \frac{(-1)^{p-1}p^{p-1}}{\prod_{i=1}^{p-1}\left({1-\omega^{i}}\right)} \\
+&= (-1)^{\frac{(p-1)p}{2}} \frac{p^{p-1}}{m_{\omega}(1)} \\
+&= (-1)^{\frac{p-1}{2}} p^{p-2}
+\end{align*}
+
+Therefore, by our algorithm of finding integral basis, one only needs to check whether $p \nmid [\mathcal{O}_K: \mathbb{Z}[\omega]]$.
+
+\medskip
+Suppose on contrary that $p \mid [\mathcal{O}_K: \mathbb{Z}[\omega]]$. Consider $\theta = \omega - 1$, so that the discriminant $\Delta^2(1,\theta,\dots,\theta^{p-2}) = \Delta^2(1,\omega,\dots,\omega^{p-2})$. Therefore, $[\mathbb{Z}[\theta]: \mathbb{Z}[\omega]] = 1$ and hence 
+$$p \mid [\mathcal{O}_K: \mathbb{Z}[\theta]].$$
+By our discussions in the previous section, this implies there exists $\varepsilon \in \mathcal{O}_K$ of the form:
+$$
+\varepsilon = \frac{1}{p}(a_0 + a_1\theta + \cdots + a_{p-2}\theta^{p-2})
+$$
+with $0 \leq a_i \leq p-1$ not all zeros. Let $r$ be minimal with $a_r \neq 0$. Then:
+$$
+\theta^{p-2-r}\varepsilon = \frac{a_r}{p}\theta^{p-2} + \frac{a_{r+1}}{p}\theta^{p-1} + \cdots + \frac{a_{p-2}}{p}\theta^{2p-4-r} \in \mathcal{O}_K
+$$
+Using $\omega^p = 1 \Rightarrow (\theta+1)^p = 1$, we derive
+$
+\theta^{p-1} = -\left(\binom{p}{1}\theta^{p-2} + \cdots + \binom{p}{p-1}\right)
+$. Since $\binom{p}{\ell}$ is a multiple of $p$ for all $0 < \ell < p$, hence $\frac{\theta^{p-1}}{p} \in \mathbb{Z}[\theta] \ (\subseteq \mathcal{O}_K)$. More generally, $\frac{\theta^k}{p} \in \mathbb{Z}[\theta]  \ (\subseteq \mathcal{O}_K)$ for all $k \geq p-1$, and hence 
+$$\frac{a_r}{p}\theta^{p-2}  = (-a_{r+1})\frac{\theta^{p-1}}{p} + \cdots + (-a_{p-2})\frac{\theta^{2p-4-r}}{p}+\theta^{p-2-r}\varepsilon \in \mathcal{O}_K.
+$$
+Now study the norm of $\frac{a_r}{p}\theta^{p-2} \in \mathcal{O}_K$:
+\begin{align*}
+\operatorname{Norm}_{K/\mathbb{Q}}\left(\frac{a_r}{p}\theta^{p-2}\right) &= \left(\frac{a_r}{p}\right)^{p-1} \prod_{i=1}^{p-1} \sigma_i(\theta)^{p-2} \\
+&= \left(\frac{a_r}{p}\right)^{p-1} \left(\prod_{i=1}^{p-1} (\omega^i-1)\right)^{p-2} \\
+&= (-1)^{p-1}\left(\frac{a_r}{p}\right)^{p-1} m_{\omega}(1)^{p-2} \\
+&= \left(\frac{a_r}{p}\right)^{p-1} \cdot p^{p-2} \\
+&= \frac{a_r^{p-1}}{p}
+\end{align*}
+which is not in $\mathbb{Z}$. However, this contradicts Corollary \ref{cor-trnormz}. Hence $[\mathcal{O}_K : \mathbb{Z}[\theta]] = 1$ and the result follows.
+\end{proof}

@@ -1,0 +1,530 @@
+\chapter{Unique Factorization}
+\section{Unique Factorization Domain}
+In this section, we will focus on studying whether the ring of integers $\mathcal{O}_K$ is a unique factorization domain (UFD) or not. Indeed, one can solve a lot of Diophantine equations by checking whether $\mathcal{O}_K$ is a UFD or not, as we see in the following example:
+
+\begin{example}
+The only integer solutions of
+\[ y^2 + 2 = x^3 \]
+are $(x,y) = (3,\pm 5)$.
+\end{example}
+
+\begin{proof}
+To begin with, it is obvious that \( y \) must be odd. Now consider \( K = \mathbb{Q}(\sqrt{-2}) \) with \( \mathcal{O}_K = \mathbb{Z}[\sqrt{-2}] \), so that
+\[ (y + \sqrt{-2})(y - \sqrt{-2}) = x^3  \quad \quad (*)\]
+
+Suppose there exists\( \ \alpha \in \mathcal{O}_K \) irreducible such that:
+\[ \alpha \mid (y + \sqrt{-2}) \quad \text{and} \quad \alpha \mid (y - \sqrt{-2}), \]
+then
+\[ \alpha \mid [(y + \sqrt{-2}) - (y - \sqrt{-2})] = 2\sqrt{-2} \quad \Rightarrow \quad \alpha \mid -(\sqrt{-2})^3 \quad \Rightarrow \quad \alpha \sim \sqrt{-2}.\]
+Therefore, 
+$$\sqrt{-2} \mid (y + \sqrt{-2})  \quad \Rightarrow \quad  \sqrt{-2} \mid y $$
+and since $\mathrm{Norm}(ab) = \mathrm{Norm}(a)\mathrm{Norm}(b)$ is multiplicative, 
+$$\mathrm{Norm}(\sqrt{-2}) \mid \mathrm{Norm}(y)  \quad \Rightarrow \quad 2\mid y^2$$
+which implies $y$ is even, contradicting our observation in the beginning of the proof. Therefore, \( y + \sqrt{-2} \) and \( y - \sqrt{-2} \) has no common factor.
+
+\medskip
+By to Equation $(*)$, suppose $x^3 = (\gamma_1\dots\gamma_k)^3 = \gamma_1^3\dots\gamma_k^3$ is factorized into irreducibles. Then by unique factorization, $\gamma_i \mid y + \sqrt{-2}$ implies $\gamma_i^3 \mid y + \sqrt{-2}$, otherwise $\gamma_i$ is also a factor of $y - \sqrt{-2}$, violating the fact that they $y \pm \sqrt{-2}$ has no common factors. In other words,
+\[ y + \sqrt{-2} = \beta^3 \]
+for some $\beta \in \mathcal{O}_K$.
+
+Let \( \beta = a + b\sqrt{-2}\) for $a, b \in \mathbb{Z}$, then:
+\[ y + \sqrt{-2} = a(a^2-6b^2) + b(3a^2-2b^2)\sqrt{-2} \]
+which implies that $1 = b(3a^2-2b^2)$. Therefore, the only possibilities of $a,b$ are $\pm 1$. By trial end error, one can check that $y$ can only be equal to $\pm 5$, which forces $x = 3$. And they are the only solutions of the equation.
+\end{proof}
+
+However, this is {\bf NOT} true in general that $\mathcal{O}_K$ is a UFD. Indeed, let \( K = \mathbb{Q}(\sqrt{-5}) \), then \( \mathcal{O}_K = \mathbb{Z}[\sqrt{-5}] \) and 
+\[ 6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5}) \]
+in \( \mathcal{O}_K \). One can see that the above terms are not associates with each other. Indeed, note that the norms of these numbers are:
+\[ 4, \ 9, \ 6, \ 6 \]
+Therefore $2, 3 \nsim (1 \pm \sqrt{-5})$ by Corollary \ref{cor-normz}(b). 
+
+Moreover, the terms in the factorization are all irreducible: suppose for instance that there exists \( \alpha = u + v\sqrt{-5} \in \mathcal{O}_K \) such that \( \alpha \mid 2 \). Then by multiplicativity of $\mathrm{Norm}$, one has
+$$\mathrm{Norm}(\alpha) = u^2 + 5v^2 \mid \mathrm{Norm}(2) = 4,$$
+which implies that $\alpha = \pm 2 \sim 2$.
+Consequently, we factorize $6 \in \mathcal{O}_K$ into irreducibles into {\bf two} different ways, and hence it is not a UFD.
+
+\bigskip
+Instead of having unique factorization of {\bf elements} in $\mathcal{O}_K$ into primes, we will prove unique factorization of {\bf ideals} of $\mathcal{O}_K$ into prime ideals. To begin with, we make the following:
+\begin{definition}
+    Let $\mathcal{O}_K$ be the ring of integers for a number field $K:\mathbb{Q}$. For any ideals $I, J \lhd \mathcal{O}_K$, the product $IJ \lhd \mathcal{O}_K$ is defined as
+        $$IJ := \{i_1j_1 + \dots + i_nj_n \mid i_p \in I,\ j_q \in J, n \in \mathbb{N}\}.$$
+\end{definition}
+Before moving on, let's make some some simple observations:
+\begin{itemize}
+    \item Obviously $IJ = JI$ and $(IJ)P = I(JP)$ for all $I, J, P \lhd \mathcal{O}_K$. In other words, the product of ideals is commutative and associative.
+    \item If $(\alpha) \lhd \mathcal{O}_K$ is a principal ideal, the product $(\alpha)I$ can be expressed as
+    $$(\alpha)I = \{\alpha i \mid i \in I\}.$$
+    In particular, one can easily check that $(\alpha)(\beta) = (\alpha \beta)$.
+\end{itemize}
+We can now state the theorem of unique factorization of ideals in $\mathcal{O}_K$:
+\begin{theorem}[Dedekind's Theorem] \label{thm-dedekind}
+    Let $I \lhd \mathcal{O}_K$ be any proper, nonzero ideal. Then one can factorize $I = P_1 \dots P_k$ into product of prime ideals $P_i \lhd \mathcal{O}_K$. Moreover, if there are two factorizations of prime ideals of $I$:
+    $$I = P_1 \dots P_k = Q_1 \dots Q_l.$$
+    Then one has $k = l$, and there exists a permutation $\sigma \in S_k = S_l$ such that
+    $$P_i = Q_{\sigma(i)}$$
+    for all $1 \leq i \leq k$.
+    
+\end{theorem}
+
+\section{Ideal Class}
+We first give the definition of ideal class using the equivalence of ideals.
+\begin{definition}
+    Let $I, J\lhd \mathcal{O}_{K}$ be ideals. We say $I\sim J$ if $\exists \alpha,\beta \in \mathcal{O}_{K}$ such that $(\alpha)I=(\beta)J$. 
+
+    The collection of all equivalence classes of $I\lhd \mathcal{O}_{K}$ is called the {\bf ideal classes} of $K$:
+    \[
+    C_{K}:=\{[I]\ |\ I\lhd \mathcal{O}_{K} \text{ nonzero}\},
+    \]
+    where 
+    \(
+    [I]:=\{J\lhd \mathcal{O}_{K}\ |\ J\sim I\}. 
+    \) is the equivalence class of $I$.
+\medskip
+
+    The {\bf class number} of $K$ is defined by $h_{K}=\left| C_{K} \right| $.
+\end{definition}
+One can easily check that $\sim$ defines an equivalence relationship. For instance, if $I \sim J$ and $J \sim K$. then $(\alpha)I = (\beta)J$ and $(\gamma)J = (\delta)P$. Therefore, 
+    $$(\alpha\gamma)I = (\gamma)(\alpha)I = (\gamma)(\beta)J = (\beta)(\gamma)J = (\beta)(\delta)P = (\beta\delta)P$$
+    and hence $I \sim P$.
+
+
+\begin{example}
+    Consider the equivalence classes of $\mathcal{O}_{K}=(1)$. We claim that:
+    \[
+    [\mathcal{O}_{K}]=\{\text{All principal ideals } (a)\lhd \mathcal{O}_{K}\}. 
+    \]
+
+    \begin{proof}[Proof of the claim]
+        If $I=(\gamma)$ is principal, it is clear that 
+        \[
+        (1)I=(1)(\gamma)=(\gamma)(1)=(\gamma)\mathcal{O}_{K},
+        \]
+        hence $I\sim \mathcal{O}_{K}$. 
+
+        Conversely, if $I\sim \mathcal{O}_{K}$, then there exists $a,b\in \mathcal{O}_{K}$ such that $(a)I=(b)\mathcal{O}_{K}=(b)$. Thus we may write $b=ai$ for some $i\in I$ and $\frac{b}{a}=i\in I\subseteq \mathcal{O}_{K}$. Therefore $(\frac{b}{a})\subseteq I$ On the other hand for any $i'\in I$, we have $ai'\in (b)$. We may write $ai'=bx$ for some $x\in \mathcal{O}_{K}$, then $i'=\frac{b}{a}\cdot x\in (\frac{b}{a})$. Thus $I\subseteq (\frac{b}{a})$ and hence
+        $$I = (\frac{b}{a})$$
+        is a principal ideal.
+    \end{proof}
+\end{example}
+
+As a direct consequence of the example above, one has:
+\begin{theorem}
+    $\mathcal{O}_{K}$ is a PID if and only if $h_{K}=1$. 
+\end{theorem}
+
+Therefore $C_{K}$ (or $h_K$) gives an measure on how ``far'' $\mathcal{O}_{K}$ from being PID. We will first study the structure of $C_{K}$ in this section. The ultimate goal of this section is to prove: 
+\begin{center}
+    \fbox{For number field $K :\mathbb{Q}$, the ideal class $C_{K}$ has a finite abelian group structure} 
+\end{center}
+    
+\noindent \underline{\bf Goal I: $h_{K}= |C_K| <\infty$:} 
+
+\begin{lemma}[Hurwitz]\label{lem-Hurwitz}
+    Let $K:\mathbb{Q}$ be a number field and $[K:\mathbb{Q}]=n$. The there exists large integer $M$ such that $\forall \gamma\in K$, there exist integer $1\leq t\leq M$ and $\omega \in \mathcal{O}_{K}$ with the inequality $\mathrm{Norm}_{K /\mathbb{Q}}(t\gamma-\omega)<1$. 
+\end{lemma}
+
+\begin{proof}
+    Let $\{\omega_{1},\dots, \omega_{n}\}$ be an integral basis of $\mathcal{O}_{K}$, i.e. $\mathcal{O}_{K}=\langle \omega_{1},\dots, \omega_{n}\rangle_{\mathbb{Z}}$. For any $\gamma\in K=\mathrm{Span}_{\mathbb{Q}}\{\omega_{1},\dots, \omega_{n}\}$, assume $\gamma=a_{1}\omega_{1}+\cdots+a_{n}\omega_{n}$. Let 
+    \begin{align*}
+    \lfloor \gamma \rfloor =\lfloor a_{1}]\omega_{1}+\cdots+\lfloor a_{n} \rfloor \omega_{n}, \quad \{\gamma\}=b_{1}\omega_{1}+\cdots+b_{n}\omega_{n},
+    \end{align*}
+    where $b_{i}=a_{i}-\lfloor a_{i}\rfloor $ satisfies $0\leq b_{i}<1$, i.e. $\lfloor \gamma \rfloor \in \mathcal{O}_K$ is the integer part of $\gamma$ and $\{\gamma\}$ is the decimal part of $\gamma$, so that $$\gamma=[\gamma]+\{\gamma\}.$$
+
+    \medskip
+    Consider
+    \[ 
+    \begin{aligned}
+    \left| \mathrm{Norm}_{K /\mathbb{Q}}(\gamma) \right| &=\left| \prod_{j=1}^{n}(\sum_{i=1}^{n}a_{i}\sigma_{j}(\omega_{i})) \right|\\
+    &\leq \prod_{j=1}^{n}(\sum_{i=1}^{n}\left| a_{i} \right| \cdot \left| \sigma_{j}(\omega_{i}) \right| )\\
+    &\leq (\max_{i}\{\left| a_{i} \right|\})^{n}\prod_{j=1}^{n}(\sum_{i=1}^{n}\left| \sigma_{j}(\omega_{i}) \right|) \\
+    & \leq C\cdot (\max_{i}\{\left| a_{i} \right| \})^{n}  \quad \quad \quad \text{where}\ \displaystyle C:=\prod_{j=1}^{n}(\sum_{i=1}^{n}\left| \sigma_{j}(\omega_{i}) \right| )
+    \end{aligned}
+    \]
+     
+    
+    Take any integer $m>C^{1 /n}$ and let $M=m^{n}$. Consider the map 
+    \[\phi:K\to \mathbb{R}^{n},\quad a_{1}\omega_{1}+\cdots+a_{n}\omega_{n}\mapsto (a_{1},\dots, a_{n}),\]
+    then $\phi(\{\gamma\})=(b_{1},\dots,b_{n})\in \mathscr{A}=\{(x_{1},\dots, x_{n})\ |\ 0\leq x_{i}<1\}$. If we divide $\mathscr{A}$ into $\frac{1}{m}\times \cdots \frac{1}{m}$ cubes, there are $m^{n}$ such cubes in $\mathscr{A}$. By Pigeonhole principle, $\exists 1\leq k<l\leq M+1$ such that $\phi(\{k\gamma\})$ and $\phi(\{l\gamma\})$ lies in the same $\frac{1}{m}\times\cdots\times \frac{1}{m}$ cube. 
+    
+    Take $t:=l-k$, then 
+    $$t\gamma=l\gamma-k\gamma=(\lfloor l\gamma\rfloor-\lfloor k\gamma\rfloor)+(\{l\gamma\}-\{k\gamma\}) =\omega + (\{l\gamma\}-\{k\gamma\}),$$ 
+    where $\omega:=\lfloor l\gamma \rfloor -\lfloor k\gamma\rfloor \in \mathcal{O}_K$. Then
+    \[
+    \mathrm{Norm}_{K/\mathbb{Q}}(t\gamma-\omega)-\mathrm{Norm}_{K /\mathbb{Q}}(\{l\gamma\}-\{k\gamma\})=\mathrm{Norm}_{K /\mathbb{Q}}(c_{1}\omega_{1}+\cdots+c_{n}\omega_{n}) 
+    \]
+    with $0\leq c_{i}< 1$. By applying the inequality above on $\{l\gamma\}-\{k\gamma\}$, one concludes that
+    \[\left| \mathrm{Norm}_{K /\mathbb{Q}}(\{l\gamma\}-\{k\gamma\}) \right| <C\cdot \max_{i}\{\left| c_{i} \right| \}^{n}<m^{n}\cdot (\frac{1}{m})^{n}=1 \]
+    and the result follows.
+\end{proof}
+
+\begin{theorem}
+    Let $K:\mathbb{Q}$ be a number field, then $h_{K}<\infty$. 
+\end{theorem}
+
+\begin{proof}
+    Let $I\lhd \mathcal{O}_{K}$ be a nonzero ideal. Take any nonzero $\beta\in I$ such that $\left| \mathrm{Norm}_{K/\mathbb{Q}}(\beta) \right| $ is minimal among all elements in $I$. By Lemma \ref{lem-Hurwitz}, there exists $M$ such that for any $\alpha\in I$, $\exists 1\leq t\leq M$ and $\omega\in \mathcal{O}_{K}$ with $\left| \mathrm{Norm}_{K /\mathbb{Q}}(t\frac{\alpha}{\beta}-\omega) \right| <1$. Therefore 
+    \[
+    \left| \mathrm{Norm}_{K /\mathbb{Q}}(t\alpha-\omega\beta) \right|=\left| \mathrm{Norm}_{K /\mathbb{Q}}(t\frac{\alpha}{\beta}-\omega) \right|\cdot \left|\mathrm{Norm}_{K /\mathbb{Q}}(\beta)\right|<\left| \mathrm{Norm}_{K /\mathbb{Q}}(\beta) \right| .
+    \] 
+    Since $t\alpha-\omega\beta\in I$, by the minimality of $\mathrm{Norm}_{K /\mathbb{Q}}(\beta)$, we must have $t\alpha-\omega\beta=0$. Consequently, for any $i\in I$, $M!i\in (\beta)$. 
+
+    \medskip
+    Consider $$J=\left\{M!\frac{i}{\beta} \mid i\in I\right\}\subseteq \mathcal{O}_{K}.$$ It can be easily checked that $J\lhd \mathcal{O}_{K}$ is an ideal and $(\beta)J=(M!)I$, i.e. $I\sim J$. 
+
+    \medskip
+    We claim that there are only finitely such choices of $J$. To see so, note that 
+    $$\mathcal{O}_{K}\supseteq J\supseteq (M!).$$ 
+    By the correspondence theorem, 
+        \[
+        \{J \mid \mathcal{O}_{K}\supseteq J\supseteq (M!)\}\xleftrightarrow{1 \text{ to } 1} \{H \mid \mathcal{O}_{K} /(M!) \geq H\geq \{0\}\}.
+        \]
+        $\mathcal{O}_{K}=\langle \omega_{1},\dots, \omega_{n}\rangle_{\mathbb{Z}}=\mathbb{Z}\omega_{1}\oplus \cdots\oplus\mathbb{Z}\omega_{n}$ and $(M!)=(M!\mathbb{Z})\omega_{1}\oplus \cdots\oplus(M!\mathbb{Z})\omega_{n}$, thus, 
+        \[
+        \mathcal{O}_{K} /(M!)\cong \mathbb{Z}/M!\mathbb{Z}\oplus\cdots\oplus \mathbb{Z} /M!\mathbb{Z}.
+        \]
+        It is a finite abelian group and hence there are only finitely many $\{0\}\leq H\leq \mathcal{O}_{K} /(M!)$. So the claim is proved.
+
+    \medskip
+    Suppose there are $N$ choices of such $\{0\}\leq H\leq \mathcal{O}_{K} /(M!)$, then they correspond to
+    $J_{1},\dots, J_{N} \lhd \mathcal{O}_K$. In other words:
+    \begin{center}
+        For all $I \lhd \mathcal{O}_K$, $I \sim J_i$ for some $1 \leq i \leq N$. 
+    \end{center}
+    Consequently, $C_{K}=\{[J_{1}],\dots, [J_{N}]\}$ (there may be repetitions), and $h_{K}\leq N <\infty$ is finite. 
+\end{proof}
+
+\noindent \underline{\bf Goal II: Elements in $C_{K}$ has a group structure:} 
+
+We define a binary operator $*:C_{K}\times C_{K}\to C_{K}$ by 
+    \[ 
+    [I]*[J]:=[IJ].
+    \]
+To make $C_{K}$ a group, we have several things to check: 
+\begin{enumerate}
+    \item Well-definess: $I_{1}\sim I_{2}$, $J_{1}\sim J_{2}$, then $I_{1}I_{2}\sim J_{1}J_{2}$ by Homework 5. 
+    \item Associativity: $([I]*[J])*[K]=[I]*([J]*[K])$ is obvious true by the associativity of $\mathcal{O}_{K}$. Note it is also clear that $[I]*[J]=[J]*[I]$. 
+    \item Identity element: take $e=[\mathcal{O}_{K}]=[(1)]$. Then clearly $[I]*[\mathcal{O}_{K}]=[\mathcal{O}_{K}]*[I]=[I]$. 
+\end{enumerate}
+
+We also have to show that $[I]$ has an inverse. 
+
+\begin{lemma}\label{lem-idealCancelation}
+    Let $I,J\lhd \mathcal{O}_{K}$ be ideals such that $JI=I$. Then $J=\mathcal{O}_{K}$. 
+\end{lemma}
+
+\begin{proof}
+    We know $\mathcal{O}_{K}=\langle \omega_{1},\dots, \omega_{n}\rangle_{\mathbb{Z}}$ is $n$-generated $\mathbb{Z}$-module, so by MAT3042, $I=\langle i_{1},\dots,i_{n}\rangle_{\mathbb{Z}}$ is also an $n$-generated $\mathbb{Z}$-module. 
+    
+    Since $JI=I$, there are $b_{ij}\in J$ such that 
+    \[
+    \left\{
+        \begin{aligned}
+            b_{11}i_{1}+&\cdots+b_{1n}i_{n}=i_{1}\\
+            b_{21}i_{1}+&\cdots+b_{2n}i_{n}=i_{2}\\
+            &\vdots\\
+            b_{n1}i_{1}+&\cdots+b_{nn}i_{n}=i_{n}
+        \end{aligned}
+    \right.
+    \]
+    Therefore, 
+    \[
+    A=\begin{pmatrix}
+        b_{11}-1& b_{12}&\cdots & b_{1n}\\
+        b_{21}&b_{22}-1&\cdots & b_{2n}\\
+        \vdots& &&\vdots\\
+        b_{n1}&b_{n2}&\cdots &b_{nn}-1
+    \end{pmatrix}
+    \]
+    has determinant $\det (A)=0$. Expand this determinant, we have $(-1)^{n}+\beta=0$, where $\beta$ is combination of multiples of $b_{ij}$. Therefore $\beta\in J$ and therefore $1\in J$. Thus $J=\mathcal{O}_{K}$. 
+\end{proof}
+
+\begin{lemma}\label{lem-idealCancelationPrincipal}
+    Let $I,J\lhd \mathcal{O}_{K}$. Suppose $IJ=(\omega)I$, then $J=(\omega)$. 
+\end{lemma}
+
+\begin{proof}
+    For any $j\in J$ and any $i\in I$, $ji=\omega i'$ for some $i'\in I$, so $\frac{j}{\omega}i=i'\in I$ and hence $\frac{j}{\omega}I = \{\frac{j}{\omega} i \mid i \in I\} \subseteq I$ (here $\frac{j}{\omega}\in K$). 
+    
+    Let $I=\langle i_{1},\dots, i_{n}\rangle_{\mathbb{Z}}$ as in the lemma above, then there exists $x_{ij} \in \mathbb{Z}$ such that
+    \[
+    \left\{
+        \begin{aligned}
+            x_{11}i_{1}+&\cdots+x_{1n}i_{n}=\frac{j}{\omega}i_{1}\\
+            &\vdots\\
+            x_{n1}i_{i}+&\cdots+x_{nn}i_{n}=\frac{j}{\omega}i_{n}
+        \end{aligned}
+    \right.
+    \]
+    Thus $B\begin{pmatrix}
+        i_{1}\\\vdots\\i_{n}
+    \end{pmatrix}=\frac{j}{\omega}\begin{pmatrix}
+        i_{1}\\\vdots\\i_{n}
+    \end{pmatrix}$ for $B:=\begin{pmatrix}
+        x_{11}&\cdots &x_{1n}\\
+        \vdots&&\vdots\\
+        x_{n1}&\cdots &x_{nn}
+    \end{pmatrix}
+    $, i.e. $\frac{j}{\omega} \in K$ is an eigenvalue of $B$, and hence the (monic) characteristic polynomial $\chi_{B}(t)\in \mathbb{Z}[t]$ has $\frac{j}{\omega}$ as a root. So $\frac{j}{\omega}\in \mathcal{O}_{K}$. 
+
+    \medskip
+    It is easy to see $\frac{1}{\omega}J=\{\frac{j}{\omega}|j\in J\}\lhd \mathcal{O}_{K}$ defines an ideal, and 
+    $JI=(\omega)I$ implies $(\frac{1}{\omega}J)I=I$. By Lemma \ref{lem-idealCancelation}, $\frac{1}{\omega}J=\mathcal{O}_{K}$ and $J=(\omega)$. 
+\end{proof}
+
+\begin{theorem}\label{thm-idealClassFiniteOrder}
+    Let $I\lhd \mathcal{O}_{K}$ be a nontrivial ideal. Then $\exists 1\leq l\leq h_{K}<\infty$ such that $I^{l}=(\gamma)$ is principal. Consequently, $[I]^{l}=[(\gamma)]=[(1)]=e$ and $[I]^{l-1}=[I]^{-1}$. 
+\end{theorem}
+
+\begin{proof}
+    Consider the set of ideals $\{I^{k}|1\leq k\leq h^{K}+1\}$, there are $1\leq x<y\leq h_{K}+1$ such that $[I^{x}]=[I^{y}]$. So $I^{x}\sim I^{y}$ and $(a)I^{x}=(b)I^{y-x}I^{x}$ for some $a,b\in \mathcal{O}_{K}$. Let $l=y-x$, by Lemma \ref{lem-idealCancelationPrincipal}, $(a)=(b)I^{l}$. Thus $I^{l}\sim \mathcal{O}_{K}$ and it is principal. 
+\end{proof}
+So we have finished proving {\bf Goal II}.
+
+%We conclude that $C_{K}$ has a finite abelian group structure. $C_{K}$ is trivial if and only if $\mathcal{O}_{K}$ is PID. 
+
+\section{Proof of Dedekind Theorem}
+Before going into the proof of Dedekind theorem (Theorem \ref{thm-dedekind}), we need some tools to study $I\lhd\mathcal{O}_{K}$. 
+
+\begin{lemma}
+    Let $I\lhd \mathcal{O}_{K}$ be an ideal, then $I\cap \mathbb{Z}\neq \varnothing$. 
+\end{lemma}
+
+\begin{proof}
+    Let any $\alpha\in I$ with minimal polynomial $m_{\alpha}(x)=x^{k}+\cdots+a_{1}x+a_{0}$. Since $m_{\alpha}(x)$ is irreducible, $a_{0}\neq 0$. So $m_{\alpha}(\alpha)-a_{0}=-a_{0}\in (\alpha)\subseteq I$. 
+\end{proof}
+
+\begin{proposition}
+    Let $I\lhd \mathcal{O}_{K}$ be nonzero ideal. Then $[\mathcal{O}_{K}:I]<\infty$. 
+\end{proposition}
+
+\begin{proof}
+    Pick $a\in I\cap \mathbb{Z}$ in lemma above. Then $(a)\subseteq I\subseteq \mathcal{O}_{K}$. Take an integral basis $\{\omega_{1},\dots, \omega_{n}\}$ of $\mathcal{O}_{K}$. Note that
+    \[
+    (a)\cong (a\mathbb{Z})\omega_{1}\oplus\cdots\oplus (a\mathbb{Z})\omega_{n},
+    \]
+    we have 
+    \[\mathcal{O}_{K}/(a)\cong \mathbb{Z} /a\mathbb{Z}\oplus \cdots\oplus \mathbb{Z} /a\mathbb{Z}\]
+    being a finite group. By the second isomorphism theorem, $\mathcal{O}_{K} /I\cong \frac{\mathcal{O}_{K} /(a)}{I /(a)}$ and hence $\left| \mathcal{O}_{K} /I \right| \leq \left| a \right| ^{n}$ is finite.
+\end{proof}
+
+\begin{definition}
+    Let $I\lhd \mathcal{O}_{K}$. The {\bf norm of ideal} $I$ is defined as $N(I)=[\mathcal{O}_{K}:I]=\left| \mathcal{O}_{K} /I \right| $. 
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}
+        \item If $I\lhd \mathcal{O}_{K}$ is ``small'' then $N(I)$ is ``big''; if $I\lhd \mathcal{O}_{K}$ is ``big'' then $N(I)$ is small. 
+        \item If $N(I)=p$ is a rational prime, then $I\lhd \mathcal{O}_{K}$ is maximal and hence prime. 
+        \item In the special case when $K=\mathbb{Q}$ and $\mathcal{O}_{K}=\mathbb{Z}$, the norm of any $I=(m)$ is $N((m))=\left| \mathbb{Z} /m\mathbb{Z} \right| =m$. 
+    \end{enumerate}
+\end{remark}
+
+\begin{proposition}
+    Let $(\alpha)\lhd \mathcal{O}_{K}$ be a principal ideal. Then $N((\alpha))=\left| \mathrm{Norm}_{K /\mathbb{Q}}(\alpha) \right| $. 
+\end{proposition}
+
+\begin{proof}
+    Let $\mathcal{O}_{K}=\langle \omega_{1},\dots,\omega_{n}\rangle_{\mathbb{Z}}$ be a integral basis, then $(\alpha)=\langle \alpha\omega_{1},\dots, \alpha\omega_{n}\rangle_{\mathbb{Z}}$ is a $\mathbb{Z}$-basis of $(\alpha)$. 
+    By Proposition \ref{prop-indexfree}, $[\mathcal{O}_{K}:(\alpha)]=\det(A)$, where $A$ is the change of basis matrix $\{\omega_{1},\dots, \omega_{n}\}\to \{\alpha\omega_{1},\dots,\alpha\omega_{n}\}$. 
+    
+    
+    
+    On the other hand, Homework 4 Question 3 gives $\Delta^{2}(\alpha\omega_{1},\dots,\alpha\omega_{n})=\det(A)^{2}\Delta^{2}(\omega_{1},\dots,\omega_{n})$, where
+    \[
+    \begin{aligned}
+        \Delta^{2}(\alpha\omega_{1},\dots,\alpha\omega_{n})&=\det\begin{pmatrix}
+            \sigma_{1}(\alpha \omega_{1})&\dots &\sigma_{n}(\alpha\omega_{1})\\
+            \vdots&&\vdots\\
+            \sigma_{1}(\alpha \omega_{n})&\dots &\sigma_{n}(\alpha\omega_{n})
+        \end{pmatrix}^{2}\\
+        &=(\sigma_{1}(\alpha)\cdots \sigma_{n}(\alpha))^{2}\cdot \det \begin{pmatrix}
+            \sigma_{1}(\omega_{1})&\cdots&\sigma_{n}(\omega_{1})\\
+            \vdots && \vdots\\
+            \sigma_{1}(\omega_{n})&\cdots&\sigma_{n}(\omega_{n})
+        \end{pmatrix}^{2}\\
+        &=\Delta^{2}(\omega_{1},\dots,\omega_{n})\mathrm{Norm}_{K /\mathbb{Q}}(\alpha)^{2}. 
+    \end{aligned}
+    \]
+    So $\det(A)=\left| \mathrm{Norm}_{K /\mathbb{Q}}(\alpha) \right| $ and $N((\alpha))=|\mathrm{Norm}_{K /\mathbb{Q}}(\alpha)|$. 
+\end{proof}
+
+\begin{lemma}
+    Suppose $A,B,C\lhd \mathcal{O}_{K}$ be ideals such that $AB=AC$, then $B=C$. 
+\end{lemma}
+
+\begin{proof}
+    By Theorem \ref{thm-idealClassFiniteOrder}, there exists $k\in \mathbb{N}$ such that $A^{k}=(\alpha)$ is a principal ideal. Therefore $AB=AC$ implies $A^{k-1}AB=A^{k-1}AC$, so $(\alpha)B=(\alpha)C$. Write it explicitly, we have $\{\alpha b|b\in B\}=\{\alpha c|c\in C\}$, so $B=C$.  
+\end{proof}
+
+\begin{definition}
+    Let $A, B\lhd \mathcal{O}_{K}$ be ideals. We say {\bf $B$ divides $A$} (denoted by $B\mid A$) if $\exists C\lhd \mathcal{O}_{K}$ such that $BC=A$. 
+\end{definition}
+
+Obviously, if $B\mid A$, then $B\supseteq A$. The converse also holds: 
+
+\begin{proposition}\label{prop-inclusionEquivDivision}
+    Let $A,B\lhd \mathcal{O}_{K}$, then $B\mid A$ if and only if $B\supseteq A$. 
+\end{proposition}
+
+\begin{proof}
+    ($\Rightarrow$) is clear. For ($\Leftarrow$), let $B^{l}=(\beta)$ for some $l\in \mathbb{N}$ and $\beta\in \mathcal{O}_{K}$. Then $A\subseteq B$ implies $AB^{l-1}\subseteq B^{l}=(\beta)$. Consider $J=\frac{1}{\beta}AB^{l-1}$, then $J$ is an ideal of $\mathcal{O}_{K}$. $BJ=\frac{1}{\beta}BAB^{l-1}=\frac{1}{\beta}A(\beta)=A$. Thus $BJ=A$. 
+\end{proof}
+
+\begin{remark}
+    If $B\mid A$, then $N(B)\leq N(A)$. 
+\end{remark}
+
+\begin{theorem}[Dedekind Theorem, Part I]
+    Let $A\lhd \mathcal{O}_{K}$ be a nonzero proper ideal. Then there exists $P_{1},\dots, P_{k}$ such that $A=P_{1}\cdots P_{k}$. 
+\end{theorem}
+
+\begin{proof}
+    Suppose on the contrary that there are $I\lhd \mathcal{O}_{K}$ cannot be divided into product of prime ideals. Then take $B\lhd \mathcal{O}_{K}$ to be on such ideals with minimal norm. Then there exists a maximal ideal $P$ (which is also prime!) such that $B\subseteq P$.  
+
+    Proposition \ref{prop-inclusionEquivDivision} implies $P\mid B$, i.e. $PC=B$ for some $C\lhd \mathcal{O}_{K}$. Note that $B\neq C$, otherwise by the \ref{lem-idealCancelation}, $PB=B$ implies $B=\mathcal{O}_{K}$. So $B\supsetneq C$ and $N(C)<N(B)$. By the minimality of $N(B)$, $C$ can be written as product of prime ideals $C=Q_{1}\cdots Q_{l}$. Thus $B=PC=PQ_{1}\cdots Q_{l}$ can be factorized into prime ideals. Contradiction! 
+\end{proof}
+
+In order to show the factorization is unique, we need 
+
+\begin{lemma}
+    Let $I\lhd \mathcal{O}_{K}$ be an ideal. Then $I$ is maximal if and only if $I$ is prime. 
+\end{lemma}
+
+\begin{proof}
+    The only if direction is clear. For the if direction, we need several facts from MAT3004: 
+    \begin{enumerate}
+        \item $I\lhd R$ is maximal ideal $\iff$ $R /I$ is a field; 
+        \item $I\lhd R$ is prime ideal $\iff$ $R /I$ is an integral domain. 
+        \item Any integral domain $S$ with $\left| S \right| <\infty$ is a field. 
+    \end{enumerate}
+    For ideal $I\lhd\mathcal{O}_{K}$, $N(I)= [\mathcal{O}_{K} /I]$ is finite. Since $I$ is prime, $\mathcal{O}_{K} /I$ is integral domain thus a field.  So $I$ is maximal. 
+\end{proof}
+
+\begin{theorem}[Dedekind Theorem, Part II]
+    Suppose $A\lhd \mathcal{O}_{K}$ has two factorization $A=P_{1}\cdots P_{k}=Q_{1} \cdots Q_{l}$, where $P_{i}, Q_{j}$ are all prime ideals. Then $k=l$ and $\exists \sigma\in S_{k}$ such that $P_{i}=Q_{\sigma(i)}$ for all $i$. 
+\end{theorem}
+
+\begin{proof}
+    $P_{1}\cdots P_{k}=Q_{1}\cdots Q_{l}$ so $P_{1}\mid Q_{1}\cdots Q_{l}$. We leave an exercise to show that if $P$ is prime ideal and $P\mid AB$, then $P\mid A$ or $P\mid B$. So $P_{1}\mid Q_{1}$ or $P_{1}\mid Q_{2}\cdots Q_{l}$. If $P_{1}\mid Q_{1}$, we wins, otherwise $P_{1}\mid Q_{2}\cdots Q_{l}$ so $P_{1}\mid Q_{2}$ or $P\mid Q_{3}\cdots Q_{l}$. Continuing these steps we can find $j$ such that $P_{1}\mid Q_{j}$, and $Q_{j}\subseteq P_{1}$. Since $Q_{j}$ and $P_{1}$ are prime ideals, they are all maximal, we conclude that $P_{1}=Q_{j}$. 
+
+    Therefore, we have $P_{1}P_{2}\cdots P_{k}=P_{1}Q_{1}\cdots\hat{Q_{j}}\cdots Q_{l}$. By the cancelation of ideals, $P_{2}\cdots P_{k}=Q_{1}\cdots \hat{Q_{j}}\cdots Q_{l}$. The result follows by induction on the number of prime factors $k$. 
+\end{proof}
+
+\begin{example}
+    Let $K=\mathbb{Q}(\sqrt{-5})$, $\mathcal{O}_{K}=\mathbb{Z}[\sqrt{-5}]$ is not a UFD, by we have unique factorization of ideals of $\mathcal{O}_{K}$. For example, 
+    \[
+    6=2\cdot 3=(1+\sqrt{-5})(1-\sqrt{-5})
+    \]
+    are two prime factorizations of elements of $\mathcal{O}_{K}$. However, 
+    \[
+    (6)=(3)(2)=(1+\sqrt{-5})(1-\sqrt{-5})
+    \]
+    is not a factorization of prime ideals. 
+    To be more precise, $(2)=(2,1+\sqrt{-5})(2,1-\sqrt{-5})$ and $(3)=(3,1+\sqrt{-5})(3,1-\sqrt{-5})$, $(1+\sqrt{-5})=(2,1+\sqrt{-5})(3,1+\sqrt{-5})$ and $(1-\sqrt{-5})=(2,1-\sqrt{-5})(3,1-\sqrt{-5})$. 
+    Therefore the actual prime factorization of $(6)$ is 
+    \[
+    (6)=(2,1+\sqrt{-5})(2,1-\sqrt{-5})(3,1+\sqrt{-5})(3,1-\sqrt{-5}),
+    \]
+    which is unique. 
+\end{example}
+
+\section{Multiplicativity of Norm}
+\begin{definition}
+    Let $A, B\lhd R$ be ideals. We say $A,B$ are coprime if 
+    \[
+    A+B:=\{a+b|a\in A, b\in B\}=R. 
+    \]
+\end{definition}
+
+\begin{remark}
+    If $R=\mathcal{O}_{K}$, then $A,B\lhd \mathcal{O}_{K}$ coprime if and only if there're no common prime factor $P\mid A$ and $P\mid B$. 
+
+    To see why, suppose $A+B=I\neq \mathcal{O}_{K}$, then we have a maximal ideal $P$ such that $A+B\subseteq P$, so $P\mid A$ and $P\mid B$. The converse holds since $P\mid A$, $P\mid B$ implies $A+B\subseteq P$. 
+\end{remark}
+
+\begin{lemma}
+    If $A,B\lhd \mathcal{O}_{K}$ are coprime ideals, then $AB=A\cap B$. 
+\end{lemma}
+
+\begin{proof}
+    We obviously have $AB\subseteq A\cap B$. $A\cap B\subseteq A$ and $A\cap B\subseteq B$ implies $A\mid A\cap B$ and $B\mid A\cap B$. Since $A,B$ are coprime, they have no common factor, so $AB\mid A\cap B$ and $A\cap B\subseteq AB$. 
+\end{proof}
+
+\begin{theorem}
+    If $A,B\lhd \mathcal{O}_{K}$ are coprime ideals, then $N(AB)=N(A)N(B)$. 
+\end{theorem}
+
+\begin{proof}
+    This directly follows from above lemma and Chinese Remainder Theorem: 
+    \[
+    N(AB)=\left| \mathcal{O}_{K}/AB \right| =\left| \mathcal{O}_{K}/(A\cap B) \right| =\left| \mathcal{O}_{K}/A\times \mathcal{O}_{K}/B \right| =\left| \mathcal{O}_{K}/A \right| \times \left| \mathcal{O}_{K}/B \right| =N(A)N(B).
+    \]
+\end{proof}
+
+\begin{lemma}
+    Let $P\lhd \mathcal{O}_{K}$ be a prime ideal. For all $l\in \mathbb{N}$, $N(P)=\left| \mathcal{O}_{K} /P \right| =\left| P^{l}/P^{l+1} \right| $. 
+\end{lemma}
+
+\begin{proof}
+    Obviously $P^{l}\neq P^{l+1}$. Take an element $\pi\in P^{l} \backslash P^{l+1}$. $(\pi)\subseteq P^{l}$ so $P^{l}\mid (\pi)$, so we can write $P^{l}B=(\pi)$ for some $B\lhd \mathcal{O}_{K}$. Note that $P,B$ are coprime, otherwise $P^{l+1}\mid (\pi)$. Define 
+    \[
+    \Phi: \mathcal{O}_{K}\to P^{l}/P^{l+1},\quad \alpha\mapsto \alpha \pi+P^{l+1}.
+    \]
+    We show that $\Phi$ induces an isomorphism between $\mathcal{O}_{K} /P$ and $P^{l}/P^{l+1}$. 
+
+    First, $\ker \Phi=P$: For $\alpha\in P$, then $\alpha\in \ker\Phi$ so $P\subseteq \ker \Phi$. On the other hand, if $\Phi(\beta)=0$, then $\pi \beta\in P^{l+1}$, $(\beta\pi)\subseteq P^{l+1}$. We have $P^{l+1}\mid (\beta)(\pi)$, $(\beta)(\pi)=(\beta)BP^{l}$. Since $B$ and $P$ are coprime, $P\mid (\beta)B$ implies $P\mid (\beta)$. So $\beta\in P$ and $\ker \Phi=P$. 
+
+    Then we show $\Phi$ is surjective: Note that 
+    \[
+    (\pi)+P^{l+1}=P^{l}B+P^{l+1}=P^{l}(B+P)=P^{l}\cdot \mathcal{O}_{K}=P^{l}
+    \]. 
+    For all $\beta\in P^{l}$, we may write $\beta=\alpha \pi+\gamma$ for some $\alpha\in \mathcal{O}_{K}$ and $\gamma\in P^{l+1}$. So $\Phi(\alpha)=\alpha\pi+P^{l+1}=\beta+P^{l+1}$. 
+
+    By the first isomorphism theorem, we have $\mathcal{O}_{K}/P\cong P^{l}/P^{l+1}$. Hence $\left| \mathcal{O}_{K} /P \right|=\left| P^{l}/P^{l+1} \right|$. 
+\end{proof}
+
+\begin{theorem}
+    Let $P\lhd \mathcal{O}_{K}$ be a prime ideal, then $N(P^{m})=(N(P))^{m}$. 
+\end{theorem}
+
+\begin{proof}
+    \[N(P^{m})=\left| \mathcal{O}_{K}/P^{m} \right| =\left| \mathcal{O}_{K}/P \right| \times \left| P/P^{2} \right| \times\cdots\times \left| P^{m-1}/P^{m} \right|=\left| \mathcal{O}_{K}/P \right|^{m}=N(P)^{m}. \]
+\end{proof}
+
+\begin{corollary}\label{cor-multiplicativityNorm}
+    For all $I,J\lhd \mathcal{O}_{K}$ ideals, the product of norms satisfies 
+    \[
+    N(IJ)=N(I)N(J).
+    \]
+\end{corollary}
+
+\begin{proof}
+    By Dedekind Theorem \ref{thm-dedekind}, $I=P_{1}^{e_{1}}\cdots P_{k}^{e_{k}}$, $J=Q_{1}^{f_{1}}\cdots Q_{l}^{f_{l}}$. By relabeling, we may assume $P_{1}=Q_{1},\dots P_{m}=Q_{m}$ and $\{P_{m+1}, \dots, P_k\} \cap \{Q_{m+1}, \dots, Q_l\}$ is empty. Then the prime factorization of $IJ$ is 
+    \[
+    IJ=P_{1}^{e_{1}+f_{1}}\cdots P_{m}^{e_{m}+f_{m}}P_{m+1}^{e_{m+1}}\cdots P_{k}^{e_{k}}Q_{m+1}^{f_{m+1}}\cdots Q_{l}^{f_{l}}. 
+    \]
+    So 
+    \[
+    \begin{aligned}
+        N(IJ)&=N(P_{1}^{e_{1}+f_{1}})\cdots N(P_{m}^{e_{m}+f_{m}})N(P_{m+1}^{e_{m+1}})\cdots N(P_{k}^{e_{k}})N(Q_{m+1}^{f_{m+1}})\cdots N(Q_{l}^{f_{l}})\\
+        &=N(P_{1})^{e_{1}+f_{1}}\cdots N(P_{m})^{e_{m}+f_{m}}N(P_{m+1})^{e_{m+1}}\cdots N(P_{k})^{e_{k}}N(Q_{m+1})^{f_{m}}\cdots N(Q_{l})^{f_{l}}\\
+        &=(\prod_{i=1}^{k}N(P_{i})^{e_{i}})(\prod_{j=1}^{l}N(Q_{j})^{f_{j}})\\
+        &=N(\prod_{i=1}^{k}P_{i}^{e_{i}})N(\prod_{j=1}^{l}Q_{j}^{f_{j}})\\
+        &=N(I)N(J). 
+    \end{aligned}
+    \]
+\end{proof}
+
+\begin{example}
+    Recall that $(6)=(2)(3)=(1+\sqrt{-5})(1-\sqrt{-5})$. We claim that 
+    \[(1+\sqrt{-5})=(2,1+\sqrt{-5})(3,1+\sqrt{-5}).\]
+
+    First 
+    \[(2,1+\sqrt{-5})\supsetneq (1+\sqrt{-5}) \text{ and } (3,1+\sqrt{-5})\supsetneq (1+\sqrt{-5}). 
+    \]
+    So $(2,1+\sqrt{-5})\mid (1+\sqrt{-5})$, $(3,1+\sqrt{-5})\mid (1+\sqrt{-5})$. By Corollary \ref{cor-multiplicativityNorm}, 
+    \[N((2,1+\sqrt{-5}))\mid N(1+\sqrt{-5})=6 \text{ and } N((2,1+\sqrt{-5}))\mid N(2)=4,\] 
+    so $N(2,1+\sqrt{-5})=2$. Similarly, $N(3,1+\sqrt{-5})=3$. So both $(2,1+\sqrt{-5})$ and $(3,1+\sqrt{-5})$ are prime (also maximal) ideals. 
+
+    Since $(2,1+\sqrt{-5})(3,1+\sqrt{-5})\mid (1+\sqrt{-5})$ and $N((2,1+\sqrt{-5}))N((3,1+\sqrt{-5}))=N(1+\sqrt{-5})$, we conclude that $(2,1+\sqrt{-5})(3,1+\sqrt{-5})=(1+\sqrt{-5})$. 
+\end{example}

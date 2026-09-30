@@ -1,0 +1,280 @@
+\chapter{Galois Extensions}
+\section{Fundamental Theorem of Galois Theory}
+We begin this section by defining what it means for a field extension to be {\bf Galois}:
+\begin{definition}
+    A field extension $L:K$ is {\bf Galois} if $K=L^{\mathrm{Aut}_K(L)}$, the Galois group of a Galois extension is $\operatorname{Gal}(L/K):=\mathrm{Aut}_K(L)$.
+
+    If $[L:K] < \infty$ (which we will assume to be the case for the rest of this course), then we may apply Theorem \ref{thm-galcondition} to get three equivalent characterizations of Galois extensions.
+\end{definition}
+\begin{example}
+    \begin{enumerate}
+        \item $\mathbb{Q}(\sqrt[3]{2}):\mathbb{Q}$ is not Galois, since it is not a normal extension by Example \ref{eg-normal}. Note that $\mathrm{Aut}_{\mathbb{Q}}(\mathbb{Q}(\sqrt[3]{2})) = \{id\}$ (Exercise) has only one element, which is strictly less than  $[\mathbb{Q}(\sqrt[3]{2}):\mathbb{Q}] = 3$, i.e. Corollary \ref{cor-groupsize} is violated.
+        \item  $\operatorname{Gal}(\mathbb{Q}(i)/\mathbb{Q})$ is a normal extension, since it is the splitting extension of $p(x) = x^2+1 \in \mathbb{Q}[x]$. Moreover, by Corollary \ref{cor-groupsize}, $|\operatorname{Gal}(\mathbb{Q}(i)/\mathbb{Q})| = |\mathrm{Aut}_{\mathbb{Q}}(\mathbb{Q}(i))| = [\mathbb{Q}(i):\mathbb{Q})] = 2$ has two elements, namely:
+        $\operatorname{Gal}(\mathbb{Q}(i)/\mathbb{Q}) = \{id, \sigma\}$, where $id(a+bi):=a+bi$ and $\sigma(a+bi):=a-bi$ for $a+bi \in \mathbb{Q}(i)$.
+    \end{enumerate}
+\end{example}
+
+We begin with an overview of Fundamental Theorem of Galois Theory: 
+Suppose $L : K$ is Galois extension, the Fundamental Theorem of Galois Theory gives an 1-1 correspondence between 
+\begin{center}
+    $\{M\ |\ L \supseteq M \supseteq K\}$ and $\{H\ |\ H\leq \operatorname{Gal}(L /K)\}$. 
+\end{center}
+The relations between field extensions and Galois groups are shown in the following diagram: 
+
+\[
+\begin{tikzcd}
+        & L &&&&& {\operatorname{Gal}(L/L)} \\
+        {H_{1}} & {H_{2}} & {H_{3}} & {} & {} & {\operatorname{Gal}(L/H_{1})} & {\operatorname{Gal}(L/H_{2})} & {\operatorname{Gal}(L/H_{3})} \\
+        & K &&&&& {\operatorname{Gal}(L/K)}
+        \arrow[from=1-7, to=2-6]
+        \arrow[from=1-7, to=2-7]
+        \arrow[from=1-7, to=2-8]
+        \arrow[from=2-1, to=1-2]
+        \arrow[from=2-2, to=1-2]
+        \arrow[from=2-3, to=1-2]
+        \arrow[squiggly, tail reversed, from=2-5, to=2-4]
+        \arrow[from=2-6, to=3-7]
+        \arrow[from=2-7, to=3-7]
+        \arrow[from=2-8, to=3-7]
+        \arrow[from=3-2, to=2-1]
+        \arrow[from=3-2, to=2-2]
+        \arrow[from=3-2, to=2-3]
+    \end{tikzcd}
+\]
+
+\begin{theorem}[Fundamental Theorem of Galois Theory, Part I]\label{thm-FTGT-1}
+    Let $L:K$ be Galois extension, then there's an order reversing bijection between the sets
+    \[
+        \begin{tikzcd}
+            {\{M\ |\ L\supseteq M \supseteq K\}} & {\{H\ |\ \{e\}\leq H\leq \operatorname{Gal}(L /K)\}}
+            \arrow["\phi", shift left, from=1-1, to=1-2]
+            \arrow["\varphi", shift left, from=1-2, to=1-1]
+        \end{tikzcd}\]
+given by
+\begin{align*}
+    \phi(M) &:= \operatorname{Gal}(L /M)\\
+     L^{H} &=: \varphi(H)
+\end{align*}
+\end{theorem}
+
+\begin{remark}
+    \begin{enumerate}
+        \item If $L:K$ is Galois, then for any $L\supseteq M\supseteq K$, $L : M$ is also Galois. To see why, $L:K$ is Galois implies $L:K$ is a splitting extension of some separable polynomial $p(x)\in K[x]$. Then the same polynomial is separable in $M[x]$ by Corollary \ref{cor-sepPolyFieldExt}. So $L$ is the splitting extension of separable extension $p(x)\in M[x]$. 
+        \item For any $H\leq \operatorname{Gal}(L /K)$, if $\phi\in H$, then $\phi(k)=k$ for any $k\in K$. So $K\subseteq L^{H}$. The fact that $L^{H}$ is a field is left as an exercise. 
+        \item By order reversing, we mean 
+        \[
+        (M_{1}\supseteq M_{2})\mapsto (\operatorname{Gal}(L /M_{1})\leq \operatorname{Gal}(L /M_{2}));
+        \]
+        \[
+        (L^{H_{1}}\supseteq L^{H_{2}})\mapsfrom (H_{1}\subseteq H_{2}).
+        \]
+        \item Since $L:M$ is Galois, we have $L^{\mathrm{Aut}_{M}(L)}=M$ for all $L\supseteq M\supseteq K$. Therefore, $\varphi\circ \phi(M)=M$, i.e. $\varphi\circ \phi=id$. So we just need to show $\phi\circ\varphi=id$ in Theorem \ref{thm-FTGT-1}. 
+    \end{enumerate}
+\end{remark}
+
+\begin{proof}[Proof of Theorem \ref{thm-FTGT-1}]
+    We only show $H=\operatorname{Gal}(L /L^{H})$ for any $H\leq \operatorname{Gal}(L /K)$. We already have $H\leq \operatorname{Gal}(L /L^{H})$ since for any $\sigma \in H$, $\sigma:L\to L$ satisfies $\sigma(\gamma)=\gamma$ for any $\gamma\in L^{H}$. So $\sigma$ is an element in $\mathrm{Aut}_{L^{H}}(L)=\operatorname{Gal}(L /L^{H})$. 
+
+    To see it is an equality, we make the following: 
+    
+    \begin{claim}
+    Let $L : K$ be of finite order (which is not necessarily Galois), and $H\leq \mathrm{Aut}_{K}(L)$. Then $[L:L^{H}]\leq \left| H \right| $.
+    \end{claim}
+    \begin{proof}[Proof of Claim]
+        Suppose on the contrary, i.e. $[L:L^{H}]>\left| H \right| $. Let $n=[L:L^{H}]$ and $d=\left| H \right| $. Let $\{\sigma_{1},\dots,\sigma_{d}\}=H\leq \mathrm{Aut}_{K}(L)$,  and $\{\alpha_{1},\dots, \alpha_{n}\}$ be a basis of $L /L^{H}$. Set 
+        \[
+        v_{1}=\begin{pmatrix}
+            \sigma_{1}(\alpha_{1})\\
+            \sigma_{2}(\alpha_{1})\\
+            \vdots\\
+            \sigma_{d}(\alpha_{1})
+        \end{pmatrix},
+        v_{2}=\begin{pmatrix}
+            \sigma_{1}(\alpha_{2})\\
+            \sigma_{2}(\alpha_{2})\\
+            \vdots\\
+            \sigma_{d}(\alpha_{2})
+        \end{pmatrix},
+        \dots, 
+        v_{n}=\begin{pmatrix}
+            \sigma_{1}(\alpha_{n})\\
+            \sigma_{2}(\alpha_{n})\\
+            \vdots\\
+            \sigma_{d}(\alpha_{n})
+        \end{pmatrix}
+        \in L^{d}
+        \] 
+        as $n$ vectors in the $d$-dimensional vector space $L^{d}$ over $L$. Since $n>d$, those vectors are linearly dependent over $L$. Assume $\sigma_{1}$ is the identity element in $H$. 
+
+        Suppose ``$r\leq n$'' is the smallest integer such that there exists nontrivial linear relations between vectors above, and (after reordering the $v_i$'s if necessary) there exists $\beta_1, \dots, \beta_r \in L$ such that
+        \[
+        \beta_{1}v_{1}+\cdots \beta_{r}v_{r}=0. 
+        \]
+        WLOG, we may assume $\beta_{r}\neq 0$ here, then replace $\beta_{i}$ by $\beta_{i}'=\beta_{i}/ \beta_{r}$, one get 
+        \[
+        \beta_{1}'v_{1}+\cdots \beta_{r-1}'v_{r-1}+v_{r}=0. \tag*{(*)}
+        \]
+        for $\beta_1', \dots, \beta_{r-1}' \in L$. Pick the first row in (*) , we have 
+        \[
+        \beta_{1}'\sigma_{1}(\alpha_{1})+\cdots +\beta_{r-1}'\sigma_{1}(\alpha_{r-1})+\sigma_{1}(\alpha_{r})=0,
+        \]
+        which is 
+        \[
+        \beta_{1}'\alpha_{1}+\cdots \beta_{r-1}'\alpha_{r-1}+\alpha_{r}=0. 
+        \]
+        
+        Since $\{\alpha_{1},\dots, \alpha_{n}\}$ forms a basis of $L$ as an $L^{H}$ vector space, they are $L^{H}$-linearly independent. So at least one $\beta_{i}'$ is not in $L^{H}$. WLOG, assume $\beta_{1}\notin L^{H}$, that means there exists an element $\tau\in H$ such that $\tau(\beta_{1}') \neq \beta_{1}'$. 
+
+        Pick the $i$-th row in (*)
+        \[
+        \beta_{1}'\sigma_{i}(\alpha_{1})+\cdots +\beta_{r-1}'\sigma_{i}(\alpha_{r-1})+\sigma_{i}(\alpha_{r})=0,
+        \]
+        apply $\tau$ to the equation, 
+        \[
+        \tau(\beta_{1}')\tau\sigma_{i}(\alpha_{1})+\cdots+\tau(\beta_{r-1}')\tau\sigma_{i}(\alpha_{r-1})+\tau\sigma_{i}(\alpha_{r})=0. 
+        \]
+        Note $\{\tau\sigma_{1}, \dots, \tau\sigma_{d}\} = \{\sigma_{1}, \dots, \sigma_{d}\} = H$, so one has
+        \[
+        \tau(\beta_{1}')\sigma_{j}(\alpha_{1})+\cdots+\tau(\beta_{r-1}')\sigma_{j}(\alpha_{r-1})+\sigma_{j}(\alpha_{r-1})=0.
+        \]
+        for all $1 \leq j \leq d$. Combine all the rows together, 
+        \[
+        \tau(\beta_{1}')v_{1}+\cdots+\tau(\beta_{r-1}')v_{r-1}+v_{r}=0.
+        \]
+    Subtract the above equation by $(*)$, one has:
+        \[(\tau(\beta_{1}')-\beta_{1}')v_{1}+\cdots+(\tau(\beta_{r-1}')-\beta_{r-1}')v_{r-1}=0. \]
+        with the first term $\tau(\beta_{1}')-\beta_{1}' \neq 0$. In other words, we find a smaller nontrivial linear relationship involving only ``$r-1\leq n$'' vectors, which contradict to the minimality of $r$. 
+    \end{proof}
+
+    From the claim, $[L:L^{H}]=\left| \operatorname{Gal}(L /L^{H}) \right| = |\mathrm{Aut}_{L^H}(L)| \leq \left| H \right| $. Combining with the inclusion $H\leq \operatorname{Gal}(L /L^{H})$ given in the beginning of the proof, the equality holds. 
+\end{proof}
+
+\begin{theorem}[Fundamental Theorem of Galois Theory, Part II]\label{thm-FTGT-2}
+    Let $L:K$ be Galois extension, $M:K$ be a subextension of $L$. Then $M:K$ is Galois if and only if $\operatorname{Gal}(L /M)\lhd \operatorname{Gal}(L /K)$. In such case, $\operatorname{Gal}(M /K)\cong \operatorname{Gal}(L /K) /\operatorname{Gal}(L /M)$. 
+\end{theorem}
+
+\begin{proof}
+    $(\Rightarrow)$: Suppose $M :K$ is Galois extension. Let $\gamma\in \operatorname{Gal}(L /K)$. We consider $\gamma|_{M}$: 
+    \[
+        \begin{tikzcd}
+            M && L \\
+            & K
+            \arrow["{\gamma|_{M}}", from=1-1, to=1-3]
+            \arrow[from=2-2, to=1-1]
+            \arrow[from=2-2, to=1-3]
+        \end{tikzcd}
+    \]
+    since $M :K$ is splitting field of some separable polynomial, by Theorem \ref{thm-splittingfieldsameimage} the image $\gamma|_{M}:M\to L$ are the same for all $\gamma\in \operatorname{Gal}(L /K)$. Pick the identity map, we have the result $\gamma|_{M}(M)=id_{M}(M)=M$, so $\gamma|_{M}\in \operatorname{Gal}(M/K)$. 
+
+    Define the map
+    \[
+    \Phi: \operatorname{Gal}(L /K)\to \operatorname{Gal}(M /K)
+    \]
+    by \[ 
+    \gamma\mapsto \gamma|_{M}.
+    \] 
+    $\Phi$ is clearly a group homomorphism. $\Phi(\gamma)=id$ if and only if $\gamma|_{M}=id_{M}$, i.e. $\gamma\in \operatorname{Gal}(L /M)$, thus $\ker \Phi=\operatorname{Gal}(L /M)$. Hence $\operatorname{Gal}(L /M)\lhd \operatorname{Gal}(L/K)$. 
+
+    Applying the first isomorphism theorem of groups to $\Phi$, we get 
+    \[
+    \operatorname{Gal}(L /K)/\operatorname{Gal}(L /M) \cong \im \Phi \leq \operatorname{Gal}(M/K). 
+    \]
+    All those Galois groups are finite so we may count the cardinality of groups above: 
+    \[
+    \left| \im \Phi \right| =\frac{\left| \operatorname{Gal}(L /K) \right| }{\left|\operatorname{Gal}(L /M)\right|}=|\frac{[L:K]}{[L:M]}=[M:K]=\left| \operatorname{Gal}(M /K) \right|,
+    \]
+    so $\im \Phi=\operatorname{Gal}(M /K)$ and 
+    \[
+    \operatorname{Gal}(M /K)\cong \operatorname{Gal}(L /K)/\operatorname{Gal}(L /M). 
+    \]
+
+    $(\Leftarrow)$: Suppose $\operatorname{Gal}(L /M)\lhd \operatorname{Gal}(L /K)$. Take any $\gamma\in \operatorname{Gal}(L /K)$, then $\gamma(M)$ is a subfield of $L$. Then 
+    \[
+    \begin{aligned}
+        \operatorname{Gal}(L/ \gamma(M))&=\{\mu\in \operatorname{Gal}(L /K)|\mu(x)=x,\forall x\in \gamma(M)\}\\
+        &=\{\mu\in \operatorname{Gal}(L /K)|\gamma^{-1}\mu\gamma(x)=x,\forall x\in M\}.
+    \end{aligned}
+    \]
+    So $\mu\in \operatorname{Gal}(L /\mu(M))$ if and only if $\gamma^{-1}\mu\gamma\in \operatorname{Gal}(L /M)$ and 
+    \[
+    \operatorname{Gal}(L /\gamma(M))=\gamma^{-1}\operatorname{Gal}(L /M)\gamma. 
+    \]
+    Since $\operatorname{Gal}(L /M)$ is normal, the equation above implies $\operatorname{Gal}(L /\gamma(M))=\operatorname{Gal}(L /M)$. Therefore 
+    \[
+    \gamma(M)=L^{\operatorname{Gal}(L /\gamma(M))}=L^{\operatorname{Gal}(L /M)}=M. 
+    \]
+
+Since \(
+\gamma(M)=M
+\) for every \(\gamma\in \operatorname{Gal}(L/K),\) we may define the restriction homomorphism
+\[
+\Phi:\operatorname{Gal}(L/K)\longrightarrow \operatorname{Aut}_K(M),
+\qquad
+\gamma\longmapsto \gamma|_M.
+\]
+with \(\ker\Phi
+=
+\{\gamma\in\operatorname{Gal}(L/K)\mid \gamma|_M=\operatorname{id}_M\}
+=
+\operatorname{Gal}(L/M).
+\) Hence, by the First Isomorphism Theorem,
+\[
+|\operatorname{im}\Phi|
+=
+\frac{|\operatorname{Gal}(L/K)|}
+     {|\operatorname{Gal}(L/M)|}.
+\]
+Since $L:K$ and $L:M$ are Galois,
+\[
+|\operatorname{Gal}(L/K)|=[L:K],
+\qquad
+|\operatorname{Gal}(L/M)|=[L:M].
+\]
+Therefore, by the Tower Law,
+\[
+|\operatorname{im}\Phi|
+=
+\frac{[L:K]}{[L:M]}
+=
+[M:K].
+\]
+By the claim in the proof of Theorem \ref{thm-FTGT-1},
+\[
+[M:M^{\operatorname{im}\Phi}]=|{\operatorname{im}\Phi}|=[M:K].
+\]
+where \(
+K\subseteq M^{\operatorname{im}\Phi}\subseteq M.
+\)
+Thus the Tower Law gives \(
+[M^{\operatorname{im}\Phi}:K]=1
+\)
+and hence
+\[
+M^{\operatorname{im}\Phi}=K.
+\]
+Finally, since
+\(
+{\operatorname{im}\Phi}\leq \operatorname{Aut}_K(M),
+\)
+we have
+\[
+M^{\operatorname{Aut}_K(M)}
+\subseteq M^{\operatorname{im}\Phi}=K.
+\]
+On the other hand, every $K$-automorphism fixes $K$, so
+\[
+K\subseteq M^{\operatorname{Aut}_K(M)}.
+\]
+Consequently,
+\(
+M^{\operatorname{Aut}_K(M)}=K
+\)
+and the result follows.
+\end{proof}
+
+\begin{remark}\label{rmk-GaloisExtensionEquiFixedField}
+=    In the proof of Theorem \ref{thm-FTGT-2}, we also proved the following result: 
+    \begin{center}
+        \fbox{$M :K$ is Galois extension $\iff$ $\forall \gamma\in \operatorname{Gal}(L /K), \gamma(M)=M$}
+    \end{center}
+\end{remark}

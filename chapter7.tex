@@ -1,0 +1,171 @@
+\chapter{Prime Ideals in $\mathcal{O}_{K}$}
+\section{Ideals Lying Above a Rational Prime}
+We now study the structure of prime ideals $P\lhd \mathcal{O}_{K}$. To begin with, note that $P\cap \mathbb{Z}=(p)_{\mathbb{Z}}\lhd \mathbb{Z}$ for some rational prime $p$. So $(p)\subseteq P$ as ideals in $\mathcal{O}_{K}$. Therefore, all prime ideals $P\lhd \mathcal{O}_{K}$ must be a factor of $(p)$ for some rational prime $p$. 
+
+\begin{definition}
+    Let $p\in \mathbb{N}$ be a rational prime and $(p)=P_{1}^{e_{1}}\cdots P_{k}^{e_{k}}$ be the prime factorization of $(p)$. 
+    \begin{enumerate}
+        \item $P_{i}$ are called the {\bf prime ideals lying above} $p\in \mathbb{N}$; 
+        \item $e_{i}$ is called the {\bf ramification index} of $P_{i}$;
+        \item $P_{i}$ is {\bf ramified} if $e_{i}>1$;
+        \item $p$ is {\bf ramified} in $K$ if there exists some ramification index $e_{i}>1$. 
+    \end{enumerate}
+\end{definition}
+
+As discussed above, in order to get all prime ideals of $\mathcal{O}_K$, one studies the prime ideals $P_i$ lying over all rational primes $p$. The theorem below gives you the (unique) factorization of $(p)$ into prime ideals in $\mathcal{O}_K$:
+\begin{theorem}\label{thm-factorizationOfRationalPrimes}
+    Let $K:\mathbb{Q}$ be a number field, and $\alpha\in \mathcal{O}_{K}$ be such that
+    \begin{enumerate}
+        \item $K=\mathbb{Q}(\alpha)$. 
+        \item $p\nmid [\mathcal{O}_{K}:\mathbb{Z}[\alpha]]$. 
+    \end{enumerate}
+    Suppose the minimal polynomial $m_{\alpha}(x)\in \mathbb{Z}[x]$ factorizes as 
+        \[
+        \overline{m_{\alpha}}(x)=\prod_{i=1}^{k}\overline{g_{i}}(x)^{e_{i}}\in \mathbb{Z}_{p}[x]. 
+        \]then 
+    \[
+    (p)=\prod_{i=1}^{k}(p,h_{i}(\alpha))^{e_{i}},
+    \]
+    where $h_{i}\in \mathbb{Z}[x]$ is any polynomial whose image in $\mathbb{Z}_{p}[x]$ satisfies $\overline{h_{i}}(x)=\overline{g_{i}}(x)\in \mathbb{Z}_{p}[x]$. Moreover, each factor $(p,h_{i}(\alpha))$ is a prime ideal for all $i$. 
+\end{theorem} 
+
+\begin{example}
+    Let $K=\mathbb{Q}(\sqrt{-5})$ and $\mathcal{O}_{K}=\mathbb{Z}[\sqrt{-5}]$. We may choose $\alpha=\sqrt{-5}$ and then $K=\mathbb{Q}(\alpha)$ and $[\mathcal{O}_{K}:\mathbb{Z}[\alpha]]=1$. So the assumption holds for all rational prime $p\in \mathbb{N}$. 
+
+    For $p=2$, $\overline{m_{\alpha}}(x)=x^{2}+1=(x+1)^{2}$, so $(2)=(2,1+\sqrt{-5})^{2}$ is ramified. 
+
+    For $p=3$, $\overline{m_{\alpha}}(x)=x^{2}+2=(x+1)(x+2)$, so $(3)=(3,1+\sqrt{-5})(3,1-\sqrt{-5})$ is unramified. 
+
+    For $p=5$, $\overline{m_{\alpha}}(x)=x^{2}$, so $(5)=(\sqrt{-5})^{2}$ is ramified. 
+\end{example}
+
+\begin{example}
+    Let $K=\mathbb{Q}(\sqrt{-3})$, then $\mathcal{O}_{K}=\mathbb{Z}[\frac{1+\sqrt{-3}}{2}]$. Then for $\alpha=\sqrt{-3}$, $[\mathcal{O}_{K}:\mathbb{Z}[\alpha]]=2$. The theorem works for any rational prime $p\neq 2$. $m_{\alpha}(x)=x^{2}+3$. 
+
+    For $p=5$, $\overline{m_{\alpha}}(x)=x^{2}+3$ is irreducible in $\mathbb{Z}_{5}[x]$, so $(5) = (5, \alpha^2+3) = (5,0) = (5)$ is itself a prime ideal in $\mathcal{O}_{K}$. 
+
+    If we want to deal with $p=2$, we may choose $\alpha'=\frac{1+\sqrt{-3}}{2}$ instead, so that $[\mathcal{O}_K : \mathbb{Z}[\alpha']] = 1$ . Then $\overline{m_{\alpha}}(x)=x^{2}+x+1$ is irreducible in $\mathbb{Z}_{2}[x]$. So $(2)$ is prime ideal in $\mathcal{O}_{K}$. 
+\end{example}
+
+\begin{proof}[Proof of Theorem \ref{thm-factorizationOfRationalPrimes}]
+Suppose $ p \nmid [\mathcal{O}_k : \mathbb{Z}[\alpha]]$. Then consider the homomorphism
+$$
+\Phi: \mathbb{Z}[\alpha] \longrightarrow \frac{\mathcal{O}_K}{(p)} \quad \quad \Phi(\beta):= \beta + (p).
+$$
+Then its kernel is of the form
+$
+p \cdot \beta \in \mathcal{O}_K \cap \mathbb{Z}[\alpha] \text{ for some } \beta \in \mathcal{O}_K.
+$
+
+We \textit{claim} that $\beta \in \mathbb{Z}[\alpha]$ - if not, then
+$\beta + \mathbb{Z}[\alpha]$ is an order $p$ element in $\mathcal{O}_K/\mathbb{Z}[\alpha]$. Consequently, the cyclic subgroup
+$$\langle \beta + \mathbb{Z}[\alpha] \rangle \leq \mathcal{O}_K/\mathbb{Z}[\alpha]$$ 
+has order $p$. and hence $ p \mid \left|\mathcal{O}_K/\mathbb{Z}[\alpha]\right| = [\mathcal{O}_K : \mathbb{Z}[\alpha]]$ by Lagrange's theorem, which contradicts the hypothesis of the theorem.
+
+\medskip
+Consequently, $\ker(\Phi) = p\mathbb{Z}[\alpha]$. By first isomorphism theorem, one therefore has
+$$\mathbb{Z}[\alpha]/ p \mathbb{Z}[\alpha] \cong \mathrm{im}(\Phi) \leq \mathcal{O}_K/(p)  \quad \quad   (*)$$
+
+Let's count the number of element on both sides of equation: Suppose $\deg(m_{\alpha}(x)) = n$, then $\mathbb{Z}[\alpha] = \text{Span}_{\mathbb{Z}} \{1, \alpha, \ldots, \alpha^{n-1}\}$
+and $\mathbb{Z}[\alpha]/p\mathbb{Z}[\alpha] = \text{Span}_{\mathbb{Z}_p} \{1, \alpha, \ldots, \alpha^{n-1}\} \cong  \mathbb{Z}_p[x]/\langle \overline{m}_{\alpha}(x)\rangle$ ({\bf WARNING:} This is {\bf NOT} the same as $\mathbb{Z}_p[x]/\langle\mu_{\alpha}(x)\rangle$, where $\mu_{\alpha}(x) \in \mathbb{Z}_p[x]$ is the minimal polynomial of $\alpha$ in $\mathbb{Z}_p[x]$). Therefore, 
+$$|\mathbb{Z}[\alpha]/p\mathbb{Z}[\alpha]| = | \mathbb{Z}_p[x]/\langle \overline{m}_{\alpha}(x)\rangle| = p^n.$$
+On the other hand, 
+$$|\mathcal{O}_K/(p)| = N((p)) = \mathrm{Norm}_{K/\mathbb{Q}}(p) = p^{[K:\mathbb{Q}]} = p^{[\mathbb{Q}(\alpha):\mathbb{Q}]} = p^{\deg(m_{\alpha}(x))} = p^n$$
+
+So the $\leq$ in $(*)$ above is an equality, i.e. one has $$\mathcal{O}_K/(p) \cong \mathbb{Z}[\alpha]/p\mathbb{Z}[\alpha] \cong  \mathbb{Z}_p[x]/\langle \overline{m}_{\alpha}(x)\rangle.$$
+
+Now we study all prime ideals $P \lhd \mathcal{O}_K$ lying above $p$: Note that
+$$\mathcal{O}_K \supseteq P \supseteq (p) 
+\ \leftrightarrow \ \mathcal{O}_k/(p) \supseteq P/(p) \supseteq \{1\} \ \leftrightarrow \ \mathbb{Z}_p[x]/\langle \overline{m}_{\alpha}(x)\rangle \supseteq Q' \supseteq \{1\} \ \leftrightarrow \  \mathbb{Z}_p[x] \supseteq Q \supseteq \langle \overline{m}_{\alpha}(x)\rangle$$
+where the first and last $\leftrightarrow$ are given by the correspondence theorem, and the middle $\leftrightarrow$ is the isomorphism given above. Moreover, one has
+\begin{itemize}
+    \item $P \lhd \mathcal{O}_K$ is a prime ideal $\leftrightarrow$ $Q \lhd \mathbb{Z}_p[x]$ is a prime ideal. 
+    \item $[\mathcal{O}_K:P] = [\mathbb{Z}_p[x]: Q]$.
+\end{itemize}
+under the correspondence.
+
+Now the prime ideals $ Q  \lhd \mathbb{Z}_p[x]$ are all $Q_i := \langle \bar{g}_i(x) \rangle$, where $ \overline{m}_{\alpha}(x) = \prod_{i=1}^k \bar{g}_i(x)^{e_i}$ with $\bar{g}_i(x)$ irreducible in $\mathbb{F}_p[x]$. Tracing the correspondences, one can check that $Q_i$ correspond to the prime ideals 
+$$P_i := (p, g_i(\alpha))$$ 
+as given in the theorem.
+
+So we are left to prove $(p) = \prod_{i=1}^k P_i^{e_i}$. To see this,
+$$
+\prod_{i=1}^k P_i^{e_i} = \prod_{i=1}^k (p, g_i(\alpha))^{e_i} \subseteq \prod_{i=1}^k (p, g_i(\alpha))^{e_i} \subseteq \left(p, \prod_{i=1}^k g_i(\alpha)^{e_i}\right) = (p, f(\alpha)) = (p, 0) = (p).
+$$
+(exercise: check the above $\subseteq$ holds). Comparing norms on both sides:
+\begin{align*}
+N\left(\prod_{i=1}^k P_i^{e_i}\right) = \prod_{i=1}^k [\mathcal{O}_K: P_i]^{e_i} 
+= \prod_{i=1}^k [\mathbb{Z}_p[x]: Q_i]^{e_i} &= \prod_{i=1}^k (p^{\deg(\bar{g}_i(x))})^{e_i}\\ &= p^{\deg(\prod \bar{g}_i(x)^{e_i})}\\ &= p^{\deg(\bar{m}_{\alpha}(x))}\\ &= p^n = N((p)).    
+\end{align*}
+
+As a consequence, the inclusions are indeed equalities, and hence $(p) = \prod_{i=1}^k P_i^{e_i}$.
+\end{proof}
+
+\begin{corollary}\label{cor-ramifiedPrimeNorm}
+    Let $[K:\mathbb{Q}]=n$ be a number field. $\alpha\in \mathcal{O}_{K}$ be such that $K=\mathbb{Q}(\alpha)$. If $p\in\mathbb{N}$ ramifies in $\mathcal{O}_{K}$, then $p\mid \Delta^{2}(1,\alpha,\dots,\alpha^{n-1})$. 
+\end{corollary}
+
+\begin{example}
+    Let $K=\mathbb{Q}[\sqrt{-5}]$, $\mathcal{O}_{K}=\mathbb{Z}[\sqrt{-5}]$. Take $\alpha=\sqrt{-5}$, then $\Delta^{2}(1,\alpha)=-20$. So the only possible $p\in \mathbb{N}$ that ramifies in $\mathcal{O}_{K}$ are 2 and 5. Indeed, from Theorem \ref{thm-factorizationOfRationalPrimes}, $(2)=(2,1+\sqrt{-5})^{2}$ and $5=(\sqrt{-5})^{2}$ both ramifies in $\mathcal{O}_K$. 
+\end{example}
+
+\begin{proof}[Proof of Corollary \ref{cor-ramifiedPrimeNorm}]
+The proof is divided into two cases - 
+
+\medskip
+\noindent \fbox{\textbf{Case I:} $ p \mid [\mathcal{O}_k : \mathbb{Z}[\alpha]] $} Since
+$$
+\Delta^2(1,\alpha, \dots, \alpha^{n-1}) = [\mathcal{O}_K : \mathbb{Z}[\alpha]]^2 \Delta^2(K),
+$$
+therefore 
+$p \mid \Delta^2(1,\alpha, \dots, \alpha^{n-1})$ regardless of whether $p$ ramifies in $\mathcal{O}_K$ or not.
+
+\medskip
+\noindent \fbox{\textbf{Case II:} $ p \nmid [\mathcal{O}_K : \mathbb{Z}[\alpha]] $} Let $L:K$ be a splitting field of $m_{\alpha}(x) \in \mathbb{Z}[x]$, whose roots are $\alpha = \alpha_1, \dots, \alpha_n \in \mathcal{O}_L$. 
+By Example \ref{eg-discrim}, 
+$$\Delta^2((1,\alpha, \dots, \alpha^{n-1})) = \prod_{i \leq j} (\alpha_i - \alpha_j)^2 = \Delta_{m_{\alpha}(x)} \in \mathbb{Z}.$$
+where $\Delta_{p(x)}$ is the discriminant of a polynomial $p(x) \in F[x]$ as defined in Theorem \ref{thm-discrim}. In particular, $\Delta \neq 0$ if and only if $p(x)$ has no repeated roots (in its splitting extension). 
+
+By Theorem \ref{thm-discrim}, the discriminant $\Delta_{p(x)}$ for any $p(x)$ can be expressed in terms of its coefficients (see Homework 1 Question 7 for the formula of $\Delta$ for cubic polynomials). Therefore, the discriminant of the reduced polynomial $\overline{m}_{\alpha}(x) \in \mathbb{Z}_p[x]$ satisfies:
+$$\Delta_{\overline{m}_{\alpha}(x)} = \Delta_{m_{\alpha}(x)} \mod{p} \quad \quad \quad (*)$$
+
+
+%ote also that $\alpha_i$ are roots of the polynomial $\overline{m}_{\alpha}(x) \in \mathbb{Z}_p[x]$.
+
+
+On the other hand, the hypothesis of Theorem \ref{thm-factorizationOfRationalPrimes} holds in this Case. Since $p$ ramifies in $ \mathcal{O}_K$, then by recipe in the factorization of $(p)$ given by Theorem \ref{thm-factorizationOfRationalPrimes} implies that 
+$$\overline{m}_{\alpha}(x) = \overline{g}(x)^{e} \cdots$$
+has a repeated irreducible factor. Consequently, $\overline{m}_{\alpha}(x)$ has a repeated root $\gamma$, and hence
+$$\Delta_{\overline{m}_{\alpha}(x)} \equiv 0 \mod p$$
+By $(*)$, this implies $\Delta^2(1,\alpha, \dots, \alpha^{n-1}) = \Delta_{m_{\alpha}(x)}$ is a multiple of $p$, and hence the result follows.
+\end{proof}
+
+\section{Prime Ideals in Galois Extension} \label{sec-Galoisprime}
+Let $K:\mathbb{Q}$ be Galois extension with $Gal(K /\mathbb{Q})=\{\sigma_{1}=id,\sigma_{2},\dots, \sigma_{n}\}$. Let $P\lhd \mathcal{O}_{K}$ be a prime ideal over $p$ with $N(P)=p^{f}$. Then 
+\begin{itemize}
+    \item $\sigma_{i}(P)$ is also a prime ideal. 
+    \item $N(\sigma_{i}(P))=N(P)=p^{f}$. 
+\end{itemize}
+Let $orb(P)=\{\sigma_{i}(P)|\sigma_{i}\in Gal(K /\mathbb{Q})\}=\{P_{1}=P,P_{2},\dots, P_{g}\}$. By Theorem \ref{thm-orbitStablizer}, $g\mid n=\left| Gal(K /\mathbb{Q}) \right| $. 
+
+\begin{theorem}
+    Let $K :\mathbb{Q}$ be Galois extension. Let $P\lhd \mathcal{O}_{K}$ be a prime ideal with ramification index $e$ and lying above $p$. Then $(p)=P_{1}^{e}\cdots P_{g}^{e}$. In particular, all prime ideals lying above $p$ are Galois conjugates. Therefore, 
+    $$p^{[K:\mathbb{Q}]}= N((p)) = (N(P)^e)^g = p^{efg}$$
+    and hence $[K:\mathbb{Q}] = efg.$
+\end{theorem}
+
+The above 
+
+\begin{example} \label{eg-cycloram}
+    Let $K=\mathbb{Q}(\omega)$, where $\omega$ is the primitive $p$-th root of unity. Then $K:\mathbb{Q}$ is Galois and $\mathbb{Z}[\omega]=\langle 1,\omega,\dots, \omega^{p-2}\rangle_{\mathbb{Z}}$ gives an integral basis. Denote $\underline{\omega}=\{1,\omega,\dots, \omega^{p-2}\}$, then $\left| \Delta^{2}(\underline{\omega}) \right|=p^{p-2}$. 
+
+    Now we study the prime ideals in $\mathcal{O}_{K}$. We will apply Corollary \ref{cor-ramifiedPrimeNorm}. Let $q$ be a rational prime. 
+    \begin{itemize}
+        \item If $q\neq p$, then $(q)$ does not ramify. So $(q)=Q_{1}\cdots Q_{k}$ for some prime ideals $Q_{i}\lhd \mathcal{O}_{K}$. $N(Q_{i})=q^{f_{i}}$ for some $f_{i}$. $Q_{i}$ are all Galois conjugates, so all $f_{i}$ are equal and $kf=p-1$. 
+        \item If $q=p$. Then $(p)$ may ramify: Take $\alpha=\omega$, $m_{\omega}=x^{p-1}+\cdots+ x+1=\frac{x^{p}-1}{x-1}\in \mathbb{Z}[x]$. Note 
+        \[
+        \overline{m_{\omega}}(x)=\frac{x^{p}-1}{x-1}=\frac{(x-1)^{p}}{x-1}=(x-1)^{p-1}\in \mathbb{Z}_{p}[x],
+        \]
+        by Theorem \ref{thm-factorizationOfRationalPrimes}, $(p)=(p,\omega-1)^{p-1}$. 
+    \end{itemize}
+\end{example}

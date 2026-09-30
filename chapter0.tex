@@ -1,0 +1,217 @@
+\chapter{Preliminaries}
+\section{Rings and Fields}
+In this section, we recall some results on commutative rings $(R, +, \cdot )$ with (multiplicative) identity $1 \in R$.
+\begin{definition}
+    Let $R$ be commutative ring with identity. 
+    \begin{itemize}
+        \item $R$ is an {\bf integral domain (ID)} if whenever
+    $a \cdot b = 0$ for some $a, b \in R$, then $a = 0$ or $b = 0$.
+        \item $R$ is a {\bf field} if for all $a \neq 0$ in $R$, there exists $a^{-1} \in R$ such that $a \cdot a^{-1} = 1$.
+    \end{itemize}
+\end{definition}
+It is obvious that if $R$ is a field, then $R$ is an integral domain. In fact, one has the following inclusion:
+\begin{center}
+Integral Domain (ID) $\supset$ Unique Factorization Domain (UFD) $\supset$ Principal Ideal Domain (PID) $\supset$ Euclidean Domain (ED) $\supset$ Fields.    
+\end{center}
+
+We refer the reader to basic abstract algebra (e.g. MAT3004) for details. In this course, we only consider commutative rings with identity, and all homomorphism of rings $\phi: R \to S$ must be unital, i.e. $\phi(1_R) = 1_S$.
+
+\begin{definition}
+    Let $L$, $K$ be fields. We say $L:K$ is a {\bf field extension} if there exists an injective ring homomorphism $\phi: K \hookrightarrow L$.
+\end{definition}
+In this course, we will often abuse notations and see $\phi$ as the `inclusion' map. Note that $L$ is a vector space over $K$, where the scalar multiplication is defined by
+$$k \cdot \alpha := \phi(k)\alpha \quad \quad (k \in K,\ \alpha \in L)$$
+So we can define the {\bf degree} of field extension $L:K$ by
+$$[L:K] = \dim_{K}(L).$$
+
+
+We will always assume all field extensions $L:K$ are {\bf algebraic}, that is, all $\alpha \in L$ are roots of  polynomial in $K[x]$. This is always the case if $[L:K] < \infty$.
+\begin{definition}
+    Let $L:K$ be a field extension. The {\bf minimal polynomial} of an element $\alpha \in L$ is the monic polynomial $m_{\alpha}(x) \in K[x]$ of smallest degree such that $m_{\alpha}(\alpha) = 0$.
+\end{definition}
+Since we assume $L:K$ is algebraic, $m_{\alpha}(x)$ exists for all $\alpha \in L$. Moreover, it is an irreducible polynomial in $K[x]$. Also, for all $f(x) \in K[x]$ such that $f(\alpha) = 0$, one can apply factor theorem to conclude that
+$$m_{\alpha}(x)\ \mid\ f(x).$$
+\begin{definition}
+    Let $K$ be a field. Then a field extension $\overline{K}:K$ is called the {\bf algebraic closure} of $K$ if every polynomial $p(x) \in K[x]$ splits in $\overline{K}[x]$, that is, 
+    $$p(x) = c \prod_{i=1}^n(x - \beta_i) \in \overline{K}[x].$$
+\end{definition}
+Note that $\overline{K}$ always exists, and is unique up to isomorphism.
+As an example, the algebraic closure of $\mathbb{R}$ is $\overline{\mathbb{R}} = \mathbb{C}$ by the Fundamental Theorem of Algbera. 
+
+\medskip
+We end this section with the Primitive Element Theorem, which gives an effective way to reduce a field extension into a simple extension.
+\begin{theorem}[Primitive Element Theorem] \label{thm-primelt}
+    Let $K$ be such that $\mathrm{char}(K) = 0$, and $\alpha, \beta \in K$ are algebraic. Then there exists $c \in K$ such that
+    $$K(c) = K(\alpha,\beta).$$
+\end{theorem}
+\begin{proof}Let \( p(x) \in K[x] \) be the minimal polynomial of \( \alpha  \), and \( q(x) \in K[x] \) be the minimal polynomial of \( \beta \).
+Take any field extension \(L: K \) such that \( p(x) \) and \( q(x) \) both split in \( L[x] \). 
+
+Write \( \alpha=\alpha_1, \ldots, \alpha_m \in L \) as roots of \( p(x) \) and \( \beta=\beta_1, \ldots, \beta_n \in L\) as roots of \( q(x) \). Take \( d \in K \) such that for any \( 1 \leq i \leq m,\ 1 \leq j \leq n \), 
+\[ d \neq \frac{\alpha_i 
+ -\alpha}{\beta - \beta_j},  \quad \quad \quad (*)\]
+ which is possible since \( \text{char}(K) = 0 \) so that \( K \) has infinitely many elements, while the RHS has only $mn < \infty$ elements (note that the elements on RHS may not even be in \( K \)).
+
+Let \( c := \alpha + d\beta \). Then one already has
+\[ K(c) \subseteq K(\alpha, \beta)\ (\subseteq L) \]
+As for the other inclusion \( K(\alpha, \beta) \subseteq K(c) \), consider 
+\[ r(x):=p(c - dx) \quad \text{and} \quad q(x)  \quad \text{in}\ K(c)[x], \]
+so that $r(\beta) = p(c - d\beta) = p(\alpha) = 0$ and $q(\beta) = 0$ in $K(c)[x]$. Therefore, the minimal polynomial \(m(x)\in K(c)[x]\) of $\beta$ satisfies: 
+\[m(x) \mid r(x), q(x).\]
+We study \(m(x) \in K(c)[x] \subseteq L[x]\) further: Note that 
+\[m(x) \mid q(x) \text{ in } K[c](x) \quad \Rightarrow \quad m(x) \mid q(x) =\prod_{j=1}^n (x- \beta_j) \text{ in } L[x],\]
+so \(m(x)\) can only have roots $\{\beta_1, \ldots, \beta_n\}$. 
+
+We {\it claim} that $\beta_1 = \beta$ is the only root of $m(x) \in K(c)[x]$: Suppose on contrary that there exists \(j \neq 1\) such that $\beta_j$ is a root of $m(x)$. Then it is also a root of $r(x)$, and hence
+\begin{align*}
+    \quad r(\beta_j) = p(c - d\beta_j) = 0 \Rightarrow & \quad c - d\beta_j = \alpha_i \\
+\Rightarrow & \quad (\alpha + d\beta) - d\beta_j = \alpha_i \\
+\Rightarrow & \quad d(\beta - \beta_j) = \alpha_i - \alpha
+\end{align*}
+which contradicts out our choice of $d$ in $(*)$. 
+
+Consequently, the only root of $m(x)$ is $\beta_1 = \beta$, that is, \(m(x) = x - \beta \in K(c)[x]\). 
+In other words, 
+\(\beta \in K(c)\) and one has
+\[ \alpha = c - d\beta \in K(c).\]
+So one can conclude that \(K(\alpha, \beta) \subseteq K(c)\) as we wish to prove.
+\end{proof}
+\begin{corollary} \label{cor-primelt}
+    Let $K$ be such that $\mathrm{char}(K) = 0$. Suppose $L:K$ is finite, then $L = K(\alpha)$ is a simple extension.
+\end{corollary}
+\begin{proof}
+    Suppose $[L:K] = k$ and let $\{\beta_1, \dots, \beta_k\}$ be a basis of $L$ over $K$. Then $L = K(\beta_1, \dots, \beta_k)$. One then applies Theorem \ref{thm-primelt} $k-1$ times to get the result.
+\end{proof}
+Indeed, the above theorem holds in a more general setting when $L:K$ is a separable extension (Section \ref{subsec-separable}) of finite degree. We will not prove it here.
+
+\section{Group Actions}
+\begin{definition} Let $X$ be a set. The set of \textbf{automorphisms} of $X$ is given by
+\[
+\mathrm{Aut}(X) = \{\phi : X \to X \mid \phi \text{ is bijective}\}
+\]
+Note that $\mathrm{Aut}(X)$ is automatically a group, whose binary operation is given by composition of functions, and the identity element is the identity map $id(x) := x$ for all $x \in X$.
+\end{definition}
+
+We can add some extra structures on the map we study in the above definition. For example, if
+$X$ is a vector space over a field $K$, we define
+\[
+\mathrm{Aut}_{\mathrm{Vect}}(X) = \{\phi \in \mathrm{Aut}(X) \mid \phi \text{ is a linear transformation}\}
+\]
+If $X$ is a group,
+\[
+\mathrm{Aut}_{\mathrm{Group}}(X) = \{\phi \in \mathrm{Aut}(X) \mid \phi \text{ is a group homomorphism}\}
+\]
+and one can define $\mathrm{Aut}_{\mathrm{Rings}}(X)$ similarly if $X$ is a ring.
+
+\begin{definition} Let $G$ be a group. An \textbf{action} of $G$ on $X$ (S is a set) is a group homomorphism
+\[
+\phi : G \to \mathrm{Aut}(X).
+\]
+\end{definition}
+In other words, for all $g \in G$, 
+$\phi(g) \in \mathrm{Aut}(X)$ `permutes' the elements of $X$.
+For the rest of the notes, we will write 
+$$g \cdot x := \phi(g)(x) \in X.$$
+
+
+\begin{example}
+Let $G = S_3$, $X = \{a,b,c,d\}$. Then one can define $\phi: S_3 \to \mathrm{Aut}(X)$ by:
+\begin{center}
+$\begin{matrix} e \cdot a = a\\
+e \cdot b = b\\
+e \cdot c = c\\
+e \cdot d = d \end{matrix}$ \quad \quad  $\begin{matrix} (12) \cdot a = b\\
+(12) \cdot b = a\\
+(12) \cdot c = c\\
+(12) \cdot d = d \end{matrix}$  \quad \quad  $\begin{matrix} (13) \cdot a = c\\
+(13) \cdot b = b\\
+(13) \cdot c = a\\
+(13) \cdot d = d \end{matrix}$  \quad \quad $\begin{matrix} (23) \cdot a = a\\
+(23) \cdot b = c\\
+(23) \cdot c = b\\
+(23) \cdot d = d \end{matrix}$ \quad \quad  $\begin{matrix} (123) \cdot a = b\\
+(123) \cdot b = c\\
+(123) \cdot c = a\\
+(123) \cdot d = d \end{matrix}$  \quad \quad  $\begin{matrix} (132) \cdot a = c\\
+(132) \cdot b = a\\
+(132) \cdot c = b\\
+(132) \cdot d = d \end{matrix}$  
+\end{center}
+
+\end{example}
+
+\begin{definition} Let $\phi : G \to \mathrm{Aut}(X)$ be a group action.
+\begin{enumerate}
+    \item The \textbf{invariants} of $X$ over $\phi$ is the set
+    \[
+    X^G := \{x \in X \mid g \cdot x = x \quad \forall g \in G\}
+    \]
+    \item The \textbf{orbit} of $x \in X$ over $\phi$ is the set
+    \[
+    \mathrm{orb}(x) := \{g \cdot x \mid g \in G\} \subseteq X
+    \]
+    \item The \textbf{stabilizer} of $x \in X$ over $\phi$ is the set
+    \[
+    \mathrm{Stab}_G(x) := \{g \in G \mid g \cdot x = x\} \subseteq G
+    \]
+    (Exercise: Check that $\mathrm{Stab}_G(x)$ is a subgroup)
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Orbit - Stabilizer Theorem]\label{thm-orbitStablizer}
+Let $|G| < \infty$ and $\phi : G \to \mathrm{Aut}(X)$ is a group action. Then for all $x \in X$, one has:
+\[
+|\mathrm{orb}_G(x)| \cdot |\mathrm{Stab}_G(x)| = |G|
+\]
+\end{theorem}
+The proof is left as an exercise to the reader (Homework 1).
+
+\begin{example}
+    By our definition of $\phi: S_3 \to \mathrm{Aut}(X)$ with $X = \{a,b,c,d\}$ above, one has
+    $$X^{S_3} = \{d\}, \quad \mathrm{orb}(a) = \mathrm{orb}(b) = \mathrm{orb}(c) = \{a,b,c\},  \quad \mathrm{orb}(d) = \{d\},\quad \mathrm{Stab}_G(a) = \langle (23) \rangle$$
+    Therefore,
+    $$|\mathrm{orb}_G(a)| \cdot |\mathrm{Stab}_G(a)| = 3 \cdot 2 = 6, \quad \quad |\mathrm{orb}_G(d)| \cdot |\mathrm{Stab}_G(d)| = 1 \cdot 6 = 6$$
+    both are equal to $|S_3| = 6$.
+\end{example}
+
+
+\section{Symmetric Polynomials} \label{sec-symm}
+Let $K$ be a field, and $p(x_1, x_2, \dots, x_n) \in K[x_1, \dots, x_n]$ be a polynomial with $n$ variables.
+\begin{definition}
+    We say $p(x_1, x_2, \dots, x_n) \in K[x_1, x_2, \dots, x_n]$ is a {\bf symmetric polynomial} if for all permutations $\sigma \in S_n$, 
+    $$p(x_1, x_2, \dots, x_n) = p(x_{\sigma(1)}, x_{\sigma(2)}, \dots, x_{\sigma(n)}) = p(x_1, x_2, \dots, x_n).$$
+\end{definition}
+For example, for all $k \leq 0$, $x_1^k + \dots 
++ x_n
+^k$ is a symmetric polynomial.
+
+We can understand symmetric polynomial using group actions. Namely, let $X = K[x_1, x_2, \dots, x_n]$, and $G = S_n$ acts on $X$ by
+$$\sigma \cdot p(x_1, x_2, \dots, x_n) := p(x_{\sigma(1)}, x_{\sigma(2)}, \dots, x_{\sigma(n)})$$
+Then symmetric polynomials are precisely the polynomials that are fixed by the $S_n$-action, i.e.
+$$K[x_1, x_2, \dots, x_n]^{S_n} := \{ p(x_1, x_2, \dots, x_n)\ |\ \sigma \cdot p(x_1, x_2, \dots, x_n) = p(x_1, x_2, \dots, x_n)\ \forall \sigma \in S_n\} .$$
+
+The following theorem gives a full description of all symmetric polynomials:
+\begin{theorem}[Fundamental Theorem of Symmetric Polynomials] \label{thm-FTSP}
+All symmetric polynomials in $K[x_1, x_2, \dots, x_n]$ are generated by the {\bf fundamental symmetric polynomials} 
+$s_1,$ $\dots,$ $s_n \in$ $K[x_1, x_2, \dots, x_n]^{S_n},$ where
+\begin{align*}
+s_1 :=\ &x_1 + x_2 + \ldots + x_n \\
+&\vdots \\ 
+\quad s_i :=\ &\sum_{1 \leq m_1 < m_2 < \dots < m_i \leq n} x_{m_1}x_{m_2}\dots x_{m_i} \\
+&\vdots \\  
+s_n :=\ &x_1x_2 \ldots x_n.
+\end{align*}
+In other words, $K[x_1, x_2, \dots, x_n]^{S_n} = K[s_1, s_2, \dots, s_n]$.
+\end{theorem}
+For example, one has
+\begin{align*}
+x_1^2 + \dots + x_n^2 &= (x_1 + \dots + x_n)^2 - (x_1x_2 + x_1x_3 + \dots + x_{n-1}x_n) = s_1^2 - s_2 \\ 
+x_1^3 + \dots + x_n^3 &= s_1^3 - 3s_1s_2 + 3s_3.
+\end{align*}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%

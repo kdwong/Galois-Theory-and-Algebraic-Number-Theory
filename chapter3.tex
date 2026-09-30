@@ -1,0 +1,385 @@
+\chapter{Some Calculations of $\operatorname{Gal}(L/K)$}
+\section{First Examples}
+
+\begin{proposition} \label{prop-injectToSymmetricGroups}
+    Let $L:K$ be the splitting field of a separable polynomial $p(x)\in K[x]$. Let $\alpha_{1},\dots \alpha_{n}\in L$ be the distinct roots of $p(x)$. Then the map $\Phi:\operatorname{Gal}(L /K)\to S_{n}$ defined by $\gamma\mapsto \Phi(\gamma)$ such that $\gamma(\alpha_{i})=\alpha_{\Phi(\gamma)(i)}$ is an injective homomorphism. 
+\end{proposition}
+
+\begin{proof}
+    $\Phi$ is well-defined since all $\alpha_{i}$ are distinct and it is obviously a group homomorphism. Suppose $\Phi(\gamma)=e_{S_{n}}$, then $\gamma(\alpha_{i})=\alpha_{i}$ for all $i$. But $\gamma:L=K(\alpha_{1},\dots, \alpha_{n})\to L=K(\alpha_{1},\dots, \alpha_{n})$ is uniquely determined by $\gamma(\alpha_{1})=\alpha_{1},\dots, \gamma(\alpha_{n})=\alpha_{n}$. So $\gamma=id_{L}$ and $\ker \phi = \{id_L\}$. Consequently, $\Phi$ is injective. 
+\end{proof}
+
+By abuse of notations, we will treat $\operatorname{Gal}(L /K)$ as a subgroup of $S_{n}$ whenever $L /K$ is the splitting field of some irreducible polynomial of degree $n$ with no repeated roots. 
+
+\begin{example}
+    Let $x^{3}-2\in \mathbb{Q}[x]$. Then $\mathbb{Q}(\sqrt[3]{2},\sqrt[3]{2}\omega, \sqrt[3]{2}\omega^{2})=\mathbb{Q}(\sqrt[3]{2},\omega)$ is a splitting field of $x^{3}-2$. 
+    So $\mathbb{Q}(\sqrt[3]{2},\omega):\mathbb{Q}$ is Galois with $\left| \operatorname{Gal}(\mathbb{Q}(\sqrt[3]{2},\omega) /\mathbb{Q}) \right|=[\mathbb{Q}(\sqrt[3]{2},\omega):\mathbb{Q}]=6$. By Proposition \ref{prop-injectToSymmetricGroups}, $\operatorname{Gal}(\mathbb{Q}(\sqrt[3]{2},\omega) /\mathbb{Q}) \subseteq S_{3}$. So $\operatorname{Gal}(\mathbb{Q}(\sqrt[3]{2},\omega) /\mathbb{Q}) = S_{3}$. 
+
+    Under $\Phi$ defined in Proposition \ref{prop-injectToSymmetricGroups}, one can write down $\operatorname{Gal}(\mathbb{Q}(\sqrt[3]{2},\omega) /\mathbb{Q}) = S_3$ precisely. Namely,
+    let
+    \[
+    \begin{pmatrix}
+        \sqrt[3]{2}\mapsto \sqrt[3]{2}\\
+        \omega\mapsto \omega^{2}
+    \end{pmatrix} \leftrightarrow (12),\qquad \begin{pmatrix}
+        \sqrt[3]{2}\mapsto \sqrt[3]{2}\omega\\
+        \omega\mapsto \omega
+    \end{pmatrix}\leftrightarrow(123)
+    \]
+    (note that the elements in $\operatorname{Gal}(\mathbb{Q}(\sqrt[3]{2},\omega) /\mathbb{Q})$ on the left are of order $2$ and $3$ respectively). 
+    By Theorem \ref{thm-FTGT-1}, the relation between subextensions and Galois groups are as follows: 
+    {\small
+    \[
+        \begin{tikzcd}[column sep=small]
+            && {\mathbb{Q}(\sqrt[3]{2},\omega)} &&&& {\{e\}} \\
+            {\mathbb{Q}(\sqrt[3]{2})} & {\mathbb{Q}(\sqrt[3]{2}\omega)} & {\mathbb{Q}(\sqrt[3]{2}\omega^{2})} & {\mathbb{Q}(\omega)} & {\{\langle(12)\rangle\}} & {\{\langle(13)\rangle\}} & {\{\langle(23)\rangle\}} & {\{\langle(123)\rangle\}} \\
+            && {\mathbb{Q}} &&&& {S_{3}}
+            \arrow[from=1-7, to=2-5]
+            \arrow[from=1-7, to=2-6]
+            \arrow[from=1-7, to=2-7]
+            \arrow[from=1-7, to=2-8]
+            \arrow[from=2-1, to=1-3]
+            \arrow[from=2-2, to=1-3]
+            \arrow[from=2-3, to=1-3]
+            \arrow[from=2-4, to=1-3]
+            \arrow[squiggly, tail reversed, from=2-4, to=2-5]
+            \arrow[from=2-5, to=3-7]
+            \arrow[from=2-6, to=3-7]
+            \arrow[from=2-7, to=3-7]
+            \arrow[from=2-8, to=3-7]
+            \arrow[from=3-3, to=2-1]
+            \arrow[from=3-3, to=2-2]
+            \arrow[from=3-3, to=2-3]
+            \arrow[from=3-3, to=2-4]
+        \end{tikzcd}
+    \]}
+    Moreover, for $M=\mathbb{Q}(\sqrt[3]{2})$, $\operatorname{Gal}(L /M)=\{\gamma\in \operatorname{Gal}(L /\mathbb{Q})|\gamma(\sqrt[3]{2})=\sqrt[3]{2}\}=\{e,(12)\}$. $\left| \operatorname{Gal}(L /M) \right| =[L:M]=2$. 
+
+    For $H=\langle(123)\rangle\leq \operatorname{Gal}(L /\mathbb{Q})$, $L^{H}=\{\alpha\in \mathbb{Q}(\sqrt[3]{2},\omega)|\sigma(\alpha)=\alpha=\mathbb{Q}(\omega)\}$. 
+
+    \medskip
+    To verify Theorem \ref{thm-FTGT-2}, note that 
+    \begin{center}
+        $H=\langle(123)\rangle\lhd S_{3}$ is normal $\iff$ $\mathbb{Q}(\omega) /\mathbb{Q}$ is Galois,
+    \end{center} 
+    \begin{center}
+    $\langle(12)\rangle\leq S_{3}$ is not normal $\iff$ $\mathbb{Q}(\sqrt[3]{2}) :\mathbb{Q}$ is not Galois.     
+    \end{center}
+\end{example}
+
+\section{Transitivity of $\operatorname{Gal}(L/K)$}
+
+\begin{definition}
+    Let $H\leq S_{n}$, we say $H$ is {\bf transitive} if for any $i,j\in \{1,\dots,n\}$, $\exists \sigma\in H$ such that $\sigma(i)=j$. 
+\end{definition}
+
+In other words, if we treat $H$ as an $H$-action on $S=\{1,\dots, n\}$, $H$ is transitive means $\mathrm{orb}(i)=S$ for all $i$. 
+
+\begin{example}
+    Let $S_{4}$ act on $\{1,2,3,4\}$, then $\langle(1234)\rangle$ is transitive but $\langle(12)\rangle$, $\langle(12)(34)\rangle$ are not. 
+\end{example}
+
+\begin{theorem}\label{thm-transitivityGaloisGroup}
+    Let $L :K$ be a splitting extension of $p(x)\in K[x]$ with $p(x)$ separable and irreducible. Then $\operatorname{Gal}(L /K)\leq S_{n}$ ($n=\deg p(x)$) is transitive. 
+\end{theorem}
+
+\begin{lemma}\label{lem-orbitMinimalPoly}
+    Let $L :K$ be Galois, $\alpha\in L$. Then $m_{\alpha}(x)\in K[x]$ satisfies 
+    $$m_{\alpha}(x)=\prod_{\beta\in \mathrm{orb}(\alpha)}(x-\beta),$$ where $\mathrm{orb}(\alpha)=\{\gamma(\alpha)|\gamma\in \operatorname{Gal}(L /K)\}$. 
+\end{lemma}
+
+\begin{proof}
+    Let $\mu(x)=\prod_{\beta\in \mathrm{orb}(\alpha)}(x-\beta)\in L[x]$. Then $\mu(x)\in L^{\operatorname{Gal}(L/K)}[x]=K[x]$ by the proof of $(2) \Rightarrow (3)$ in the proof of Theorem \ref{thm-galcondition}. Moreover, since $\alpha \in \mathrm{orb}(\alpha)$, one has $\mu(\alpha)=0$. So 
+    $$m_{\alpha}(x)\mid \mu(x).$$ 
+    
+    We next prove $\mu(x)$ is irreducible. If not, write $\mu(x)=a(x)\cdot b(x)$ with $a(x), b(x)\in K[x]$ and $\deg a, \deg b<\deg \mu$. Assume $a(\alpha)=0$, then for any $\beta=\gamma(\alpha)\in \mathrm{orb}(\alpha)$, 
+    \[a(\beta)=a(\gamma(\alpha))=\gamma(a(\alpha))=0.\]
+    So $\beta$ is also a root of $a(x)$, and hence $(x-\beta) | a(x)$ for all $\beta \in \mathrm{orb}(\alpha)$.
+    However $\deg a<\deg \mu=\left| \mathrm{orb}(\alpha) \right| $, contradiction! 
+    We must have $\mu(x)$ irreducible and thus 
+    $$m_{\alpha}(x) = \mu(x)$$ 
+    is the minimal polynomial. 
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm-transitivityGaloisGroup}]
+    Let $\alpha_{1},\dots, \alpha_{n}$ be all the roots of $p(x)$, so that
+    $L=K(\alpha_{1},\dots, \alpha_{n}):K$ and $p(x)=\prod_{i=1}^{n}(x-\alpha_{i})\in L[x]$. 
+    Since $p(x)$ is irreducible in $K[x]$, $p(x)$ must be the minimal polynomial of each $\alpha_{i}$, for any $1\leq i\leq n$. Therefore, 
+    $$\prod_{i=1}^{n}(x-\alpha_{i}) = p(x) = m_{\alpha_i}(x) = \prod_{\beta\in \mathrm{orb}(\alpha_i)}(x-\beta)\in L[x]$$
+    for all $1 \leq i \leq n$ by Lemma \ref{lem-orbitMinimalPoly}. By comparing the linear terms on the above equation, one concludes that $\mathrm{orb}(\alpha_{1})=\mathrm{orb}(\alpha_{2})=\cdots=\mathrm{orb}(\alpha_{n}) = \{\alpha_1, \dots, \alpha_n\}$, i.e. $\operatorname{Gal}(L/K)$ is transitive.
+\end{proof}
+
+\section{Parity of $\operatorname{Gal}(L/K)$}
+\begin{theorem} \label{thm-discrim}
+Let $ p(x) \in K[x] $ and $ L/K $ as above. Consider 
+$$
+\Delta = \Delta(\alpha_1,\ldots,\alpha_n) := \prod_{i<j} (\alpha_i - \alpha_j)^2,
+$$ 
+where $ \alpha_1,\ldots,\alpha_n $ are roots of $ p(x) $. Then:
+\begin{itemize}
+    \item $ \Delta \in K^* $, and it can be expressed in terms of coefficients of $ p(x) $
+    \item If $ \operatorname{char}(K) \neq 2 $, then
+    $$
+    \operatorname{Gal}(L/K) \leq A_n \iff \Delta \text{ is a square in } K^*,\ \text{i.e. }\Delta = a^2 \text{ for some } a \in K^*
+    $$
+\end{itemize}
+\end{theorem}
+
+\begin{example}
+For $ p(x) = x^3 - 2 \in \mathbb{Q}[x] $, we have $ \Delta = -108 \notin \mathbb{Q}^{*2} $, hence
+$$
+\operatorname{Gal}(\mathbb{Q}(\sqrt[3]{2}, \omega)/\mathbb{Q}) \nleq A_3.
+$$
+In fact, $ \operatorname{Gal}(\mathbb{Q}(\sqrt[3]{2}, \omega)/\mathbb{Q}) = S_3 $.
+\end{example}
+
+\begin{proof}
+    \textbf{(1)} Note that $\Delta$ is symmetric over ${\alpha_1,\cdots,\alpha_n}$. Since
+$\operatorname{Aut}_K(L) \leq S_n$ by Proposition, this implies
+\ref{prop-injectToSymmetricGroups}, 
+    $$\Delta\in L^{\operatorname{Aut}_K(L)} = K.$$ 
+    By the Fundamental Theorem of Symmetric Polynomials over a field $K$, \[\Delta \in K[s_1(\alpha_1, \alpha_2, ..., \alpha_n), ..., s_n(\alpha_1, \alpha_2, ..., \alpha_n)]\] 
+    On the other hand, \[p(x) = \prod_{i=1}^{n} (x-a_i) = x^n - s_1(\alpha_1, ..., \alpha_n)x^{n-1}+...+(-1)^n s_n(\alpha_1, ..., \alpha_n) \in K[x],\] so $s_i(\alpha_1, \dots,\alpha_n) \in K$ is the coefficient of $x^{n-k}$ in $p(x)$, and hence
+    $\Delta$ can be expressed by the coefficients of $p(x)$. 
+    
+\textbf{(2)} Consider
+$$
+\sqrt{\Delta} := \prod_{i<j} (\alpha_i - \alpha_j) \in L
+$$
+For all $\sigma \in \operatorname{Gal}(L/K)$, $\sigma$ permutes the $\alpha_i$'s. So one has:
+$$
+\sigma(\sqrt{\Delta}) = \operatorname{sgn}(\sigma)\sqrt{\Delta}
+$$
+where $\operatorname{sgn}(\sigma)$ is the permutation signature (here we treat $\sigma \in S_n$). Therefore, when $\operatorname{char}(K) \neq 2$ (so that $1 \neq -1$ in $K$), one has:
+\begin{align*}
+    \sqrt{\Delta} \in K^* &\iff \sigma(\sqrt{\Delta}) = \sqrt{\Delta}\ \forall \sigma \in  \operatorname{Gal}(L/K)\\ 
+    &\iff \operatorname{sgn}(\sigma) = 1\ \forall \sigma \in \operatorname{Gal}(L/K)\\ 
+    &\iff \operatorname{Gal}(L/K) \leq A_n
+\end{align*}
+So the result follows.
+\end{proof}
+
+\section{Cyclotomic Extension}  
+In this section, we'll study $ x^n - 1 \in K[x] $. Assume $\operatorname{char}(K) = 0$ throughout (ensuring separability).
+
+\begin{definition}
+Let $ K $ be any field and $ n \in \mathbb{N} $. The {\bf $n^{th}$ roots of unity in $ K $} are:
+$$
+\mu_n(K) := \{ \xi \in K \mid \xi^n = 1 \}
+$$
+\end{definition}
+\begin{example}
+    \begin{itemize}
+        \item $\mu_n(\mathbb{C})=\{e^{2\pi i a/n},0\leq a\leq n-1\}$
+        \item $\mu_8(\mathbb{Q}(i))=\{-1,+1,-i,+i\}$
+    \end{itemize}
+\end{example}
+
+\begin{proposition}
+    $\mu_n(K)$ is a cyclic group.
+\end{proposition}
+\begin{proof}
+Note that $\mu_n(K)$ are roots of $x^n - 1$, so there are at most $n$ elements in $\mu_n(K)$, hence $|\mu_n(K)| \leq n$. Obviously, $\mu_n(K)$ is an abelian group.
+
+To see $\mu_n(K)$ is cyclic, we use the fact from MAT3004: For a finite abelian group $G$:
+\begin{center}
+    \fbox{$G$ is cyclic if and only if 
+    for all $d \mid |G|$, there exists a unique subgroup $H \leq G \text{ with } |H| = d$.}
+\end{center}
+
+
+Suppose $|\mu_n(K)| = k$. For any $\delta \in \mu_n(K)$, $\delta^k = 1$, hence:
+$$
+x^k - 1 = \prod_{\delta \in \mu_n(K)} (x - \delta)
+$$
+For any $d \mid k$, $x^k-1 \in K[x]$ can be factorized into:
+$$
+x^k - 1 = (x^d - 1)\left(x^{k-d} + x^{k-2d} + \cdots + 1\right)=\left(\prod_{i=1}^{d}(x-\delta_i)\right)\left(\text{other terms}\right)
+$$
+Thus the roots $H :=\{\delta\in K\ |\  \delta^d=1 \} = \{\delta_1, \delta_2, \ldots, \delta_d\}$ form a subgroup of $\mu_n(K)$ of order $d$. Moreover, for any $H' \leq \mu_n(K)$ with $|H'| =d$, the elements $\epsilon \in H'$ must satisfy $\epsilon^d = 1$ by Lagrange's Theorem. Hence $\epsilon \in H$ and $H' = H$ is unique.\qedhere
+\end{proof}
+
+\begin{remark}
+By the above proposition, one has 
+\begin{center}
+$ x^n - 1 \in K[x]$ splits over $K$ \quad $\Leftrightarrow$ \quad $|\mu_n(K)| = n$ \quad $\Leftrightarrow$ \quad $\mu_n(K) \cong \mathbb{Z}/n\mathbb{Z}$.    
+\end{center}
+For instance, since $ \mathbb{Q}(i) $ does \emph{not} split $ x^8 - 1 $, so
+$
+\mu_8(\mathbb{Q}(i)) \cong \mathbb{Z}/4\mathbb{Z}$ but not isomorphic to $\mathbb{Z}/8\mathbb{Z}
+$.
+\end{remark}
+
+\begin{definition}
+Let $K$ be a field, and $L:K$ be such that $\mu_n(L) \cong \mathbb{Z}/n\mathbb{Z}$ (for instance one can take the splitting extension $L:K$ of $x^n-1 \in K[x]$). The {\bf primitive $n^{th}$ roots of unity} $\omega \in \mu_n(L)$ are the generators of the cyclic group satisfying $\mu_n(L) = \langle \omega \rangle$.
+\end{definition}
+
+\begin{example} \label{eg-primroots}
+    The $n^{th}$ primitive roots of $\mu_n(\mathbb{C})$ are $e^{2\pi i a/n}$ for $\gcd(a,n) = 1$.
+    More generally, if $\omega \in \mu_n(L)$ is primitive, then all other primitive roots of $\mu_n(L)$ are of the form
+    $$\{\omega^a\ |\ \gcd(a,n) = 1\} = \{\omega^a\ |\ a \in \mathbb{Z}_n^*\}.$$
+    In the other words, the $n^{th}$ primitive roots form a multiplicative group isomorphic to $\mathbb{Z}_n^*$.
+\end{example}
+
+\begin{definition}
+    Let $L:K$ be such that $\mu_n(L) \cong \mathbb{Z}/n \mathbb{Z}$. Define the polynomial
+    $$\Phi_{n,K}(x) := \prod_{\beta\ \text{primitive root}}(x-\beta) = \prod_{a \in \mathbb{Z}_n^*}(x-\omega^a)$$
+for any primitive $n^{th}$ root $\omega \in \mu_n(L)$.
+\end{definition}
+\begin{example}
+Let $K = \mathbb{Q}$. When $ p $ is prime,
+$$
+\Phi_p(x) = \prod_{d=1}^{p-1} \left(x - e^{2\pi i d/p}\right) = 1 + x + \cdots + x^{p-1}
+$$
+When $ n = 4 $:
+$$
+\Phi_4(x) = (x - i)(x + i) = x^2 + 1 
+$$
+And when $ n = 6 $:
+$$
+\Phi_6(x) = (x - \omega)(x - \omega^5) = x^2 - x + 1 \quad (\omega = e^{2\pi i/6})
+$$
+\end{example}
+In fact, $\Phi_{n,K}(x)$ is independent of the choice of the splitting field extension $L:K$. This justifies our symbol $\Phi_{n,K}(x)$ (rather than $\Phi_{n,L}(x)$).
+\begin{lemma}
+    $\Phi_{n,k}(x)\in K[x] $, and is independent of the choice of $L:K$ satisfying $\mu_n(L) \cong \mathbb{Z}/n\mathbb{Z}$.
+\end{lemma}
+\begin{proof}
+    For any such $L:K$, let $\omega \in \mu_n(L)$ be a primitive root of unity. Then we have a splitting field $K\subseteq K(\omega) \subseteq L$ where $K(\omega)$ is the splitting field of $x^n-1 = \prod_{i \in \mathbb{Z}_n}(x-\omega^i)$. Therefore $K(\omega):K$ is Galois, and 
+    $$\Phi_{n,K}(x) = \prod_{a \in \mathbb{Z}_n^*}(x-\omega^a) \in K(\omega)[x].$$ 
+    Note that $\forall \sigma \in \operatorname{Gal}(K(\omega)/K)$, $\sigma$ maps primitive root to primitive root, that is $\sigma$ permutes the primitive roots of unity. 
+    Since the coefficients of $\Phi_{n,K}(x)$ are symmetric over the primitive roots, they are all fixed by $\sigma \in \operatorname{Gal}(K(\omega)/K)$. In other words, the coefficients of $\Phi_{n,K}$ are 
+    in $K(\omega)^{\operatorname{Gal}(K(\omega)/K)}=K$, which completes the proof.
+\end{proof}
+
+Due to the importance of $K(\omega):K$, we give the following:
+\begin{definition}
+The splitting extension $K(\omega):K$ of $x^n-1 \in K[x]$ is called the {\bf $n^{th}$ cyclotomic extension} of $K$.   
+\end{definition}
+
+\begin{theorem}
+Let $ K(\omega)/K $ be $n^{th}$ cyclotomic extension. Then:
+\begin{enumerate}
+    \item There exists an injective homomorphism
+    $$
+    \phi: \operatorname{Gal}(K(\omega)/K) \hookrightarrow \mathbb{Z}_n^\star
+    $$
+    
+    \item $\phi$ is an isomorphism if and only if the cyclotomic polynomial $\Phi_{n,K}(x)$ is irreducible over $K$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item Since $\phi$ maps primitive roots to primitive roots, then $\sigma(\omega)=\omega^{a(\sigma)}$, where $a(\sigma)\in \mathbb{Z}_n^*$, we define: $$\phi:\operatorname{Gal}(K(\omega)/K) \rightarrow \mathbb{Z}_n^\star \quad \text{by} \quad \phi(\sigma):=a(\sigma).$$
+        It is easy to check that this is an injective homomorphism.
+        \item $(\Rightarrow)$ Suppose $\phi$ is an isomorphism, then $ \operatorname{Gal}(K(\omega)/K) \simeq \mathbb{Z}_n^\star $, thus $\operatorname{orb}(\omega)=\{\omega^{a} \ |\ a \in \mathbb{Z}_n^\star \}$ consists all primitive roots (Example \ref{eg-primroots}). So
+        $$\Phi_{n,K}(x)=\prod_{\beta \text{ primitive roots}} (x-\beta) = \prod_{\omega^a \in \operatorname{orb(\omega)}}(x-\omega^a)=m_\omega(x),$$
+        where the last equality comes from Lemma \ref{lem-orbitMinimalPoly}. But we know $m_\omega  (x) $ is irreducible, so $\Phi_{n,K}(x)$ is also irreducible.
+        \\
+        $(\Leftarrow)$ Suppose $\Phi_{n,K}(x) $ is irreducible, then as above, we have 
+        $$\Phi_{n,K}(x)=m_\omega(x)=\prod_{\beta \text{ primitive  roots}}(x-\beta) =  \prod_{\omega' \in \operatorname{orb(\omega)}}(x-\omega')$$
+        then we have $|\operatorname{orb}(\omega)|=|\mathbb{Z}_n^\star|$, by orbit stabilizer theorem we conclude that $|\operatorname{Gal}(L/K)|=|\mathbb{Z}_n^\star|$
+    \end{enumerate}
+\end{proof}
+
+For instance, if $K = \mathbb{C}$, then any $\Phi_{n,\mathbb{C}}(x)$ splits in $\mathbb{C}[x]$, i.e. $\Phi_{n,\mathbb{C}}(x)$ is reducible if its degree is $> 1$, and hence $\phi: \operatorname{Gal}(\mathbb{C}(\omega)/\mathbb{C}) \to \mathbb{Z}_n^*$ is almost never an isomorphism (which is obviously true since $[\mathbb{C}(\omega):\mathbb{C}] = 1$. On the other extreme, if $K = \mathbb{Q}$, one has:
+\begin{theorem}
+    $\Phi_{n,\mathbb{Q}}(x)\in \mathbb{Z}[x]$ is always irreducible. Consequently, $\operatorname{Gal}(\mathbb{Q}(\omega)/\mathbb{Q}) \cong \mathbb{Z}_n^\star$.
+\end{theorem}
+\begin{proof}
+    We need to show that $m_\omega(x)=\Phi_{n,\mathbb{Q}}(x)$. Note that $m_\omega(x)|x^n-1$ in $\mathbb{Q}[x]$, so we have 
+    $$x^n-1=m_\omega(x) \cdot t(x)$$
+    for some $t(x) \in \mathbb{Q}[x]$.
+    \begin{itemize}
+        \item Claim 1: $m_\omega(x), t(x) \in \mathbb{Z}[x]$
+        \item Claim 2: For any prime $p$ such that $\operatorname{gcd}(p,n)=1$, $m_{\omega}(\omega^p)=0$
+    \end{itemize}
+    Suppose the claims hold, then for any $a$ such that $\operatorname{gcd}(a,n)=1$, $a=p_1p_2\cdots p_n$ with $\gcd(p_i,n) = 1$. Then 
+    \begin{align*}
+    m_\omega(\omega)=0 &\Rightarrow m_\omega(\omega^{p_1})=0\ (\text{so } m_{\omega} = m_{\omega^{p_1}}) \\ &\Rightarrow m_\omega(\omega^{p_1p_2})=m_{\omega^{p_1}}((\omega^{p_1})^{p_2})=0 \\ 
+    &\ \ \vdots \\
+    &\Rightarrow m_\omega(\omega^{p_1p_2\dots p_n}) = m_\omega(\omega^a)=0\end{align*}
+    and then we conclude that $m_\omega(x) $ contains all the primitive roots $\omega^a$ for $\gcd(a,n) =1$, i.e.
+    $$\Phi_{n,\mathbb{Q}}(x)\ |\ m_\omega(x)$$
+    and the equality comes from the fact that $m_{\omega}(x)$ is irreducible.
+    
+    \medskip
+    We left Claim 1 as an exercise (it uses the proof of Gauss Lemma), now we prove Claim 2 -- Suppose on contrary that $m_\omega(\omega^p)\neq 0$, then $m_\omega(\omega^p)t(\omega^p)=(\omega^p)^n-1=0 $ in $\mathbb{Z}[x]$. So $t(\omega^p)=0$ and thus $m_\omega(x)|t(x^p)$ in $\mathbb{Z}[x]$. 
+    
+    Therefore, there exists $h(x) \in \mathbb{Z}[x]$ such that
+    $$m_\omega(x)\cdot h(x)=t(x^p) \in \mathbb{Z}[x]\quad \Rightarrow \quad m_\omega(x) \cdot h(x)=t(x)^p \in \mathbb{Z}_p[x]  $$
+   By looking at the factors of the above equation and the fact that $\mathbb{Z}_p[x]$ is a UFD, 
+   $$\operatorname{gcd}(m_\omega(x),t(x))=g(x)\neq 1 \text{  in  } \mathbb{Z}_p[x].$$ 
+    However, one also has $x^n-1=m_\omega(x) \cdot t(x)$ in $\mathbb{Z}_p[x]$ as well as in $\mathbb{Z}_p[x]$ at the beginning of the proof. Therefore, 
+   $(g(x))^2|x^n-1$ in $\mathbb{Z}_p[x]$. But we know that $x^n-1 $ has no repeated roots, so we arrive at a contradiction.
+\end{proof}
+\section{Kummer Extension}
+In this section, we will study the polynomial $p(x)=x^n-a \in L[x]$, where $L$ satisfies 
+\begin{itemize}
+    \item $\operatorname{char}(L) \nmid n$ (to ensure $p(x)$ has no repeated roots); and
+    \item $x^n-1$ splits in $L[x]$ (we will write $\omega \in L$ as an $n^{th}$ primitive root).
+\end{itemize}
+Suppose $M:L$ be such that $\beta \in M$ is a root of $x^n-a$, then all its other roots are given by $\omega^i\beta \in M$.
+\begin{lemma} \label{lem-kummer}
+    Let $M:L$ be Galois extension of $x^n-a\in L[x]$. For any root $\rho \in M$ of $x^n-a$, the map 
+    $$\psi: \operatorname{Gal}(M/L) \hookrightarrow \mu_n(L)\simeq \mathbb{Z}_n$$ 
+$$\psi(\sigma):=\sigma(\rho)/\rho  $$  
+is a well-defined injective group homomorphism.
+
+Moreover, if $x^n-a$ is irreducible, then $\psi$ is an isomorphism with $\operatorname{Gal}(M/L) \cong \mathbb{Z}_n$.
+\end{lemma}
+\begin{proof}
+Firstly, we need to show \(\sigma(\rho)/ \rho \in \mu_n(L)\). Since \begin{align*}
+    \left(\frac{\sigma(\rho)}{\rho} \right)^n = \frac{\sigma(\rho^n)}{\rho^n} = \frac{\sigma(\alpha)}{\alpha} = \frac{a}{a} = 1,
+\end{align*}  
+the last two equalities holds since \(\sigma \in \mathrm{Gal}(M/L), a \in L\). We observe that \(\sigma(\rho)/\rho \in M\) is a root of the polynomial \(x^n -1\). Since \(x^n -1 = \displaystyle\prod_{1 \leq i \leq n} (x-\omega^i) \in L[x] \subseteq M[x]\).  Therefore \( \sigma(\rho)/\rho = \omega^i \in \mu_n(L) \subseteq \mu_n(M)\).
+
+Secondly, we need to verify our definition of $\psi$ is independent of the choice of \(\rho\) -- Suppose that \(\chi \in M\) also satisfies \(\chi^n = a\), then \(\rho/ \chi = \omega^i \in \mu_n(L)\) is primitive root. Since \((\rho/\chi)^n = a^n / a^n =1\), we can compute
+\begin{align*}
+    \frac{\sigma(\rho)}{\rho} = \frac{\sigma(\omega^i \chi)}{\omega^i \chi} = \frac{\sigma(\omega^i)\sigma(\chi)}{\omega^i\chi} = \frac{\omega^i\sigma(\chi)}{\omega^i\chi} = \frac{\sigma(\chi)}{\chi},
+\end{align*}
+with \(\theta' \in L\), the \(\sigma(\rho)/\rho\) is well defined.
+
+Thirdly, we need to check that \(\psi\) is a group homomorphism: For all \(\sigma_1 , \sigma_2 \in \mathrm{Gal}(M/L)\),
+\begin{align*}
+     & \quad \quad \quad \psi(\sigma_1 \sigma_2) = \psi(\sigma_1) \psi(\sigma_2)\\
+     &\Leftrightarrow \quad\frac{\sigma_1\sigma_2(\rho)}{\rho} = \frac{\sigma_1(\rho)}{\rho} \cdot\frac{\sigma_2(\rho)}{\rho}\\
+    &\Leftrightarrow \quad  \sigma_1 \sigma_2(\rho) = \frac{\sigma_1(\rho) \sigma_2(\rho)}{\rho}\\
+     &\Leftrightarrow \quad \frac{\sigma_1 \sigma_2(\rho)}{\sigma_1(\rho)} = \frac{\sigma_2(\rho)}{\rho}\\
+   &\Leftrightarrow \quad 
+\sigma_1\left(\frac{\sigma_2(\rho)}{\rho}\right) = \frac{\sigma_2(\rho)}{\rho}.
+\end{align*}
+Note that \(\sigma_2(\rho)/\rho \in \mu_n(L)\), so \(\sigma_1\in \mathrm{Gal}(M/L)\) fixes \(\sigma_2(\rho)/\rho\) and hence the last equality holds.
+
+Finally, to show \(\psi\) is injective, suppose that \(\psi(\sigma) = 1 \in \mu_n(L)\), then \(\sigma(\rho)/\rho = 1\) and hence \(\sigma(\rho) = \rho\). For all roots \(\left\{ \rho \omega^i| 0 \leq i \leq n-1\right\}\) of polynomial \(x^n -a\), \(\sigma(\rho \omega^i) = \sigma(\rho) \sigma(\omega^i) = \rho \omega^i\), since \(\omega^i \in L\). Therefore, \(\sigma\) fixes all roots of \(x^n -a\), it is the identify map on \(M = L(\rho, \rho\omega, \dots, \rho \omega^{n-1})\).
+\end{proof}
+
+The importance of the Lemma \ref{lem-kummer} is that its converse also holds:
+\begin{theorem}\label{thm-cyclicGalImpliesKummerExtension}
+    Let $L$ be such that $x^n-1$ splits in $L$ and $\operatorname{char}(L)\nmid n$. Suppose  $M:L$ is a Galois extension such that $\operatorname{Gal}(M/L) = \langle \sigma \rangle \cong \mathbb{Z}_n$. Let $\omega \in L$ be a primitive $n^{th}$ of unity, then
+\begin{enumerate}
+    \item[(a)] There exists $\alpha \in M$ such that
+    $$\beta := \alpha + \omega\sigma(\alpha) + \dots + \omega^{n-1}\sigma^{n-1}(\alpha) \neq 0.$$
+    \item[(b)] $b := \beta^n \in L$.
+    \item[(c)] $M = L(\beta)$ is a simple extension, with $m_{\beta}(x) = x^n - b$.
+\end{enumerate}
+\end{theorem}
+From now on, we call such $M:L$ satisfying the hypotheses of the above theorem a {\bf Kummer extension}.
+\begin{proof}
+    (a) is proved in Homework 2 Question 8. For (b), one can easily check that \(\sigma(\beta) = \omega^{-1} \beta \) which implies
+    \begin{equation*}
+        \sigma^i(\beta) = \omega^{-i} \beta     \quad \quad
+    \end{equation*}
+    Also, \(\sigma^i(\beta^n) = \left(\sigma^i(\beta)\right)^n = \omega^{-in} \beta^n = 1^{-i}\beta = \beta^n\). Therefore, \(\beta^n\) is fixed by \(\langle \sigma \rangle = \mathrm{Gal}(M/L)\), i.e. \(\beta^n \in M^{\mathrm{Gal}(M/L)} = L.\)
+
+    For (c), Obviously, \(L(\beta) \subseteq M\). Since \([M:L] = |\mathrm{Gal}(M/L)| = n\), by tower law, we just need to show \(\left[L(\beta):L\right]=n\). We study the minimal polynomial \(m_\beta(x) \in L[x]\), by lemma \ref{lem-orbitMinimalPoly}
+    \begin{align*}
+        m_\beta(x) = \prod_{\gamma \in \mathrm{orb}(\beta)} (x- \gamma).
+    \end{align*}
+    But Equation $(*)$ implies that \(\mathrm{orb}(\beta) = \left\{\sigma^i(\beta)\right\} = \{\beta, \omega^{-1}\beta, \dots, \omega^{-(n-1)}\beta\}\), then
+    \begin{align*}
+        m_{\beta}(x) =& \prod_{i=0}^{n-1}\left(x - \sigma^{i}(\beta)\right) = \prod_{i=0}^{n-1}(x-\omega^{-i}\beta) =x^n - \beta^n = x^n - b
+    \end{align*}
+    Therefore, \([L(\beta):L] = \mathrm{deg}\left(m_\beta(x)\right) = n\).
+\end{proof}
+Before Theorem \ref{thm-cyclicGalImpliesKummerExtension}, we compute the Galois group $\operatorname{Gal}(M/L)$ of a given field extension $M:L$. However, Theorem \ref{thm-cyclicGalImpliesKummerExtension} works in the opposite direction -- we obtain the field extension $M:L$ from its Galois group $\operatorname{Gal}(M/L)$. This will play an important role in the study of roots of polynomials in the next section.

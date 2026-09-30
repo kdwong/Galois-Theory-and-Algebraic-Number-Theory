@@ -1,0 +1,543 @@
+\chapter{Field Extensions}
+Galois Theory is the study on the roots of polynomials \(p(x) \in K[x]\) over a field $K$. In order to get a sense on what is ahead of us, we begin with the following:
+\begin{definition}
+    Let \(L, L'\) be field extensions of \(K\), with $\iota: K \hookrightarrow L$ and $\iota': K \hookrightarrow L'$
+    are the corresponding injective ring homomorphisms.
+    A {\bf homomorphism of \(K\)-extensions} (shorthand as {\bf $K$-homomorphisms} from now on) is a ring homomorphism such that the diagram
+\begin{center}
+    \begin{tikzcd}
+L  \arrow[rr, "\phi"] & & L'\\
+ &K \arrow[hook', lu, "\iota" description]  \arrow[hook, ru, "\iota'" description] & &
+\end{tikzcd}
+\end{center}
+commutes, i.e. $\phi|_K = \iota'$.
+\end{definition}
+By abuse of notations, we often treat $\iota$ and $\iota'$ as identity maps instead of injective maps. Also, we will shorthand the phrase `homomorphisms of $K$-extensions' to `$K$-homomorphisms' whenever it causes no confusions.
+\begin{proposition} \label{prop-khominjevtive}
+    Let $\phi: L \to L'$ be a $K$-homomorphism. Then $\phi$ is injective.
+\end{proposition}
+\begin{proof}
+    Suppose $\alpha \in L$ is such that $\phi(\alpha) = 0$. Consider its minimal polynomial $m_{\alpha}(x) = x^n + \dots + a_1x + a_0 \in K[x]$ such that
+    $$m_{\alpha}(\alpha) = \alpha^n + \dots + a_1 \alpha + a_0 = 0$$
+    Suppose on contrary $\alpha \neq 0$. Then the minimal polynomial $m_{\alpha}(x) \neq x$ must have $a_0 \neq 0$, otherwise it is reducible over $K$. By applying $\phi$ in the above equation:
+    $$\phi(\alpha^n + \dots + a_1 \alpha + a_0) = \phi(0) = 0$$
+    Since $\phi$ is a $K$-homomorphism,  $\phi(a_i) = a_i$ for all $a_i \in K$ and one has:
+    $$0 = \phi(\alpha)^n + \dots + \phi(a_1) \phi(\alpha) + \phi(a_0) = 0 + \dots + a_1 \cdot 0 + a_0 = a_0,$$
+    contradicting the fact that $a_0 \neq 0$. Therefore, $\alpha = 0$, and therefore $\phi$ is injective.
+\end{proof}
+In the special case when \(L' = L\), we have:
+\begin{definition}
+Let $L:K$ be a field extension. Define $\mathrm{Aut}_K(L)$ by the collection of $K$-homomorphisms $\phi: L \to L$ (which is bijective by Proposition \ref{prop-khominjevtive}), i.e.
+\[
+     \mathrm{Aut}_K(L) := \left\{\phi: L \to L \ |\ \phi\ \text{is bijective and } \phi|_K = id \right\} 
+\]    
+\end{definition}
+Note that $\mathrm{Aut}_K(L)$ has a natural group structure by letting multiplication as the 
+composition of two (bijective) homomorphisms, and identity element being the identity map $id: L \to L$. 
+
+\vspace{2mm}
+We are now in the position to give a brief overview of Galois Theory -- let \(L = K(\alpha_1,\dots, \alpha_n) : K\) be a splitting extension of \(p(x) \in L[x]\) so that
+\[
+    p(x) = c(x - \alpha_1) \dots (x - \alpha_n) \in L[x],
+\]
+(See Section \ref{sec-splitting} for more details), one would like to study the roots $\alpha_i$ of $p(x)$ by understanding the structure of $L:K$. To do so, note that
+for any \(\phi \in \mathrm{Aut}_K(L)\), 
+$$\phi(\alpha_i) = \alpha_{\sigma_{\phi}(i)}$$
+permutes the roots of $p(x)$ (can add proof of it...). Therefore, the group $\mathrm{Aut}_K(L)$ encapsulates the structure of the roots of $p(x)$. In other words,
+\begin{center}
+    \fbox{Study roots of $p(x) \in K[x]$ $\leftrightsquigarrow$ Study the group $\mathrm{Aut}_K(L)$ for splitting field $L:K$ of $p(x)$} 
+\end{center}
+
+\section{Separable Extensions} \label{subsec-separable}
+Let $K$ be a field and $p(x) \in K[x]$. Technically, we will only study $p(x) \in \overline{K}[x]$ with no repeated roots $\{\alpha_1, \dots, \alpha_n\}$ with $\alpha_i \neq \alpha_j$ for all $i \neq j$. Under such setting, the permutations by $\mathrm{Aut}_K(L)$ on the $\alpha_i$'s are well-defined.
+So we need to test if $p(x)$ has no repeated roots.
+
+\begin{definition} Let $p(x) = a_nx^n + \ldots + a_1x + a_0 \in K[x]$.
+\begin{itemize}
+    \item[(a)] The {\bf formal derivative} of $p(x)$ is $p'(x) = (n \cdot a_n)x^{n-1} + \dots + (2 \cdot a_2)x + a_1 \in K[x]$.
+    \item[(b)] We say $p(x)$ {\bf has repeated roots} if $\gcd(p(x), p'(x)) \neq 1$.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+Let $p(x) = c \prod_{i=1}^n (x-\alpha_i) \in K[x]$ be such that $p(x)$ splits in $K$. Then 
+\begin{center}
+$(p(x), p'(x)) \neq 1 \iff \exists i \neq j \mathrm{ s.t. } \alpha_i = \alpha_j$.    
+\end{center}
+To see why it is so, recall that the {\bf Leibniz rule} for formal derivative
+$$(uv)' = u'v + uv'.$$
+Then we have
+\begin{center}
+    \(p'(x) = c \displaystyle \sum_{j=1}^n (x-\alpha_1)\dots \widehat{(x-\alpha_i)} \dots (x-\alpha_n)\).
+\end{center}
+
+If \(p(x)\) has repeated roots $\alpha_i = \alpha_j$ for $i \neq j$, then each summand of $p'(x)$ in the above equation has a common factor of $(x-\alpha_i) = (x-\alpha_j)$, and hence
+\begin{center}
+     \((x-\alpha_i) | \gcd_{K[x]}\left(p(x), p'(x)\right)\).
+\end{center}
+
+On the other hand, let all $\alpha_i$'s be all distinct. Suppose on contrary that $\gcd(p(x), p'(x)) \neq 1$. Since the irreducible factors of $p(x)$ are $(x-\alpha_i)$, there exists $1 \leq \ell \leq n$ such that
+$$(x-\alpha_{\ell}) \mid p'(x)$$
+and hence $p'(\alpha_{\ell}) = 0$ by Factor Theorem. However, by the equation of $p'(x)$ again, 
+$$p'(\alpha_{\ell}) = c \prod_{i \neq l} (\alpha_{\ell} - \alpha_i) \neq 0$$
+since all $\alpha_i$'s are distinct, which leads to a contradiction.
+\end{example}
+
+
+\begin{lemma}
+    Let $L:K$ be a field extension, and $p, q \in K[x]$. Then $\gcd_L(p, q) = \gcd_K(p, q)$.
+\end{lemma} 
+\begin{proof}
+    The Euclidean algorithm of finding $\gcd(p, q)$ is $K[x]$ and in $L[x]$ are the same.
+\end{proof} 
+
+Therefore, one has:
+\begin{corollary}\label{cor-sepPolyFieldExt}
+    Let $L:K$ be any field extension and $p(x) \in K[x]$. Then $p(x)$ has repeated roots in $K[x]$ if and only if $p(x)$ has repeated roots in $L[x]$.
+\end{corollary}
+
+As a direct consequence of the above corollary, $p(x) \in K[x]$ has repeated roots if and only if in the algebraic closure $\overline{K}$ of $K$, the factorization 
+$$p(x) = c \prod_{i=1}^n(x - \alpha_i) \in \overline{K}[x]$$
+of $p(x)$ satisfies $\alpha_i = \alpha_j$ for some 
+$i \neq j$. For example, let $p(x) = x^2+1 \in \mathbb{R}[x]$. Then $(p, p') = (x^2, 2x) = 1 \implies p$ has no repeated roots in $\mathbb{R}[x]$. This implies $p(x) = (x-i)(x+i)$ has no repeated roots in $\mathbb{C}[x]$.
+
+\begin{lemma} \label{lem-factorseparable}
+Let $p(x), q(x) \in K[x]$ be such that $q(x) \mid p(x)$. Suppose $p(x)$ has no repeated roots, then so is $q(x)$.
+\end{lemma}
+
+\begin{proof}
+Suppose on contrary that $\gcd(q, q') = r \neq 1$. Then $r \mid q  \Rightarrow q = rw$ and $r \mid q' \Rightarrow q'=rv$.
+Write $p = s \cdot q$ for some $s \in K[x]$. Then Leibniz rule implies that
+$$p' = s'q + sq' = s'(rw) + s(rv) = r(s'w+sv)$$
+Then $r \mid \gcd(p, p')$, which contradicts the assumption that $p$ has no repeated roots.
+\end{proof}
+
+\begin{proposition} Let $p(x) \in K[x]$ be irreducible. Suppose $\mathrm{char}(K) \nmid \mathrm{deg}(p)$ (for instance $\mathrm{char}(K) = 0$), then $p(x)$ has no repeated roots.
+\end{proposition}
+
+\begin{proof}
+Consider $p(x) = a_n x^n + \dots + a_1 x + a_0$ with $a_n \neq 0$, so that $\deg(p) = n$. Then $p'(x) = na_n x^{n-1} + \dots + a_1$. By hypothesis, $n a_n \neq 0$ in $K$, so 
+$p'$ is a nonzero polynomial.
+
+Consequently $\gcd(p,p') = 1$ by irreducibility of $p$ and the fact that $p' \neq 0$.
+\end{proof}
+
+\begin{example} \label{eg-nonsep} 
+$K = \mathbb{F}_2(t) = \{ \frac{a(x)}{b(x)}\ |\ a(x),\ b(x) \in \mathbb{F}_2[t],\ b(t) \neq 0\}$ be the field of fractions of the polynomial ring $\mathbb{F}_2[t]$ with $\mathrm{char}(K) = 2$. 
+
+Consider $p(x) = x^2 + t \in K[x]$ with $\deg(p) = 2 = \mathrm{char}(K)$. Then
+$p' = 2x = 0 \in K[x]$, therefore
+$$\gcd(p,p') = \gcd(p,0) = p$$
+and hence $p$ has repeated roots.
+\end{example}
+
+\begin{definition} Let $L:K$ be a field extension. 
+\begin{itemize}
+    \item[(a)] A polynomial $p(x) \in K[x]$ is called \textbf{separable} if all the irreducible components of $p(x)$ has no repeated roots.
+    \item[(b)] $L:K$ is a \textbf{ separable extension} if for all $\alpha \in L$, the minimal polynomial
+    $m_{\alpha}(x) \in K[x]$
+    is separable.
+\end{itemize}
+\end{definition}
+
+\begin{example} Let $K = \mathbb{F}_2(t)$. Consider $p(x) = x^2 + t \in K[x]$ and $L := K[x]/\langle p(x) \rangle$. 
+Take $\alpha := x + \langle p(x) \rangle \in L$, so that 
+$$m_{\alpha}(x) = p(x).$$
+We have seen in Example \ref{eg-nonsep} that $p(x)$ is not separable. Therefore, $L:K$ is not separable. 
+\end{example}
+
+
+
+
+
+
+\begin{proposition}
+Let $M:L$ and $L:K$ be field extensions. Then 
+\begin{center}
+$M:K$ is separable \quad $\Rightarrow$ \quad  both $M:L$ and $L:K$ are separable.    
+\end{center}
+\end{proposition} 
+
+\begin{proof}
+\(L:K\) is obviously separable, since for any \(\alpha \in L(\subseteq M)\), \(m_\alpha(x) \in K[x]\) is separable.
+
+As for separability of \(M:L\), take \(\beta \in M\) and consider \(m_\beta^L(x) \in L[x]\) be the minimal polynomial of \(\beta\) in \(K[x]\). We want to show \(m_\beta^L(x)\) is separable, which has no repeated roots.
+
+Since \(M:K\) is separable, \(m_\beta^K(x) \in K[x]\) has no repeated root. Moreover, since \(m_\beta^K(\beta)  = 0\) in \(K[x] \subseteq L[x]\), which implies \[m_\beta^L(x )\ |\ m_\beta^K(x) \in L[x].\] 
+Then by Lemma \ref{lem-factorseparable}, \(m_\beta^L(x) \in L[x]\) also has no repeated roots.
+\end{proof}
+In fact, the converse of the above proposition also holds, but we do not need to use this fact.
+%\medskip
+%$(\Leftarrow)$:  Let $\alpha \in M$. By hypothesis, we know that \(M:L\) is separable. So the minimal polynomial 
+%\[m_\alpha^L(x) = x^d + a_{d-1}x^{d-1} + \dots a_1 x+a_0 \in L[x]\] %has no repeated roots. For the $a_{d-1}, \dots, a_0 \in L$ in the above equation, consider
+%    \begin{align*}
+%        K \subseteq K(a_0) \subseteq K(a_0,a_1) \subseteq \dots \subseteq K(a_0, a_1, \dots, a_{d-1}) \subseteq K(a_0, a_1, \dots, a_{d-1}, \alpha),
+%    \end{align*}
+%    Since $L:K$ is separable, the minimal polynomials \(m_{a_{i+1}}^K(x) \in K[x]\) in $K$ has no repeated roots. Since \(m_{a_{i+1}}^{K(a_0, \dots, a_{i})}(x)\ |\ m_{a_{i+1}}^K(x)\) in $K(a_0, \dots, a_{i})[x]$,
+%    $m_{a_{i+1}}^{K(a_0, \dots, a_{i})}(x) \in K(a_0, \dots, a_{i})[x]$ also has no repeated roots.
+    
+
+
+
+\section{Simple Extensions}
+\begin{proposition} \label{prop-simpKhomo}
+Let $\alpha$ be algebraic over $K$, with minimal polynomial $m_{\alpha}(x) \in K[x]$. Then for any field extension $M:K$, the set of $K$-homomorphisms
+ \begin{tikzcd}
+K(\alpha)  \arrow[rr, "\phi"] & & M\\
+ &K \arrow[hook', lu]  \arrow[hook, ru] & &
+\end{tikzcd}
+is in one-one correspondence with the number of roots of $m_{\alpha}(x) \in M[x]$.
+    
+\end{proposition}
+\begin{example}
+Consider the set of $\mathbb{Q}$-homomorphisms $\phi: \mathbb{Q}(\sqrt{2}) \to \mathbb{Q}(i)$. By the proposition,
+\[
+ \begin{tikzcd}
+\mathbb{Q}(\sqrt{2})  \arrow[rr, "\phi"] & & \mathbb{Q}(i)\\
+ &\mathbb{Q} \arrow[hook', lu]  \arrow[hook, ru] & &
+\end{tikzcd} \longleftrightarrow \quad 
+ \left\{ \text{roots of } x^2 - 2 \text{ in } \mathbb{Q}(i) \right\}
+\]
+Since right hand side has no roots (\(= \pm \sqrt{2} \notin \mathbb{Q}(i)\)), there is no such \(\phi: \mathbb{Q}(\sqrt{2}) \to \mathbb{Q}(i)\) on the left hand side.
+\end{example}
+
+
+\begin{proof}
+Recall that $K(\alpha) \cong K[x]/\langle m_\alpha(x) \rangle$, where the isomorphism maps $\alpha \mapsto \overline{x} := x + \langle m_{\alpha}(x) \rangle$. Then all $K$-homomorphisms \(\phi: K(\alpha) \cong \frac{K[x]}{\langle m_\alpha(x) \rangle} \xrightarrow{\phi} M\)
+is uniquely determined by \(\phi(\alpha) \in M\) (or equivalently \(\phi(\bar{x}) \in M\)). Since \(\phi\) is \(K\)-homomorphism, one has:
+\[
+m_\alpha(\phi(\bar{x})) = \phi(m_\alpha(\bar{x})) = \phi(0) = 0.
+\]
+Consequently, \(\phi(\bar{x}) = \phi(\alpha)\) must be a root of \(m_\alpha(x)\), and the result follows. \end{proof}
+
+\begin{theorem} \label{thm-genKhomo}
+Let $\alpha_1, \dots, \alpha_n$ be algebraic over $K$, and $L := K(\alpha_i, \dots, \alpha_n)$. Suppose $M:K$ is such that $m_{\alpha_i}(x)$ splits in $M$ for all $i$ (e.g. $M = \overline{K}$), then the number of $K$-homomorphisms
+
+ \begin{tikzcd}
+L  \arrow[rr, "\phi"] & & M\\
+ &K \arrow[hook', lu]  \arrow[hook, ru] & &
+\end{tikzcd}
+is non-zero and bounded above by $[L:K]$. 
+
+Moreover, if all $m_{\alpha_i}(x)$ are separable, then the number of $K$-homomorphisms is {\bf exactly} equal to $[L:K]$ (the converse of this statement is also true, but we do not need this fact).
+\end{theorem}
+\begin{proof}
+Let $m_{\alpha_1}(x), \dots m_{\alpha_n}(x) \in K[x]$ be the minimal polynomials of $\alpha_1, \dots \alpha_n$ over $K$. By Corollary \ref{prop-simpKhomo}, one has 
+ \begin{tikzcd}
+K(\alpha_1)  \arrow[rr, "\phi_1"] & & M\\
+ &K \arrow[hook', lu]  \arrow[hook, ru] & &
+\end{tikzcd}
+with the number of such $\phi_1$ is equal to the number of roots of $m_{\alpha_1}(x)$ in $M$.
+
+By Corollary \ref{prop-simpKhomo} again, one has
+ \begin{tikzcd}
+K(\alpha_1, \alpha_2)  \arrow[rr, "\phi_2"] & & M\\
+ &K(\alpha_1) \arrow[hook', lu]  \arrow[hook, ru, "\phi_1"] & &
+\end{tikzcd}
+with the number of such $\phi_2$ is equal to the number of roots of the minimal polynomial $m_{\alpha_2}^{(\alpha_1)}(x) \in K(\alpha_1)[x]$ of $\alpha_2$ over $K(\alpha_1)$. Since $m_{\alpha_2}(x) \in K[x] \subseteq K(\alpha_1)[x]$ has $\alpha_2$ as a root, one has
+$$m_{\alpha_2}^{(\alpha_1)}(x) | m_{\alpha_2}(x)$$
+as polynomials in $K(\alpha_1)[x]$.
+
+Continuing this process, we have
+\begin{center}
+ \begin{tikzcd}
+L = K(\alpha_1, \dots,  \alpha_{n-1}, \alpha_n)  \arrow[rr, "\phi_n"] & & M\\
+ &K(\alpha_1, \dots,  \alpha_{n-1}) \arrow[hook', lu]  \arrow[hook, ru, "\phi_{n-1}"] & &
+\end{tikzcd}    
+\end{center}
+and the number of such $\phi_n$ is equal to product of the number of roots of $m_{\alpha_n}^{(\alpha_1, \dots, \alpha_{n-1})}(x) \in K(\alpha_1, \dots,  \alpha_{n-1})[x]$, with $m_{\alpha_n}^{(\alpha_1, \dots, \alpha_{n-1})}(x) | m_{\alpha_n}(x)$.
+
+To conclude, the number of $(\phi_1, \phi_2, \dots, \phi_n)$ in the construction of
+ \begin{tikzcd}
+L  \arrow[rr, "\phi"] & & M\\
+ &K \arrow[hook', lu]  \arrow[hook, ru] & &
+\end{tikzcd}.
+is equal to:
+\begin{align*}
+\prod_{i=1}^n (\text{number of distinct roots of } m_{\alpha_i}^{(\alpha_1, \dots, \alpha_{i-1})}(x))
+\leq\ &\prod_{i=1}^n \deg\left( m_{\alpha_i}^{(\alpha_1, \dots, \alpha_{i-1})}(x)\right)  \\
+ =\ &\prod_{i=1}^n [K(\alpha_1, \ldots, \alpha_{i-1}, \alpha_i) : K(\alpha_1, \ldots, \alpha_{i-1})] \\
+=\ &[K(\alpha_1, \ldots, \alpha_n):K] \quad \quad (\text{by Tower Law})\\
+=\ &[L:K]
+\end{align*}
+ Moreover, if all $m_{\alpha_i}(x) \in K[x]$ are separable, then $m_{\alpha_i}^{(\alpha_1, \dots, \alpha_{i-1})}(x) | m_{\alpha_i}(x)$ are separable by Lemma \ref{lem-factorseparable}, and hence the above $\leq$ becomes an equality. So the result follows.
+\end{proof}
+
+
+\section{Splitting Extensions} \label{sec-splitting}
+Let $p(x) \in K[x]$. Recall that $p(x)$ splits in $K$ if $p(x)$ can be factorized into linear terms, i.e.
+\[
+p(x) = c \prod_{i=1}^n (x - \alpha_i) \text{ for some } c, \alpha_i \in K.
+\]
+
+\begin{definition}
+A field extension $L:K$ is a \textbf{splitting extension} (or a \textbf{splitting field}) of $p(x) \in K[x]$ if:
+\begin{enumerate}
+    \item[(a)] $p(x)$ splits in $L$; and
+    \item[(b)] $L = K(\alpha_1, \alpha_2, \ldots, \alpha_n)$, where $\alpha_i$ are roots of $p(x)$.
+\end{enumerate}
+\end{definition}
+
+
+One can interpret splitting field of $p(x) \in K[x]$ as a minimal field extension of $K$ that splits $p(x)$. The question is whether this `smallest' field extension is unique, which is addressed by the following:
+\begin{theorem}
+Let $p(x) \in K[x]$. Then:
+\begin{enumerate}
+    \item[(a)] There exists a splitting extension of $p(x)$.
+    \item[(b)] The splitting extension is unique in the following sense: If $L:K$ is a splitting extension of $p(x)$, then there is an isomorphism of $K$-extensions $L \cong M$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) We apply induction on $\deg(p)$: If $\deg(p) = 1$, then one can simply take $M = K$.
+
+By induction, suppose there exists a splitting extension for all polynomials of degree $n-1$. Now consider $p(x)$ with $\deg(p) = n$.
+
+Take any irreducible polynomial $r(x) \mid p(x)$, and consider $M_1 = K[x] / \langle r(x) \rangle$. Then $M_1 : K$ is 
+a field extension such that 
+\begin{itemize}
+    \item $M_1 = K(\alpha)$; and
+    \item $\alpha := x + \langle r(x) \rangle \in M_i$ is a root of $r(x) \in M_1[x]$ (and hence $\alpha$ is also a root of $p(x) \in M_1[x]$).
+\end{itemize}
+Therefore,
+    \[
+    p(x) = (x-\alpha)\widetilde{p}(x) \text{ in } M_1[x]\ \ \text{ with } \deg(\widetilde{p}) = n-1 < n.
+    \]
+By induction, there exists the splitting extension $M = M_1(\beta_1, \dots, \beta_{n-1}) : M_1$ such that:
+    \[
+    \widetilde{p}(x) = c(x - \beta_1) \cdots (x - \beta_{n-1})\ \ \text{ in } M[x]
+    \]
+Consequently, $M = M_1(\beta_1, \dots, \beta_{n-1}) = K(\alpha)(\beta_1, \dots, \beta_{n-1}) = K(\alpha, \beta_1, \dots, \beta_{n-1})$ is a field extension of $K$ such that
+
+\[p(x) = c(x - \alpha)(x - \beta_1) \cdots (x - \beta_{n-1}) \text{ splits in } M[x]
+    \]
+In other words, $M:K$ is a splitting extension of $p(x) \in K[x]$.
+
+\vspace{3mm}
+\noindent (b) We apply induction on $\deg(p)$. As before if $\deg(p) = 1$, then $M = K$ is the only splitting extension of $p$. Now assume that the statement holds for all polynomials of degree $< n-1$, and let $p$ be a polynomial of degree $n$.
+
+Suppose $M, L$ are splitting extensions of $p$, and let $\alpha \in M$ be a root of $p(x)$ with minimal polynomial $m_\alpha(x) \in K[x]$. Then  $m_\alpha(x) \mid p(x)$.
+since $p(\alpha) = 0$. 
+
+Since $m_{\alpha}(x) \mid p(x)$ and $L$ is a splitting extension of $p(x)$, $L$ contains all the roots of $m_{\alpha}(x)$. Let $\beta \in L$ be a root of $m_\alpha(x)$ (which is also a root of $p(x)$). We then have $m_\alpha(x) = m_{\beta}(x) =: m(x)$, and:
+    \[
+    K(\alpha)\ \ \cong\ \ K':=\frac{K[x]}{\langle m(x) \rangle}\ \ \cong\ \  K(\beta) 
+    \]
+with 
+\[\alpha \longleftrightarrow\ \kappa:= x + \langle m(x) \rangle\ \longleftrightarrow \beta\]
+under the isomorphism above.
+
+Now $M:K(\alpha)$ is a splitting extension of $\frac{p(x)}{x - \alpha} \in K(\alpha)[x]$ and $L:K(\beta)$ is a splitting extension of $\frac{p(x)}{x - \beta} \in K(\beta)[x]$. Under the isomorphism $ K(\alpha) \cong J \cong K(\beta)$, we have
+\begin{center} 
+\begin{tikzcd}
+L  & & M\\
+ &K(\beta) \cong K' \cong K(\alpha) \arrow[hook', lu]  \arrow[hook, ru] & &
+\end{tikzcd}
+\end{center}
+such that both $M$, $L$ are splitting extensions of $\frac{p(x)}{x - \kappa} \in K'[x]$. 
+
+By induction hypothesis (since $\frac{p(x)}{x - j}$ has degree 1 less than $p(x)$), we have:
+\begin{center} 
+\begin{tikzcd}
+L \arrow[rr, "\cong"] & & M\\
+ & K' \arrow[hook', lu]  \arrow[hook, ru] & & \\
+& K \arrow[hook, u] & &
+\end{tikzcd}
+\end{center}
+In other words, the isomorphism $L \cong M$ above is a $K$-homomorphism, and the result follows.
+\end{proof}
+
+\begin{theorem} \label{thm-splittingfieldsameimage}
+Let $L:K$ be a splitting extension of $p(x) \in K[x]$. Then for any extensions $J:K$, the image of any $K$-homomorphisms $\phi: L \to J$ coincide. In other words, for any
+\begin{center}
+\begin{tikzcd}
+L \arrow[rr, "\phi_1\neq \phi_2"] & & J\\
+ & K \arrow[hook', lu]  \arrow[hook, ru] & &
+\end{tikzcd}    
+\end{center}
+one has $\phi_1(L) = \phi_2(L)$.
+\end{theorem}
+
+\begin{proof}
+By Proposition \ref{prop-khominjevtive}, $\phi: L \hookrightarrow J$ is injective. Therefore, $J:K$ also splits $p(x)$, i.e 
+$$p(x) = c \prod_{i=1}^n (x-\beta_i) \in J[x].$$ 
+
+On the other hand, since $L:K$ is a splitting extension of $p(x)$, one has $L = K(\alpha_1, \dots,\alpha_n)$ and
+$\displaystyle p(x) = c \prod_{i=1}^n (x-\alpha_i) \in L[x]$.
+As before, all $K$-homomorphisms $\phi: L \to J$ are uniquely determined by the images $\phi(\alpha_1), \phi(\alpha_2), \ldots, \phi(\alpha_k) \in J$, and $\phi(\alpha_i) \in J$ must be the roots of $p(x) \in J[x]$, i.e.
+$$\phi(\alpha_i) = \beta_j$$
+for some $j$. Moreover, since $\phi$ is injective, one must have
+$$\{\phi(\alpha_1), \ldots, \phi(\alpha_k)\} = \{\beta_1, \ldots, \beta_k\}$$
+for any $K$-homomorphisms $\phi: L \to J$. Since the right hand side of the above equality $\{\beta_1, \ldots, \beta_k\}$ is independent of the choice of $\phi$, the image $\phi(L)$ is independent of the choice of $\phi$.
+\end{proof}
+
+\section{Normal Extensions}
+\begin{definition}
+    A field extension \( L: K \) is normal if for all \( \alpha \in L \), the minimal polynomial \( m_{\alpha}(x)  \in K[x] \)  splits in \( L \).
+\end{definition}
+
+\begin{example} \label{eg-normal}
+    \begin{enumerate}
+        \item $\mathbb{Q}(i)$ is normal, since for all $a+bi \in \mathbb{Q}(i)$,  $m_{a+bi}=(x-(a+bi))(x-(a-bi))$ splits in $\mathbb{Q}(i)$.
+        \item $\mathbb{Q}(\sqrt[3]{2}) :\mathbb{Q} $ is not normal, since 
+        $m_{\sqrt[3]{2}}(x)=x^3-2=(x-\sqrt[3]{2})(x^2+\sqrt[3]{2}x+\sqrt[3]{4})$
+        and note that the quadratic term does not split in $\mathbb{Q}(\sqrt[3]{2})$.
+    \end{enumerate}
+    
+\end{example}
+
+\begin{theorem} \label{thm-normalsplitext}
+Let $[L:K]<\infty$. Then
+\[
+L:K \text{ is normal}
+\quad\Longleftrightarrow\quad
+L:K \text{ is the splitting extension of some } p(x)\in K[x].
+\]
+\end{theorem}
+
+\begin{proof}
+$(\Rightarrow)$
+Suppose that $L:K$ is normal. Since $[L:K]<\infty$, choose a
+$K$-basis
+\[
+\alpha_1,\ldots,\alpha_n
+\]
+of $L$. For each $i$, let $m_{\alpha_i}(x)\in K[x]$ be the minimal
+polynomial of $\alpha_i$ over $K$. By normality, each
+$m_{\alpha_i}(x)$ splits in $L$.
+
+Set
+\[
+p(x):=\prod_{i=1}^n m_{\alpha_i}(x)\in K[x].
+\]
+Then $p(x)$ splits in $L$. Let
+\[
+p(x)=c\prod_{j=1}^N(x-\beta_j),
+\qquad \beta_j\in L.
+\]
+Since each $\alpha_i$ is a root of $m_{\alpha_i}(x)$, every
+$\alpha_i$ occurs among the roots $\beta_j$. Hence
+\[
+L=K(\alpha_1,\ldots,\alpha_n)
+   \subseteq K(\beta_1,\ldots,\beta_N)
+   \subseteq L.
+\]
+Therefore
+\[
+L=K(\beta_1,\ldots,\beta_N),
+\]
+so $L$ is the splitting extension of $p(x)$ over $K$.
+
+\medskip
+
+\noindent
+$(\Leftarrow)$
+Suppose that $L:K$ is the splitting extension of some
+$p(x)\in K[x]$. We must show that $L:K$ is normal.
+
+Fix an arbitrary $\alpha\in L$, and let
+\[
+m_\alpha(x)\in K[x]
+\]
+be its minimal polynomial. Let $\beta\in\overline K$ be an arbitrary
+root of $m_\alpha(x)$. Since $\alpha$ and $\beta$ have the same
+minimal polynomial over $K$, there exists a $K$-homomorphism
+\[
+\phi:K(\alpha)\longrightarrow \overline K
+\]
+such that
+\[
+\phi(\alpha)=\beta.
+\]
+
+By the extension theorem for field homomorphisms, $\phi$ extends to a
+$K$-homomorphism
+\[
+\psi:L\longrightarrow \overline K
+\]
+such that
+\[
+\psi|_{K(\alpha)}=\phi.
+\]
+In particular,
+\[
+\psi(\alpha)=\beta.
+\]
+
+Now let
+\[
+\iota:L\hookrightarrow\overline K
+\]
+be the natural inclusion. Since $L$ is a splitting extension of
+$p(x)\in K[x]$, Theorem~\ref{thm-splittingfieldsameimage} implies that
+any two $K$-homomorphisms from $L$ to $\overline K$ have the same
+image. Therefore
+\[
+\psi(L)=\iota(L)=L.
+\]
+Consequently,
+\[
+\beta=\psi(\alpha)\in\psi(L)=L.
+\]
+
+Since $\beta$ was an arbitrary root of $m_\alpha(x)$, every root of
+$m_\alpha(x)$ lies in $L$. Hence $m_\alpha(x)$ splits in $L$.
+
+Finally, since $\alpha\in L$ was arbitrary, $L:K$ is normal.
+\end{proof}
+\begin{corollary} \label{cor-groupsize}
+    Let L:K be splitting extension of a separable polynomial $p(x)\in K[x]$, then the group $$\mathrm{Aut}_K(L):=\left\{\begin{tikzcd}
+	L && L \\
+	& K
+	\arrow["\phi", from=1-1, to=1-3]
+	\arrow[hook', from=2-2, to=1-1]
+	\arrow[hook, from=2-2, to=1-3]
+\end{tikzcd}\right\}$$
+has exactly $[L:K]$ elements.
+\end{corollary}
+\begin{proof}
+    Let $L=K(\beta_1,\cdots,\beta_n)$ is the splitting extension of a separable polynomial $p(x)=c\prod_{i=1}^n (x-\beta_i)$. Then $L$ is normal by the previous theorem, and hence the minimal polynomial $m_{\beta_i}(x) \in K$ 
+    splits in $L$. Also $m_{\beta_i}(x)$ is separable since $L:K$ is separable. So the result follows immediately from Theorem \ref{thm-genKhomo}.
+\end{proof}
+\begin{theorem} \label{thm-galcondition}
+    Let $[L:K] < \infty$, then $|\mathrm{Aut}_K(L)| < \infty$. Moreover, TFAE:
+    \begin{enumerate}
+        \item L:K is the splitting field of a separable polynomial $p(x)\in K[x]$
+        \item  $K=L^{\mathrm{Aut}_K(L)} :=\{l\in L\ |\ \sigma(l)=l,\forall \sigma \in \mathrm{Aut}_K(L)\}$
+        \item $L:K$ is normal and separable.
+    \end{enumerate}
+    
+\end{theorem}
+\begin{proof}
+    For the first statement of the theorem, suppose on contrary that $|\mathrm{Aut}_{K}(L)|=\infty$, then we have infinitely many $\sigma:L\rightarrow L$. By composing $\sigma$ with the injection $\iota: L \to \overline{K}$, we have infinitely many $\iota \circ \tau:L\rightarrow \bar{K}$ \[\begin{tikzcd}
+	L && {\bar{K}} \\
+	& K
+	\arrow["\iota \circ \sigma", from=1-1, to=1-3]
+	\arrow[hook', from=2-2, to=1-1]
+	\arrow[hook, from=2-2, to=1-3]
+\end{tikzcd}\]
+    However, the number of $K$-homomorphisms $\phi: L \to \overline{K}$ is bounded above by $[L:K] < \infty$ by Theorem \ref{thm-genKhomo}. Which is a contradiction.\\
+    
+    For the second part of the theorem
+    \begin{itemize}
+        \item $(1)\Rightarrow(2)$: First note that by definition of $L^{\mathrm{Aut}_{K}(L)}$ we immediately have $K\subseteq L^{\mathrm{Aut}_{K}(L)}$, For the other inclusion, consider the field extension $L:L^{\mathrm{Aut}_{K}(L)}$. In order to show that $L^{\mathrm{Aut}_{K}(L)}=K$, it suffices to show that $[L^{\mathrm{Aut}_{K}(L)}:K] = 1$. By Tower Law, it is equivalent to proving $[L:K]=[L:L^{\mathrm{Aut}_{K}(L)}]$. Note that 
+        $$[L:K]=|\mathrm{Aut}_{K}(L)|,\quad \quad [L:L^{\mathrm{Aut}_{K}(L)}]=|\mathrm{Aut}_{ L^{\mathrm{Aut}_{K}(L)}}(L)|,$$ then we only need to show that
+$$|\mathrm{Aut}_{L^{\mathrm{Aut}_{K}(L)}}(L)|= |\mathrm{Aut}_{K}(L)|.$$ 
+        Indeed, it is obvious that
+    $\mathrm{Aut}_{L^{\mathrm{Aut}_{K}(L)}}(L)\subseteq \mathrm{Aut}_{K}(L)$ since $L^{\mathrm{Aut}_{K}(L)} \supseteq K$. On the other hand, if $\phi \in \mathrm{Aut}_{K}(L)$, then for any $\alpha \in L^{\mathrm{Aut}_{K}(L)}$, $\phi(\alpha) = \alpha$ by definition of invariants. So $\phi \in \mathrm{Aut}_{L^{\mathrm{Aut}_{K}(L)}}(L)$ as well. Therefore, we have proved that  $\mathrm{Aut}_{L^{\mathrm{Aut}_{K}(L)}}(L) = \mathrm{Aut}_{K}(L)$
+    as required.    
+        
+        \item $(2)\Rightarrow (3)$: Let $\alpha \in L $. We want to show that $m_{\alpha}(x) $ is separable and splits in $L$. Consider 
+        $$\mathrm{orb}(\alpha):=\{\sigma(\alpha) \in L\ |\ \sigma \in \mathrm{Aut}_K(L)\}  \quad \quad \mathrm{  and  } \quad \quad q(x):= \prod_{\beta \in \mathrm{orb}(\alpha)} (x-\beta) \in L[x]$$
+        Suppose $\mathrm{orb}(\alpha)=\{\beta_1,\cdots \beta_d\}$, then 
+        $$q(x)=x^d-s_1(\beta_1,\cdots,\beta_d)x^{d-1}+\cdots+(-1)^ds_d(\beta_1 ,\cdots, \beta_d),$$ 
+        where $s_i(\beta_1,\cdots,\beta_d)$ are the fundamental symmetric polynomials of degree $i$ (Section \ref{sec-symm}). Note that $\forall \sigma \in \mathrm{Aut}_K(L)$, $\sigma$ permutes $\{\beta_1,\cdots \beta_d\}$, then $$\sigma(s_i(\beta_1,\cdots,\beta_d)) = s_i(\sigma(\beta_1),\cdots,\sigma(\beta_d)) = s_i(\beta_1,\cdots,\beta_d))$$and hence $q(x) \in L^{\mathrm{Aut}_K(L)}[x]=K[x]$ by hypothesis. Since $\alpha \in \mathrm{orb}(\alpha)$, $\alpha$ is a root of $q(x) \in K[x]$ and hence $m_{\alpha}(x) | q(x)$. 
+        Since $q(x)$ has no repeated roots and splits in $L$, so is $m_{\alpha}(x)$.
+        
+        \item $(3)\Rightarrow (1)$: Suppose $\alpha_1,\cdots,\alpha_n \in L$ is a basis of $L$ over $K$, then $L=K(\alpha_1,\cdots,\alpha_n)$. Consider $p(x)=\prod_{i=1}^n m_{\alpha_i}(x)$, then
+        \begin{itemize}
+            \item $L:K$ separable $\Rightarrow$ $m_{\alpha}(x)$ has no repeated roots $\Rightarrow$ $p(x)$ is separable.
+            \item $L:K$ normal $\Rightarrow$ $m_{\alpha}(x)$ splits in $L$ $\Rightarrow$ $p(x)$ splits in $L$. Moreover, $L:K$ is the splitting field of $p(x)$ as in the beginning of the proof of Theorem \ref{thm-normalsplitext}. 
+        \end{itemize}
+    \end{itemize}
+\end{proof}

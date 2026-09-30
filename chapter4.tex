@@ -1,0 +1,737 @@
+\chapter{Radical Extensions}
+
+\section{Solvable Groups}
+
+\begin{definition}
+    \begin{enumerate}
+        \item Let $G$ be a finite group. A {\bf finite filtration} is a finite sequence
+        \[
+        \{e\}\leq G_{1}\leq G_{2}\leq \cdots \leq G_{n}=G
+        \]
+        such that $G_i\lhd G_{i+1}$ for all $i$.
+        \item We say a filtration has no redundancies if $G_i\lneqq G_{i+1}$ for all $i$.
+        \item We say a filtration has abelian quotients if $G_{i+1}/G_i$ is abelian for all $i$.
+        \item We call $\{e\}\leq G$ the trivial filtration of $G$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}\label{def-solvgp}
+    A finite group $G$ is called:
+    \begin{enumerate}
+        \item {\bf solvable} if $G$ has a finite filtration with abelian quotients;
+        \item {\bf simple} if $G$ has no nontrivial proper normal subgroups.
+    \end{enumerate}
+    Thus, the only filtration with no redundancies for a simple group $G$ is
+    $\{e\}\lhd G$.
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item $S_3$ is solvable: there is a filtration with no redundancies
+        \[
+        \lefteqn{\overbrace{\phantom{\{e\}\leq A_3}}^{\mathbb Z_3}}\{e\}
+        \leq \underbrace{A_3\leq S_3}_{\mathbb Z_2}.
+        \]
+
+        \item $S_4$ is solvable: there is a filtration with no redundancies
+        \[
+        \lefteqn{\underbrace{\phantom{\{e\}\leq \langle(12)(34)\rangle}}_{\mathbb Z_2}}
+        \{e\}\leq
+        \overbrace{\langle(12)(34)\rangle\leq
+        \lefteqn{\underbrace{\phantom{K_4\leq A_4}}_{\mathbb Z_3}}K_4}^{\mathbb Z_2}
+        \leq \overbrace{A_4\leq S_4}^{\mathbb Z_2}.
+        \]
+
+        \item All finite abelian groups are solvable.
+
+        \item $A_5$ is simple. Since $A_5$ is nonabelian, $A_5$ is not solvable.
+    \end{enumerate}
+\end{example}
+
+Before entering the main content of this chapter, we highlight the idea of solving polynomial equations by radicals:
+\[
+    \begin{tikzcd}
+        {\boxed{\text{Roots of }p(x)\in K[x]\text{ are solvable by radicals }(+,-,\times,\div,\sqrt[n]{\,})}} \\
+        {\boxed{\text{The Galois group }\operatorname{Gal}(L/K)\text{ of }p(x)\text{ is solvable}}}
+        \arrow[leftrightarrow, from=1-1, to=2-1]
+    \end{tikzcd}
+\]
+
+\begin{proposition}\label{prop-subgpsolvable}
+    Let $G$ be a solvable group.
+    \begin{enumerate}
+        \item If $H\leq G$, then $H$ is solvable.
+        \item If $H\lhd G$, then $G/H$ is solvable.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Let
+    \[
+    \{e\}\leq G_1\leq \cdots\leq G_n=G
+    \]
+    be a filtration with abelian quotients.
+
+    \begin{enumerate}
+        \item Consider
+        \[
+        \{e\}\leq G_1\cap H\leq \cdots\leq G_n\cap H=H. \tag{$*$}
+        \]
+        If $r\in G_{i+1}\cap H$ and $q\in G_i\cap H$, then
+        \[
+        rqr^{-1}\in G_i
+        \qquad\text{and}\qquad
+        rqr^{-1}\in H.
+        \]
+        Hence $G_i\cap H\lhd G_{i+1}\cap H$, so $(*)$ is a filtration of $H$.
+
+        Consider the homomorphism
+        \[
+        \phi:G_{i+1}\cap H\longrightarrow G_{i+1}/G_i,
+        \qquad
+        r\longmapsto rG_i.
+        \]
+        Its kernel is $G_i\cap H$. Therefore, by the First Isomorphism Theorem,
+        \[
+        \frac{G_{i+1}\cap H}{G_i\cap H}
+        \cong \operatorname{im}\phi
+        \leq \frac{G_{i+1}}{G_i}.
+        \]
+        Since $G_{i+1}/G_i$ is abelian, so is
+        $(G_{i+1}\cap H)/(G_i\cap H)$. Thus $H$ is solvable.
+
+        \item Let
+        \[
+        \pi:G\longrightarrow G/H,
+        \qquad
+        g\longmapsto gH.
+        \]
+        Since $G_i\lhd G_{i+1}$, we have
+        \[
+        \pi(G_i)\lhd \pi(G_{i+1}).
+        \]
+        Hence
+        \[
+        \{e\}\leq \pi(G_1)\leq\cdots\leq \pi(G_n)=G/H
+        \tag{$**$}
+        \]
+        is a filtration of $G/H$.
+
+        The map
+        \[
+        G_{i+1}/G_i\longrightarrow \pi(G_{i+1})/\pi(G_i),
+        \qquad
+        rG_i\longmapsto \pi(r)\pi(G_i),
+        \]
+        is a well-defined surjective homomorphism. Therefore
+        $\pi(G_{i+1})/\pi(G_i)$ is a quotient of the abelian group
+        $G_{i+1}/G_i$, and hence is abelian. Thus $G/H$ is solvable.
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}\label{prop-subgroupQuotientSolvableImpliesSolvable}
+    Let $G$ be a finite group and $H\lhd G$. If $H$ and $G/H$ are solvable, then $G$ is solvable.
+\end{proposition}
+
+\begin{proof}
+    Let
+    \[
+    \{e\}=H_0\leq H_1\leq\cdots\leq H_m=H
+    \]
+    and
+    \[
+    \{e\}=\overline G_0\leq \overline G_1\leq\cdots\leq \overline G_n=G/H
+    \]
+    be filtrations with abelian quotients of $H$ and $G/H$, respectively.
+
+    Let $\pi:G\to G/H$ be the quotient map, and put
+    \[
+    G_i:=\pi^{-1}(\overline G_i).
+    \]
+    Then $G_0=H$, $G_n=G$, and
+    \[
+    H=G_0\leq G_1\leq\cdots\leq G_n=G
+    \]
+    is a filtration. Moreover, by the Correspondence Theorem,
+    \[
+    G_{i+1}/G_i\cong \overline G_{i+1}/\overline G_i,
+    \]
+    so these quotients are abelian. Therefore
+    \[
+    \{e\}=H_0\leq H_1\leq\cdots\leq H_m=H=G_0
+    \leq G_1\leq\cdots\leq G_n=G
+    \]
+    is a filtration of $G$ with abelian quotients. Hence $G$ is solvable.
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}\setcounter{enumi}{4}
+        \item $S_5$ is not solvable since $A_5\leq S_5$ is not solvable.
+        \item For any $n\geq 5$, $A_n$ and $S_n$ are not solvable since
+        $A_5\leq A_n$ and $S_5\leq S_n$.
+    \end{enumerate}
+\end{example}
+
+\begin{proposition}
+    Let $G$ be a group such that $|G|=p^n$ for some prime $p$. Then $G$ is solvable.
+\end{proposition}
+
+\begin{proof}
+    We prove the proposition by induction on $n$.
+
+    When $n=1$, $G\cong\mathbb Z_p$, so $G$ is solvable.
+
+    Suppose the proposition holds for every group of order $p^i$ with $1\leq i<k$, and let $|G|=p^k$.
+
+    \begin{claim}
+        The center $Z(G)$ is nontrivial.
+    \end{claim}
+
+    \begin{proof}[Proof of claim]
+        Let $G$ act on itself by conjugation:
+        \[
+        h\cdot g=hgh^{-1}.
+        \]
+        Its orbits are the conjugacy classes. By the Orbit--Stabilizer Theorem,
+        every conjugacy class has cardinality a power of $p$. The conjugacy classes of size $1$ are precisely the elements of $Z(G)$.
+
+        Write $b_i$ for the number of conjugacy classes of cardinality $p^i$. Then
+        \[
+        p^k=|G|=\sum_{i=0}^k b_i p^i.
+        \]
+        Reducing modulo $p$ gives
+        \[
+        b_0\equiv 0\pmod p.
+        \]
+        Since the identity already gives one conjugacy class of size $1$, we have $b_0\geq p$. Thus $|Z(G)|=b_0>1$.
+    \end{proof}
+
+    Since $Z(G)$ is abelian, it is solvable. Also,
+    \[
+    |G/Z(G)|=p^{k'}
+    \]
+    for some $k'<k$, so $G/Z(G)$ is solvable by induction. By Proposition
+    \ref{prop-subgroupQuotientSolvableImpliesSolvable}, $G$ is solvable.
+\end{proof}
+
+\begin{definition}
+    The length of a finite group $G$ is
+    \[
+    \operatorname{length}(G)
+    =\sup\{n\mid \{e\}\leq G_1\leq\cdots\leq G_n=G
+    \text{ is a filtration with no redundancies}\}.
+    \]
+\end{definition}
+
+\begin{example}
+    For $S_4$, there is a filtration
+    \[
+    \lefteqn{\underbrace{\phantom{\{e\}\leq\langle(12)(34)\rangle}}_{2}}
+    \{e\}\leq
+    \overbrace{\langle(12)(34)\rangle\leq
+    \lefteqn{\underbrace{\phantom{K_4\leq A_4}}_{3}}K_4}^{2}
+    \leq \overbrace{A_4\leq S_4}^{2},
+    \]
+    so $\operatorname{length}(S_4)\geq 4$.
+
+    On the other hand, suppose
+    \[
+    \{e\}=G_0\lneqq G_1\lneqq\cdots\lneqq G_n=S_4
+    \]
+    is a filtration with no redundancies, and put $a_i=[G_i:G_{i-1}]$.
+    Then every $a_i\geq 2$ and
+    \[
+    a_1a_2\cdots a_n=|S_4|=24=2^3\cdot 3.
+    \]
+    Hence $n\leq 4$. Therefore $\operatorname{length}(S_4)=4$.
+\end{example}
+
+\begin{proposition}\label{prop-maximalFiltrationCyclicGroups}
+    Suppose $G$ is solvable and
+    \[
+    \{e\}=G_0\lneqq G_1\lneqq\cdots\lneqq
+    G_{\operatorname{length}(G)}=G
+    \]
+    is a filtration of maximal length. Then every quotient $G_{i+1}/G_i$ is cyclic of prime order.
+\end{proposition}
+
+\begin{proof}
+    Fix $i$. By maximality of the filtration, the quotient $G_{i+1}/G_i$ is simple. Indeed, if
+    \[
+    \{e\}\lneqq H/G_i\lneqq G_{i+1}/G_i
+    \]
+    were a proper nontrivial normal subgroup, then
+    \[
+    G_i\lneqq H\lneqq G_{i+1},
+    \qquad
+    G_i\lhd H\lhd G_{i+1},
+    \]
+    and we could insert $H$ into the filtration, contradicting maximality.
+
+    Since $G$ is solvable, Proposition \ref{prop-subgpsolvable} implies that $G_{i+1}$ is solvable, and hence
+    $G_{i+1}/G_i$ is solvable. Thus $G_{i+1}/G_i$ is both simple and solvable.
+
+    A nontrivial finite simple solvable group must be abelian: otherwise a filtration with abelian quotients would contain a proper nontrivial normal subgroup. A finite simple abelian group is cyclic of prime order. Therefore
+    \[
+    G_{i+1}/G_i\cong\mathbb Z_p
+    \]
+    for some prime $p$.
+\end{proof}
+
+\section{Solvability by Radicals}
+
+In this section, we assume $\operatorname{char}(K)=0$ for simplicity.
+
+\begin{definition}\label{def-radical}
+    An extension $M:K$ is called {\bf radical} if
+    \begin{enumerate}
+        \item $M=K(\alpha_1,\dots,\alpha_k)$;
+        \item there exist $n_1,\dots,n_k\in\mathbb N$ such that
+        \[
+        \alpha_i^{n_i}\in K(\alpha_1,\dots,\alpha_{i-1})
+        \qquad (1\leq i\leq k),
+        \]
+        where $K(\alpha_1,\dots,\alpha_0):=K$.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    $\mathbb Q(\sqrt{2+\sqrt[3]{2}}):\mathbb Q$ is radical since
+    \[
+    \mathbb Q(\sqrt{2+\sqrt[3]{2}})
+    =\mathbb Q(\sqrt[3]{2},\sqrt{2+\sqrt[3]{2}}),
+    \]
+    and
+    \[
+    (\sqrt[3]{2})^3\in\mathbb Q,
+    \qquad
+    (\sqrt{2+\sqrt[3]{2}})^2\in\mathbb Q(\sqrt[3]{2}).
+    \]
+\end{example}
+
+\begin{definition}\label{def-solvext}
+    Let $p(x)\in K[x]$ be separable, and let $L:K$ be its splitting field.
+    We say $L:K$ is a {\bf solvable extension} if there exists an extension
+    $M:L:K$ such that $M:K$ is radical.
+\end{definition}
+
+\begin{remark}\label{rmk-radical}
+    \begin{enumerate}
+        \item If $L:K$ is solvable, then every root $\alpha\in L$ of $p(x)$ lies in
+        $M=K(\alpha_1,\dots,\alpha_k)$, and can therefore be expressed using the operations
+        $+,-,\times,\div,\sqrt[n]{\,}$ starting from elements of $K$.
+        \item Cyclotomic and Kummer extensions are radical extensions.
+        \item If $M':M$ and $M:K$ are radical, then $M':K$ is also radical.
+    \end{enumerate}
+\end{remark}
+
+Here is our {\bf MAIN GOAL}: if $L:K$ is Galois, then
+\begin{center}
+    \fbox{$\operatorname{Gal}(L/K)\text{ is solvable}
+    \iff L:K\text{ is a solvable extension.}$}
+\end{center}
+
+We begin with the $\Rightarrow$ direction.
+
+\begin{lemma}\label{lem-galclosure}
+    Let $P:K$ be a finite extension. Then there exists an extension $J:P$ such that $J:K$ is Galois.
+\end{lemma}
+
+\begin{proof}
+    Since $\operatorname{char}(K)=0$, the Primitive Element Theorem gives
+    \[
+    P=K(\delta)
+    \]
+    for some $\delta\in P$. Let $m_\delta(x)\in K[x]$ be the minimal polynomial of $\delta$, and let $J$ be its splitting field in an algebraic closure containing $P$.
+    Then $J:K$ is Galois and $P=K(\delta)\subseteq J$.
+\end{proof}
+
+\begin{theorem}\label{thm-radleft}
+    Let $L:K$ be Galois with
+    \[
+    |\operatorname{Gal}(L/K)|=m.
+    \]
+    Suppose $\operatorname{Gal}(L/K)$ is solvable. Let $\omega$ be a primitive $m$-th root of unity. Then there exists an extension $P:L$ such that:
+    \begin{enumerate}
+        \item $P:K$ is Galois;
+        \item $P$ contains the cyclotomic extension $K(\omega)$;
+        \item $P:K(\omega)$ is a composition of Kummer extensions.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Set
+    \[
+    P:=L(\omega).
+    \]
+    Since $L:K$ and $K(\omega):K$ are Galois, their compositum $P:K$ is Galois. This proves (1), while (2) is immediate from the definition of $P$.
+
+    Consider the restriction map
+    \[
+    \rho:\operatorname{Gal}(P/K(\omega))
+    \longrightarrow \operatorname{Gal}(L/K),
+    \qquad
+    \sigma\longmapsto \sigma|_L.
+    \]
+    It is well-defined because $L:K$ is Galois, so every $K$-automorphism of $P$ preserves $L$. It is injective: if $\sigma|_L=\operatorname{id}_L$, then $\sigma$ fixes both $L$ and $\omega$, hence fixes $P=L(\omega)$.
+
+    Thus $\operatorname{Gal}(P/K(\omega))$ is a subgroup of the solvable group $\operatorname{Gal}(L/K)$, and is therefore solvable by Proposition \ref{prop-subgpsolvable}. By Proposition \ref{prop-maximalFiltrationCyclicGroups}, there is a filtration
+    \[
+    \{e\}=H_0\lhd H_1\lhd\cdots\lhd H_r
+    =\operatorname{Gal}(P/K(\omega))
+    \]
+    such that
+    \[
+    H_{i+1}/H_i\cong\mathbb Z_{q_i}
+    \]
+    for some prime $q_i$.
+
+    Let
+    \[
+    P_i:=P^{H_i}.
+    \]
+    By the Fundamental Theorem of Galois Theory,
+    \[
+    P=P_0\supseteq P_1\supseteq\cdots\supseteq P_r=K(\omega),
+    \]
+    and, since $H_i\lhd H_{i+1}$,
+    \[
+    \operatorname{Gal}(P_i/P_{i+1})
+    \cong H_{i+1}/H_i
+    \cong\mathbb Z_{q_i}.
+    \]
+
+    Since every $q_i$ divides
+    \[
+    |\operatorname{Gal}(P/K(\omega))|,
+    \]
+    and this group injects into $\operatorname{Gal}(L/K)$, we have $q_i\mid m$. Therefore $K(\omega)$, and hence every $P_{i+1}$, contains all $q_i$-th roots of unity. Since
+    \[
+    \operatorname{Gal}(P_i/P_{i+1})\cong\mathbb Z_{q_i},
+    \]
+    Theorem \ref{thm-cyclicGalImpliesKummerExtension} implies that each
+    \[
+    P_i:P_{i+1}
+    \]
+    is a Kummer extension. Hence $P:K(\omega)$ is a composition of Kummer extensions.
+\end{proof}
+
+\begin{corollary}
+    Let $L:K$ be Galois. If $\operatorname{Gal}(L/K)$ is solvable, then $L:K$ is a solvable extension.
+\end{corollary}
+
+\begin{proof}
+    By Theorem \ref{thm-radleft}, there is an extension $P:L$ such that
+    $P:K(\omega)$ is a composition of Kummer extensions and $K(\omega):K$ is cyclotomic. By Remark \ref{rmk-radical}(2), both cyclotomic and Kummer extensions are radical, and by Remark \ref{rmk-radical}(3), a composition of radical extensions is radical. Hence $P:K$ is radical, so $L:K$ is solvable.
+\end{proof}
+
+We now prove the $\Leftarrow$ direction. We first need a slightly stronger version of Lemma \ref{lem-galclosure}.
+
+\begin{lemma}\label{lem-radgalois}
+    Let $P:K$ be a radical extension. Then there exists an extension $P':P$ such that $P':K$ is both radical and Galois.
+\end{lemma}
+
+\begin{proof}
+    Write
+    \[
+    P=K(\alpha_1,\dots,\alpha_k),
+    \qquad
+    \alpha_i^{n_i}\in K(\alpha_1,\dots,\alpha_{i-1}).
+    \]
+    Let $J:P:K$ be a Galois closure as in Lemma \ref{lem-galclosure}, and write
+    \[
+    \operatorname{Gal}(J/K)=\{\sigma_1=e,\sigma_2,\dots,\sigma_r\}.
+    \]
+    Define
+    \[
+    P':=K\bigl(\sigma_j(\alpha_i)\mid
+    1\leq j\leq r,\ 1\leq i\leq k\bigr).
+    \]
+    Since $\sigma_1=e$, we have $P\subseteq P'$.
+
+    We claim first that $P':K$ is radical. Order the generators block by block:
+    \[
+    \sigma_1(\alpha_1),\dots,\sigma_1(\alpha_k),
+    \sigma_2(\alpha_1),\dots,\sigma_2(\alpha_k),\dots.
+    \]
+    For every $j$ and $i$,
+    \[
+    \bigl(\sigma_j(\alpha_i)\bigr)^{n_i}
+    =\sigma_j(\alpha_i^{n_i})
+    \in K\bigl(\sigma_j(\alpha_1),\dots,
+    \sigma_j(\alpha_{i-1})\bigr),
+    \]
+    which is contained in the field generated by the preceding elements in this ordering. Thus $P':K$ is radical.
+
+    Finally, for every $\tau\in\operatorname{Gal}(J/K)$, left multiplication by $\tau$ permutes the elements $\sigma_j$ of $\operatorname{Gal}(J/K)$. Hence
+    \[
+    \tau(P')=P'.
+    \]
+    By Remark \ref{rmk-GaloisExtensionEquiFixedField}, $P':K$ is Galois.
+\end{proof}
+
+\begin{theorem}
+    Let $L:K$ be Galois. If $L:K$ is a solvable extension, then
+    $\operatorname{Gal}(L/K)$ is a solvable group.
+\end{theorem}
+
+\begin{proof}
+    By hypothesis, there is an extension $P:L$ such that $P:K$ is radical. By Lemma \ref{lem-radgalois}, there exists $P':P$ such that $P':K$ is both radical and Galois.
+
+    Write
+    \[
+    P'=K(\alpha_1,\dots,\alpha_k),
+    \qquad
+    \alpha_i^{n_i}\in K(\alpha_1,\dots,\alpha_{i-1})
+    \quad (1\leq i\leq k).
+    \]
+    Put
+    \[
+    t:=\prod_{i=1}^k n_i,
+    \]
+    let $\omega$ be a primitive $t$-th root of unity, and set
+    \[
+    E:=P'(\omega).
+    \]
+    Since $P':K$ and $K(\omega):K$ are Galois, their compositum $E:K$ is Galois.
+
+    For $0\leq i\leq k$, define
+    \[
+    E_i:=K(\omega)(\alpha_1,\dots,\alpha_i),
+    \qquad
+    E_0=K(\omega).
+    \]
+    Then
+    \[
+    E_0\subseteq E_1\subseteq\cdots\subseteq E_k=E.
+    \]
+    Since $n_i\mid t$, the polynomial $x^{n_i}-1$ splits in $E_{i-1}$. Moreover,
+    \[
+    \alpha_i^{n_i}\in K(\alpha_1,\dots,\alpha_{i-1})
+    \subseteq E_{i-1},
+    \]
+    so $\alpha_i$ is a root of
+    \[
+    x^{n_i}-\alpha_i^{n_i}\in E_{i-1}[x].
+    \]
+    Because $E_{i-1}$ contains all $n_i$-th roots of unity, adjoining $\alpha_i$
+    adjoins every root of $x^{n_i}-\alpha_i^{n_i}$. Hence $E_i:E_{i-1}$
+    is Galois. By Lemma \ref{lem-kummer},
+    \[
+    \operatorname{Gal}(E_i/E_{i-1})\hookrightarrow \mu_{n_i}(E_{i-1}),
+    \]
+    so $\operatorname{Gal}(E_i/E_{i-1})$ is cyclic, and in particular abelian.
+    Thus $E_i:E_{i-1}$ is a Kummer extension (of degree dividing $n_i$).
+    Put
+    \[
+    G_i:=\operatorname{Gal}(E/E_i),
+    \qquad 0\leq i\leq k.
+    \]
+    Since $E_i:E_{i-1}$ is Galois, the Fundamental Theorem of Galois Theory gives
+    \[
+    G_i\lhd G_{i-1}
+    \qquad\text{and}\qquad
+    G_{i-1}/G_i\cong\operatorname{Gal}(E_i/E_{i-1}),
+    \]
+    so every quotient $G_{i-1}/G_i$ is abelian. Also,
+    \[
+    G_k=\{e\},
+    \]
+    and, because $K(\omega):K$ is cyclotomic,
+    \[
+    \frac{\operatorname{Gal}(E/K)}{G_0}
+    \cong \operatorname{Gal}(K(\omega)/K)
+    \]
+    is abelian. Thus
+    \[
+    \{e\}=G_k\lhd G_{k-1}\lhd\cdots\lhd G_0
+    \lhd \operatorname{Gal}(E/K)
+    \]
+    is a filtration with abelian quotients. Hence $\operatorname{Gal}(E/K)$ is solvable.
+
+    Finally, $L\subseteq E$ and $L:K$ is Galois, so
+    \[
+    \operatorname{Gal}(L/K)
+    \cong
+    \operatorname{Gal}(E/K)/\operatorname{Gal}(E/L).
+    \]
+    Therefore $\operatorname{Gal}(L/K)$ is solvable by Proposition \ref{prop-subgpsolvable}(2).
+\end{proof}
+
+\section{Cubic Polynomials}
+
+We now give a general solution to any irreducible cubic equation
+\[
+x^3+ax^2+bx+c=0.
+\]
+After the change of variable $x\mapsto x-a/3$, it is enough to consider a depressed cubic
+\[
+f(x)=x^3+px+q\in\mathbb Q[x].
+\]
+Let $L:\mathbb Q$ be its splitting field. Since $f$ is irreducible, transitivity implies
+\[
+\operatorname{Gal}(L/\mathbb Q)=A_3
+\qquad\text{or}\qquad
+S_3.
+\]
+
+Let $\alpha_1,\alpha_2,\alpha_3\in L$ be the three roots of $f(x)$, so
+\[
+\alpha_1+\alpha_2+\alpha_3=0,
+\]
+and let $\omega$ be a primitive cube root of unity. Put
+\[
+P=L(\omega),
+\]
+and define
+\[
+\beta:=\alpha_1+\omega\alpha_2+\omega^2\alpha_3,
+\qquad
+\gamma:=\alpha_1+\omega^2\alpha_2+\omega\alpha_3.
+\]
+Since both $L:\mathbb Q$ and $\mathbb Q(\omega):\mathbb Q$ are Galois, their compositum $P:\mathbb Q$ is Galois.
+
+We now compute $\beta^3+\gamma^3$ and $\beta^3\gamma^3$. First,
+\[
+\beta+\gamma
+=2\alpha_1+(\omega+\omega^2)(\alpha_2+\alpha_3)
+=3\alpha_1,
+\]
+since $\omega+\omega^2=-1$ and $\alpha_2+\alpha_3=-\alpha_1$. Also,
+\begin{align*}
+\beta\gamma
+&=\alpha_1^2+\alpha_2^2+\alpha_3^2
+-(\alpha_1\alpha_2+\alpha_1\alpha_3+\alpha_2\alpha_3)\\
+&=-3p,
+\end{align*}
+where we used
+\[
+\alpha_1\alpha_2+\alpha_1\alpha_3+\alpha_2\alpha_3=p
+\]
+and
+\[
+\alpha_1^2+\alpha_2^2+\alpha_3^2=-2p.
+\]
+Therefore
+\begin{align*}
+\beta^3+\gamma^3
+&=(\beta+\gamma)^3-3\beta\gamma(\beta+\gamma)\\
+&=27(\alpha_1^3+p\alpha_1)\\
+&=-27q,
+\end{align*}
+and
+\[
+\beta^3\gamma^3=(\beta\gamma)^3=-27p^3.
+\]
+Thus $\beta^3$ and $\gamma^3$ are the roots of
+\[
+T^2+27qT-27p^3=0.
+\]
+Hence
+\[
+\boxed{
+\beta^3,\gamma^3
+=\frac{-27q\pm\sqrt{729q^2+108p^3}}{2}.}
+\]
+Choose cube roots $\beta,\gamma$ of these two numbers compatibly so that
+\[
+\beta\gamma=-3p.
+\]
+Then
+\[
+\alpha_1=\frac{\beta+\gamma}{3},
+\qquad
+\alpha_2=\frac{\beta\omega^2+\gamma\omega}{3},
+\qquad
+\alpha_3=\frac{\beta\omega+\gamma\omega^2}{3}.
+\]
+This gives the roots of the cubic by radicals.
+
+\section{Insolvability of Quintic Polynomials}
+
+Let $f(x)\in K[x]$ be irreducible of degree $5$, and let $L:K$ be its splitting field. Then
+\[
+\operatorname{Gal}(L/K)\leq S_5.
+\]
+To show that $f(x)$ is not solvable by radicals, it is enough to find an example for which the Galois group is not solvable; in particular, it is enough to find an example with Galois group $S_5$.
+
+\begin{theorem}
+Let $f(x)\in\mathbb Q[x]$ be an irreducible polynomial of prime degree $p$. If $f(x)$ has exactly $p-2$ real roots, then the splitting field $L$ of $f(x)$ satisfies
+\[
+\operatorname{Gal}(L/\mathbb Q)\cong S_p.
+\]
+\end{theorem}
+
+\begin{proof}
+    Let
+    \[
+    G:=\operatorname{Gal}(L/\mathbb Q)\leq S_p.
+    \]
+    Since $f(x)$ is irreducible of degree $p$, for any root $\alpha$ of $f$ we have
+    \[
+    [\mathbb Q(\alpha):\mathbb Q]=p.
+    \]
+    As
+    \[
+    \mathbb Q\subseteq\mathbb Q(\alpha)\subseteq L,
+    \]
+    the Tower Law gives
+    \[
+    p\mid [L:\mathbb Q]=|G|.
+    \]
+    By Cauchy's Theorem, $G$ contains an element $\sigma$ of order $p$. Since $G\leq S_p$, such an element must be a $p$-cycle.
+
+    By hypothesis, $f(x)$ has exactly two nonreal roots. Since $f$ has real coefficients, these roots are complex conjugates. Complex conjugation preserves the splitting field $L$, fixes $\mathbb Q$, fixes the $p-2$ real roots, and interchanges the two nonreal roots. Hence its restriction to $L$ gives a transposition
+    \[
+    \tau\in G.
+    \]
+
+    It remains to show that a $p$-cycle together with a transposition generates $S_p$. Relabel the roots so that
+    \[
+    \sigma=(0\ 1\ \cdots\ p-1),
+    \qquad
+    \tau=(0\ d)
+    \]
+    for some $d\not\equiv 0\pmod p$. Then
+    \[
+    \sigma^k\tau\sigma^{-k}=(k\ k+d)
+    \qquad (k\in\mathbb Z/p\mathbb Z).
+    \]
+    Since $p$ is prime, $d$ generates the additive group $\mathbb Z/p\mathbb Z$. Thus the graph with edges
+    \[
+    \{k,k+d\}
+    \]
+    is connected. The transpositions corresponding to the edges of a connected graph generate the full symmetric group. Hence
+    \[
+    \langle\sigma,\tau\rangle=S_p.
+    \]
+    Since $\sigma,\tau\in G\leq S_p$, we conclude that $G=S_p$.
+\end{proof}
+
+\begin{example}
+Consider
+\[
+f(x)=x^5-6x+3.
+\]
+By Eisenstein's criterion at $3$, $f(x)$ is irreducible over $\mathbb Q$.
+
+We claim that $f$ has exactly three real roots. First,
+\[
+f(-2)<0<f(-1),
+\qquad
+f(0)>0>f(1),
+\qquad
+f(1)<0<f(2),
+\]
+so the Intermediate Value Theorem gives at least three real roots. On the other hand,
+\[
+f'(x)=5x^4-6
+\]
+has exactly two real zeros. By Rolle's Theorem, $f$ can therefore have at most three real roots. Hence $f$ has exactly three real roots.
+
+The theorem therefore gives
+\[
+\operatorname{Gal}(L/\mathbb Q)\cong S_5.
+\]
+Since $S_5$ is not solvable, $f(x)$ is not solvable by radicals.
+\end{example}
