@@ -287,13 +287,17 @@ As an immediate consequence of the above corollary, one has $C_{K}=\{[J]\ |\ N(J
     By Minkowski Bound, we can easily have \begin{align*}
         C_K = \left\{[J]| N(J) \leq m_K\right\}.
     \end{align*}
-    If we only care about the generators of \(C_K\) (as a finite abelian group), we only need to study \(J\) with \(N(J) = P\) for \(p \leq m_K\) rational prime, i.e.
-    $$C_K = \langle J\ |\ N(J) = p,\ p \leq m_K\ \text{rational prime}\rangle.$$
-    For instance, suppose \(N(J) = 6\). Then for all \(\alpha \in \mathcal{O}_K, 6\alpha \in J\) (since \(N(J) = |\mathcal{O}_K/J|=6\)). We have
+    If we only care about generators of \(C_K\), it is enough to study prime ideals
+    \(P\) with \(N(P)\leq m_K\). Since the norm of a prime ideal is a prime power
+    \(p^f\), it is enough to inspect prime ideals lying above rational primes
+    \(p\leq m_K\).
+    
+    For instance, suppose \(N(J) = 6\). Then for all \(\alpha \in \mathcal{O}_K\),
+    \(6\alpha \in J\) (since \(N(J) = |\mathcal{O}_K/J|=6\)). We have
     \begin{align*}
         (6) \subseteq J \quad \Rightarrow \quad J|(6)\quad \Rightarrow \quad J|(2)(3).
     \end{align*}
-    By Dedekind's theorem, \(J\) can be factorized into (some prime ideals lying above 2) \(\times\) (some prime ideals lying above 3). In other words, the prime ideals lying above $2$ and $3$ generates \(J\).
+    By Dedekind's theorem, \(J\) can be factorized into prime ideals lying above $2$ and $3$.
 \end{remark}
 
 \begin{example}
