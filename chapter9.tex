@@ -419,7 +419,7 @@ finite product
 \qquad n_P\in\mathbb Z,
 \]
 with all but finitely many $n_P$ equal to zero. Multiplication is given by adding the
-exponents  (later in this section, we will use fractional ideals to interpret $\mathfrak a$). Because the factorization is unique, we may extend the Artin symbol
+exponents  (in the next section, we will use fractional ideals to interpret $\mathfrak a$). Because the factorization is unique, we may extend the Artin symbol
 multiplicatively from prime ideals to all elements of $I_K(S)$.
 
 \begin{definition}\label{def-ArtinMap}
@@ -900,7 +900,7 @@ But \([L:K]=2=h_K=[H_K:K],
 \]
 More precisely, under the isomorphism $\theta_{L/K}: C_K
 \stackrel{\sim}{\longrightarrow}
-\operatorname{Gal}(H_K/K).$ the nonprincipal prime ideal
+\operatorname{Gal}(H_K/K),$ the nontrivial ideal class
 \([P_2]=[(2,1+\sqrt{-5})]
 \)
 satisfies
@@ -911,7 +911,7 @@ $$\theta_{L/K}([P_2]) = \sigma.$$
 The Fundamental Theorem of Galois Theory gives a further interpretation of the subgroup
 structure of $C_K$, i.e. there is 1-1 correspondence:
 \[
-H_K\supseteq M \supseteq K \qquad \longleftrightarrow \qquad {e} \leq A \leq C_K
+H_K\supseteq M \supseteq K \qquad \longleftrightarrow \qquad \{e\} \leq A \leq C_K
 \]
 such that
 \[
@@ -975,7 +975,7 @@ if the following two conditions hold:
     \sigma(\alpha)>0.
     \]
 \end{enumerate}
-where Here $v_P$ denotes the exponent of $P$ in the prime-ideal factorization of a principal fractional ideal. Equivalently, when $\alpha=a/b$ with $a,b\in\mathcal O_K$ both coprime to
+Here $v_P$ denotes the exponent of $P$ in the prime-ideal factorization of a principal fractional ideal. Equivalently, when $\alpha=a/b$ with $a,b\in\mathcal O_K$ both coprime to
 $\mathfrak m_0$, the first condition says
 \[
 a\equiv b\pmod{P^{n_P}}
@@ -1081,7 +1081,7 @@ Consequently, $\Theta_{L/K}$ factors through the ray class group and gives a sur
 \[
 C_K(\mathfrak m)\twoheadrightarrow\operatorname{Gal}(L/K).
 \]
-\[[P] \mapsto \operatorname{Frob}_{[P]}\]
+\[[P] \mapsto \operatorname{Frob}_P.\]
 \end{theorem}
 
 Among all moduli $\mathfrak m$ such that the above theorem holds, there is a unique minimal one under divisibility. It is called the {\bf conductor} of $L:K$.
@@ -1129,11 +1129,11 @@ Thus the Hilbert class field theorem is the unramified special case of the gener
 \begin{example}
 Recall that
 \(C_{\mathbb Q}(m\infty)\cong(\mathbb Z/m\mathbb Z)^* \cong \operatorname{Gal}(\mathbb Q(\zeta_m)/\mathbb Q)
-\), where the Artin map is given in Example \ref{eg-rayQ} by:
+\). For $\mathfrak a=(a/b)\in I_{\mathbb Q}(m\infty)$ with $a,b\in\mathbb Z_{>0}$ and $\gcd(ab,m)=1$, Examples \ref{eg-cyclotomicFrob} and \ref{eg-rayQ} identify the induced Artin map with
 \[
 [\mathfrak a]\longmapsto ab^{-1}\pmod m.
 \]
-Therefore, Theorem \ref{thm-ClassFieldExistence} implies that
+Thus the Artin map on $I_{\mathbb Q}(m\infty)$ has kernel $P_{\mathbb Q,m\infty,1}$, and Theorem \ref{thm-ClassFieldExistence} implies that
 \[
 \boxed{K_{m\infty}=\mathbb Q(\zeta_m).}
 \]
@@ -1156,13 +1156,13 @@ $\mathfrak m\ |\ m\infty$, so we apply Artin reciprocity
 \[
 P_{\mathbb Q,m\infty,1}
 \subseteq
-\ker\Theta_{L/\mathbb Q} \subseteq I_{K}(m\infty).
+H:=\ker\Theta_{L/\mathbb Q} \subseteq I_{\mathbb Q}(m\infty).
 \]
-By the existence theorem (Theorem \ref{thm-ClassFieldExistence}), it corresponds to
+By the existence theorem (Theorem \ref{thm-ClassFieldExistence}), $H$ corresponds to $L:\mathbb Q$, while $P_{\mathbb Q,m\infty,1}$ corresponds to $\mathbb Q_{m\infty}$. Since this correspondence is inclusion-reversing,
 \[
 \mathbb Q_{m\infty} 
 \supseteq
-L \supseteq \mathbb{Q}
+L \supseteq \mathbb{Q}.
 \]
 By the preceding example,
 \(\mathbb Q_{m\infty}=\mathbb Q(\zeta_m).
