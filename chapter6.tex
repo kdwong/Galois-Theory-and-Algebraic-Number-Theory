@@ -288,7 +288,7 @@ So we have finished proving {\bf Goal II}.
 \section{Proof of Dedekind Theorem}
 Before going into the proof of Dedekind theorem (Theorem \ref{thm-dedekind}), we need some tools to study $I\lhd\mathcal{O}_{K}$. 
 
-\begin{lemma}
+\begin{lemma}\label{lem-nonzeroIntegerInIdeal}
     Let $I\lhd \mathcal{O}_{K}$ be a nonzero ideal. Then $I\cap \mathbb{Z}$ contains a nonzero integer. 
 \end{lemma}
 
@@ -411,6 +411,30 @@ In order to show the factorization is unique, we need
     $P_{1}\cdots P_{k}=Q_{1}\cdots Q_{l}$ so $P_{1}\mid Q_{1}\cdots Q_{l}$. We leave an exercise to show that if $P$ is prime ideal and $P\mid AB$, then $P\mid A$ or $P\mid B$. So $P_{1}\mid Q_{1}$ or $P_{1}\mid Q_{2}\cdots Q_{l}$. If $P_{1}\mid Q_{1}$, we are done, otherwise $P_{1}\mid Q_{2}\cdots Q_{l}$ so $P_{1}\mid Q_{2}$ or $P\mid Q_{3}\cdots Q_{l}$. Continuing these steps we can find $j$ such that $P_{1}\mid Q_{j}$, and $Q_{j}\subseteq P_{1}$. Since $Q_{j}$ and $P_{1}$ are prime ideals, they are all maximal, we conclude that $P_{1}=Q_{j}$. 
 
     Therefore, we have $P_{1}P_{2}\cdots P_{k}=P_{1}Q_{1}\cdots\hat{Q_{j}}\cdots Q_{l}$. By the cancellation of ideals, $P_{2}\cdots P_{k}=Q_{1}\cdots \hat{Q_{j}}\cdots Q_{l}$. The result follows by induction on the number of prime factors $k$. 
+\end{proof}
+
+\begin{corollary}\label{cor-PIDiffUFD}
+    Let $K$ be a number field. The ring of integers $\mathcal{O}_{K}$ is a PID if and only if it is a UFD.
+\end{corollary}
+
+\begin{proof}
+    Every PID is a UFD by the standard algebra result recalled in Chapter~0.
+
+    Conversely, suppose that $\mathcal{O}_{K}$ is a UFD, and let $I\lhd \mathcal{O}_{K}$ be an ideal. If $I=(0)$ or $I=\mathcal{O}_{K}=(1)$, then $I$ is principal. Thus assume that $I$ is nonzero and proper. By Lemma \ref{lem-nonzeroIntegerInIdeal}, choose a nonzero $a\in I\cap\mathbb{Z}$. Then $(a)\subseteq I$, and $a$ is not a unit since $I$ is proper. Since $\mathcal{O}_{K}$ is a UFD, we can write
+    \[
+    a=u p_{1}^{e_{1}}\cdots p_{k}^{e_{k}},
+    \]
+    where $u\in\mathcal{O}_{K}^{\times}$ is a unit, the $p_{i}$ are pairwise nonassociate irreducible elements, and $e_{i}\geq 1$. In a UFD, every irreducible element is prime, so each $(p_{i})$ is a nonzero prime ideal. Since $(u)=\mathcal{O}_{K}$, we have
+    \[
+    (a)=(p_{1})^{e_{1}}\cdots(p_{k})^{e_{k}}\subseteq I.
+    \]
+    By Proposition \ref{prop-inclusionEquivDivision}, $I\mid(a)$. Dedekind's unique factorization theorem (Theorem \ref{thm-dedekind}) therefore gives
+    \[
+    I=(p_{1})^{f_{1}}\cdots(p_{k})^{f_{k}}
+      =(p_{1}^{f_{1}}\cdots p_{k}^{f_{k}}),
+    \qquad 0\leq f_{i}\leq e_{i}\quad (1\leq i\leq k).
+    \]
+    Thus every ideal of $\mathcal{O}_{K}$ is principal, so $\mathcal{O}_{K}$ is a PID.
 \end{proof}
 
 \begin{example}
